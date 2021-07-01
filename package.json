@@ -1,0 +1,20 @@
+{
+  "name": "wheres-waldo",
+  "version": "1.0.0",
+  "description": "implementing where's waldo game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "debugMode": "npx webpack --watch --mode 'development' --devtool source-map"
+  },
+  "author": "abappy",
+  "license": "ISC",
+  "dependencies": {
+    "webpack": "^5.41.1",
+    "webpack-cli": "^4.7.2"
+  },
+  "devDependencies": {
+    "firebase": "^8.6.8"
+  }
+}

@@ -1,0 +1,58 @@
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.3em;
+}
+
+.game-container, .character-container, .characters-display {
+    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.characters-display, .characters-display {
+    flex-direction: row;
+}
+
+.characters-panel{
+    display: flex;
+}
+
+.game-intel {
+    display: flex;
+    justify-content: flex-end;
+    /* margin-right: 0; */
+    /* margin: auto; */
+}
+
+#level {
+    margin-right: 20vw;
+    /* margin-left: 0px; */
+}
+
+.characters-display {
+    width: 65vw;
+    justify-content: space-evenly;
+}
+
+.characters-display img {
+    width: 11%
+}
+
+#wizard {
+    width: 20%;
+}
+
+.toggle-display-for-characters {
+    align-self: baseline;
+}
+
+.game-panel {
+    max-width: 89vw;
+    text-align: center;
+}
+
+.game-panel img {
+    width: 100%;
+}
