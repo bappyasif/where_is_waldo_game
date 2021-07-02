@@ -1,8 +1,3 @@
-// let level = document.querySelector('#level');
-// let timer = document.querySelector('#timer');
-// let levelImage = document.querySelector('#level-image');
-// let gamePanel = document.querySelector('.game-panel');
-
 import { level, levelImage, timer } from "../each_game_required_divs/requiredDivs";
 
 // let renderingLevelWorldImage = (src, alt) => {

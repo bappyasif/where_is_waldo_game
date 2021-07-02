@@ -16,23 +16,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
 
 
-// import img from '../../../dist/images'
-
-// let level = document.querySelector('#level');
-// let timer = document.querySelector('#timer');
-// let levelImage = document.querySelector('#level-image');
-// let gamePanel = document.querySelector('.game-panel');
 
 let level_one_game_view = () => {
     (0,_neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__.necessaryCleanUpTasks)();
-
-    // removingLevelAndTimer();
     renderingLevelAndTimer('01', '02-00-00');
-
-    // removeCharactersFromDisplay();
     renderCharactersOnDisplay();
-
-    // removingLevelWorldImage();
     renderingLevelWorldImage();
 }
 
@@ -42,23 +30,12 @@ let renderingLevelWorldImage = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.gamePanel.appendChild(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage);
 }
 
-// let removingLevelWorldImage = () => {
-//     levelImage.remove();
-// }
-
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level.textContent = levelNum;
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.timer.textContent = levelTimer;
 }
 
-// let removingLevelAndTimer = () => {
-//     level.textContent = '';
-//     timer.textContent = '';
-// }
-
 let renderCharactersOnDisplay = () => {
-    // waldo.src = '../../../dist/images/Character.Waldo.jpg';
-    // waldo.alt = 'waldo';
     document.querySelectorAll('.characters-display img').forEach(node => {
         if(node.id == 'waldo') {
             node.style.display = 'block';
@@ -69,18 +46,6 @@ let renderCharactersOnDisplay = () => {
         }
     })
 }
-
-// let removeCharactersFromDisplay = () => {
-//     // console.log("here@@", waldo, odlaw, wizard, wilma, wenda)
-//     document.querySelectorAll('.characters-display img').forEach(node=>{
-//         // console.log(node);
-//         // node.src= '';
-//         node.style.display = 'none';
-//     });
-//     // [waldo, odlaw, wizard, wilma, wenda].forEach(node => {
-//     //     console.log(node)
-//     // });
-// }
 
 /***/ }),
 
@@ -144,11 +109,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "necessaryCleanUpTasks": () => (/* binding */ necessaryCleanUpTasks)
 /* harmony export */ });
 /* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
-// let level = document.querySelector('#level');
-// let timer = document.querySelector('#timer');
-// let levelImage = document.querySelector('#level-image');
-// let gamePanel = document.querySelector('.game-panel');
-
 
 
 // let renderingLevelWorldImage = (src, alt) => {
@@ -176,7 +136,6 @@ let necessaryCleanUpTasks = () => {
     removeCharactersFromDisplay();
 }
 
-
 /***/ }),
 
 /***/ "./src/client_side/choose_level/renderLevels.js":
@@ -189,28 +148,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "awaitsUserChooseLevel": () => (/* binding */ awaitsUserChooseLevel)
 /* harmony export */ });
-/* harmony import */ var _server_side_savingPositions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/savingPositions */ "./src/server_side/savingPositions.js");
-/* harmony import */ var _all_levels_level_01__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../all_levels/level_01 */ "./src/client_side/all_levels/level_01.js");
-/* harmony import */ var _all_levels_level_02__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../all_levels/level_02 */ "./src/client_side/all_levels/level_02.js");
-/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
-
+/* harmony import */ var _all_levels_level_01__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../all_levels/level_01 */ "./src/client_side/all_levels/level_01.js");
+/* harmony import */ var _all_levels_level_02__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../all_levels/level_02 */ "./src/client_side/all_levels/level_02.js");
+/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
 
 
 
 
 let awaitsUserChooseLevel = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.level_01.addEventListener('click',userHasSelectedLevel);
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.level_02.addEventListener('click', userHasSelectedLevel);
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.level_01.addEventListener('click',userHasSelectedLevel);
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.level_02.addEventListener('click', userHasSelectedLevel);
 }
 
 let userHasSelectedLevel = evt => {
     let id = evt.target.id;
     if(id == 'level-01') {
-        (0,_all_levels_level_01__WEBPACK_IMPORTED_MODULE_1__.level_one_game_view)();
-        // gameplay_of_level_01();
+        (0,_all_levels_level_01__WEBPACK_IMPORTED_MODULE_0__.level_one_game_view)();
     } else if(id == 'level-02') {
-        (0,_all_levels_level_02__WEBPACK_IMPORTED_MODULE_2__.level_two_game_view)();
-        // gameplay_of_level_01();
+        (0,_all_levels_level_02__WEBPACK_IMPORTED_MODULE_1__.level_two_game_view)();
     }
 }
 
@@ -264,16 +219,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "gamePlay": () => (/* binding */ gamePlay)
 /* harmony export */ });
-/* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../server_side/accessingData */ "./src/server_side/accessingData.js");
-/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
-/* harmony import */ var _gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gamePlayLevelWise/level_01_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_01_gamePlay_control.js");
-
+/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
+/* harmony import */ var _gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gamePlayLevelWise/level_01_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_01_gamePlay_control.js");
 
 
 
 let gamePlay = () => {
     let worldImage = document.querySelector('.game-panel');
-    // worldImage.addEventListener('click', getPostionOfClick);
     worldImage.addEventListener('click', checkWhichLevelIsInPlay);
 }
 
@@ -281,68 +233,14 @@ let checkWhichLevelIsInPlay = evt => {
     let x = evt.clientX;
     let y = evt.clientY;
 
-    let imageAltTagText = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.alt;
+    let imageAltTagText = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.alt;
     let levelID = imageAltTagText.split(' ')[1];
     console.log(levelID);
 
     if(levelID == '01') {
-        (0,_gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_2__.checkPositionWithFirebaseForGameLevel01)([x,y])
-    }
-    
+        (0,_gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_1__.checkPositionWithFirebaseForGameLevel01)([x,y])
+    }   
 }
-
-// export let coordsRanges = {};
-
-// let checkIfItsWizard = coords => {
-//     readCharacterCoordsDataFromFirebase('level_01', 'wizard').then(data=>{
-//         console.log(data, "wizard data!!", coords);
-//         checkIfCoordsWithinPositionRange(data, coords, 'wizard');
-//     }).catch(err=>console.log("no data!!", err));
-// }
-
-// let checkIfItsWaldo = (coords) => {
-//     readCharacterCoordsDataFromFirebase('level_01', 'waldo').then(data=>{
-//         console.log(data, "data!!", coords);
-//         checkIfCoordsWithinPositionRange(data, coords, 'waldo');
-//     }).catch(err=>console.log("no data!!", err));
-// }
-
-// let checkIfCoordsWithinPositionRange = (data, coords, who) => {
-//     console.log(data['X'][0], data.X[1], who);
-//     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
-//         console.log('found!!'+who, data['X'][0], data['X'][1]);
-//     } else {
-//         console.log('go fish!!'+who);
-//     }
-// }
-
-// let checkPositionWithFirebase = (coords) => {
-//     checkIfItsWaldo(coords);
-//     checkIfItsWizard(coords);
-//     // readCharacterCoordsDataFromFirebase('level_01', 'waldo').then(data=>{
-//     //     console.log(data, "data!!", coords);
-//     //     checkIfCoordsWithinPositionRange(data, coords);
-//     // }).catch(err=>console.log("no data!!", err));
-
-//     // let data = readCharacterCoordsDataFromFirebase('level_01', 'waldo');
-//     // console.log(data);
-//     // await readCharacterCoordsDataFromFirebase('level_01', 'waldo').then(data=>console.log(data)).catch(()=>console.log('error!!'));
-//     // console.log(readCharacterCoordsDataFromFirebase('level_01', 'waldo'));
-// }
-
-
-// let coordsX = [], coordsY = [];
-// let getPostionOfClick = (evt) => {
-//     let x = evt.clientX;
-//     let y = evt.clientY;
-
-//     // coordsX.push(x);
-//     // coordsY.push(y);
-//     // console.log(x, y);
-//     // console.log(levelImage.alt);
-//     checkWhichLevelIsInPlay(evt);
-//     checkPositionWithFirebase([x,y]);
-// }
 
 /***/ }),
 
@@ -411,7 +309,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "readCharacterCoordsDataFromFirebase": () => (/* binding */ readCharacterCoordsDataFromFirebase)
 /* harmony export */ });
 /* harmony import */ var _characterPositions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./characterPositions */ "./src/server_side/characterPositions.js");
-// import { coordsRanges } from "../client_side/gamePlay";
 
 
 let db = firebase.firestore();
@@ -433,20 +330,15 @@ let wizardsPosition = () => {
     storeCharacterIntoFirestrore([_characterPositions__WEBPACK_IMPORTED_MODULE_0__.wizardRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_0__.wizardRangeOfY], 'level_01', 'wizard');
 }
 
-let readCharacterCoordsDataFromFirebase = (collectionName, docName) => {
-    // let coordsRangeOfX = [], coordsRangeOfY = [];
-    // let coordsRanges = [];
-    let coordsRanges = {}
+let readCharacterCoordsDataFromFirebase = (collectionName, docName) => {    let coordsRanges = {}
     return db.collection(collectionName).doc(docName)
     .get().then(doc => {
-        // coordsRanges = [doc.data()];
         coordsRanges.X = doc.data().X;
         coordsRanges.Y = doc.data().Y;
         // console.log('data loaded', doc.data(), doc.data().X, coordsRanges);
         console.log('data loaded');
         return coordsRanges;
     }).catch(err => console.log("data couldn't be loaded!!", err));
-    // return coordsRanges;
 }
 
 /***/ }),
@@ -563,21 +455,16 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _client_side_all_levels_level_01__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./client_side/all_levels/level_01 */ "./src/client_side/all_levels/level_01.js");
-/* harmony import */ var _client_side_choose_level_renderLevels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./client_side/choose_level/renderLevels */ "./src/client_side/choose_level/renderLevels.js");
-/* harmony import */ var _client_side_gamePlay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./client_side/gamePlay */ "./src/client_side/gamePlay.js");
-/* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./server_side/accessingData */ "./src/server_side/accessingData.js");
-/* harmony import */ var _server_side_savingPositions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./server_side/savingPositions */ "./src/server_side/savingPositions.js");
+/* harmony import */ var _client_side_choose_level_renderLevels__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./client_side/choose_level/renderLevels */ "./src/client_side/choose_level/renderLevels.js");
+/* harmony import */ var _client_side_gamePlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./client_side/gamePlay */ "./src/client_side/gamePlay.js");
+/* harmony import */ var _server_side_savingPositions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./server_side/savingPositions */ "./src/server_side/savingPositions.js");
 
 
 
 
-
-
-(0,_client_side_gamePlay__WEBPACK_IMPORTED_MODULE_2__.gamePlay)();
-(0,_server_side_savingPositions__WEBPACK_IMPORTED_MODULE_4__.coords_for_level_01)()
-// level_one_game_view();
-;(0,_client_side_choose_level_renderLevels__WEBPACK_IMPORTED_MODULE_1__.awaitsUserChooseLevel)();
+(0,_client_side_gamePlay__WEBPACK_IMPORTED_MODULE_1__.gamePlay)();
+(0,_server_side_savingPositions__WEBPACK_IMPORTED_MODULE_2__.coords_for_level_01)()
+;(0,_client_side_choose_level_renderLevels__WEBPACK_IMPORTED_MODULE_0__.awaitsUserChooseLevel)();
 })();
 
 /******/ })()
