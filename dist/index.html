@@ -9,16 +9,21 @@
 </head>
 <body>
     <div class="container">
-        <title>Where's Waldo</title>
-        <header>find these mentioned characters from this given picture</header>
+        <header>Where's Waldo</header>
         <div class="game-container">
+            <header>Choose Levels</header>
+            <div class="choose-levels">
+                <img id="level-01" src="./images/level-1.jpg" alt="">
+                <img id="level-02" src="./images/level-2.png" alt="">
+            </div>
             <div class="game-intel">
-                <h4>Level: <span id="level">01</span></h4>
+                <h4>Level: <span id="level">00</span></h4>
                 <h4>Time Remaining: <span id="timer">00:00:00</span></h4>
             </div>
             <div class="characters-panel">
                 <div class="characters-display">
                     <img id='waldo' src="./images/Character.Waldo.jpg" alt="waldo" />
+                    <img id='odlaw' src="./images/Character.Odlaw.jpg" alt="odlaw" />
                     <img id='wizard' src="./images/Character.Whitebeard.jpg" alt="wizard" />
                     <img id='wilma' src="./images/WilmaUmbrella.jpg" alt="wilma" />
                     <img id='wenda' src="./images/Character.Wenda.jpg" alt="wenda" />
@@ -28,7 +33,8 @@
                 </div>
             </div>
             <div class="game-panel">
-                <img src="./images/level-1.jpg" alt="">
+                <img id='level-image' src="" alt="">
+                <!-- <img id='level-image' src="./images/level-1.jpg" alt=""> -->
             </div>
         </div>
     </div>

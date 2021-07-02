@@ -56,3 +56,19 @@ body {
 .game-panel img {
     width: 100%;
 }
+
+.choose-levels {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+}
+
+.choose-levels img {
+    width: 20vw;
+    border: 2px dotted silver;
+    margin: 8px;
+}
+
+.choose-levels img:hover {
+    background-color: blue;
+}
