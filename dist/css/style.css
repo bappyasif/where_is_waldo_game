@@ -72,3 +72,10 @@ body {
 .choose-levels img:hover {
     background-color: blue;
 }
+
+.level-result {
+    position: absolute;
+    margin-top: 110vh;
+    margin-left: 38vw;
+    display: none;
+}

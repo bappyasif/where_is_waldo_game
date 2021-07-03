@@ -1,4 +1,5 @@
 import { readCharacterCoordsDataFromFirebase } from "../../server_side/accessingData";
+import { calculateTotalTimeElapsed, decideEffeciencyFindingWaldo } from "./requiredByEachLevel";
 
 let checkIfItsWizard = coords => {
     readCharacterCoordsDataFromFirebase('level_01', 'wizard').then(data=>{
@@ -25,6 +26,8 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
         console.log('found!!'+who, data['X'][0], data['X'][1]);
+        let timeSpent = calculateTotalTimeElapsed();
+        decideEffeciencyFindingWaldo(timeSpent, 'level_01');
     } else {
         console.log('go fish!!'+who, coords);
     }

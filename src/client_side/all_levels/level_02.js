@@ -23,12 +23,13 @@ let renderCharactersOnDisplay = () => {
     document.querySelectorAll('.characters-display img').forEach(node => {
         if(node.id == 'waldo') {
             node.style.display = 'block';
-        } else if(node.id == 'odlaw') {
-            node.style.display = 'block';
-        } else if(node.id == 'wizard') {
-            node.style.display = 'block';
-        } else if(node.id == 'wilma') {
-            node.style.display = 'block';
-        }
+        } 
+        // else if(node.id == 'odlaw') {
+        //     node.style.display = 'block';
+        // } else if(node.id == 'wizard') {
+        //     node.style.display = 'block';
+        // } else if(node.id == 'wilma') {
+        //     node.style.display = 'block';
+        // }
     })
 }
