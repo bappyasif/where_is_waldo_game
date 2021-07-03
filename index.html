@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infamous Where's Waldo Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>Where's Waldo</header>
+        <div class="game-container">
+            <header>Choose Levels</header>
+            <div class="choose-levels">
+                <img id="level-01" src="./images/level-1.jpg" alt="">
+                <img id="level-02" src="./images/level-2.png" alt="">
+            </div>
+            <div class="game-intel">
+                <h4>Level: <span id="level">00</span></h4>
+                <h4>Time Remaining: <span id="timer">00:00:00</span></h4>
+            </div>
+            <div class="characters-panel">
+                <div class="characters-display">
+                    <img id='waldo' src="./images/Character.Waldo.jpg" alt="waldo" />
+                    <img id='odlaw' src="./images/Character.Odlaw.jpg" alt="odlaw" />
+                    <img id='wizard' src="./images/Character.Whitebeard.jpg" alt="wizard" />
+                    <img id='wilma' src="./images/WilmaUmbrella.jpg" alt="wilma" />
+                    <img id='wenda' src="./images/Character.Wenda.jpg" alt="wenda" />
+                </div>
+                <div class="toggle-display-for-characters">
+                    <button>Show/Hide</button>
+                </div>
+            </div>
+            <div class="game-panel">
+                <div class="level-result">
+                    <div class="result-text">result here!!</div>
+                    <button id="play-again">Play Again!!</button>
+                </div>
+                <img id='level-image' src="" alt="">
+                <!-- <img id='level-image' src="./images/level-1.jpg" alt=""> -->
+            </div>
+        </div>
+    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+<script src="../src/firebase.config.js"></script>
+<!-- <script src="../src/index.js"></script> -->
+<script src="../src/server_side/test.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
