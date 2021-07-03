@@ -1,5 +1,3 @@
-import { odlawsRangeOfX, odlawsRangeOfY, waldosRangeOfX, waldosRangeOfY, wizardRangeOfX, wizardRangeOfY } from "./level_01/characterPositions";
-
 let db = firebase.firestore();
 
 export let storeCharacterIntoFirestrore = (characterPos, whichLevel, characterName) => {
@@ -14,18 +12,6 @@ export let storeEachLevelResult = (time, name, level, stars) => {
     .set({stars:stars, time:time})
     .then(()=> console.log('result stored!!'))
     .catch(err => console.log("error while storing result!!", err));
-}
-
-export let waldosPosition = () => {
-    storeCharacterIntoFirestrore([waldosRangeOfX, waldosRangeOfY], 'level_01', 'waldo');
-}
-
-export let odlawsPosition = () => {
-    storeCharacterIntoFirestrore([odlawsRangeOfX, odlawsRangeOfY], 'level_01', 'odlaw');
-}
-
-export let wizardsPosition = () => {
-    storeCharacterIntoFirestrore([wizardRangeOfX, wizardRangeOfY], 'level_01', 'wizard');
 }
 
 export let readCharacterCoordsDataFromFirebase = (collectionName, docName) => {

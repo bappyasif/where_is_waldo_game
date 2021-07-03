@@ -322,93 +322,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "checkPositionWithFirebaseForGameLevel02": () => (/* binding */ checkPositionWithFirebaseForGameLevel02)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
-/* harmony import */ var _all_levels_neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../all_levels/neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
-/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
 
 
-
-
-// let timeStarted = Date.now();
-// let resultText = document.querySelector('.result-text');
-// let resultDiv = document.querySelector('.level-result');
-
-// let calculateTotalTimeElapsed = () => {
-//     let timeElapsed = Date.now() - timeStarted;
-//     let seconds = Math.floor(timeElapsed/1000);
-//     let minutes = seconds / 60;
-//     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
-//     return minutes;
-// }
-
-// let decideEffeciencyFindingWaldo = (timeTook) => {
-//     let stars;
-//     if(timeTook < .50) {
-//         stars = '5 star';
-//         // console.log('5 star');
-//     } else if(timeTook >= .50 && timeTook < 1) {
-//         // console.log('4 star');
-//         stars = '4 star';
-//     } else if(timeTook >= 1 && timeTook < 1.25) {
-//         // console.log('3 star');
-//         stars = '3 star';
-//     } else {
-//         stars = '2 star';
-//         // console.log('2 star');
-//     }
-//     whatHappensAfterGame(stars, timeTook);
-// }
-
-// let whatHappensAfterGame = (stars, time) => {
-//     let name = prompt('please enter your name for leaderboard');
-//     announceCompleted(stars, name);
-//     storeResultToFirebase(time,name,stars);
-//     awaitsUsersPlayAgain();
-// }
-
-// let awaitsUsersPlayAgain = () => {
-//     let playAgain = document.querySelector('#play-again');
-//     playAgain.addEventListener('click', gettingReadyForGame);
-// }
-
-// let gettingReadyForGame = evt => {
-//     necessaryCleanUpTasks();
-//     resultDiv.style.display = 'none';
-// }
-
-// let announceCompleted = (stars, name) => {
-//     resultDiv.style.display = 'block';
-//     resultText.textContent = 'congratulations!! '+name+' you got '+stars+' :)';
-// }
-
-// let storeResultToFirebase = (completionTime, name, stars) => {
-//     storeEachLevelResult(completionTime, name, "level_02", stars);
-// }
-
-let checkIfItsWizard = coords => {
-    (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromFirebase)('level_02', 'wizard').then(data=>{
-        console.log(data, "wizard data!!", coords);
-        checkIfCoordsWithinPositionRange(data, coords, 'wizard');
-    }).catch(err=>console.log("no data!!", err));
-}
 
 let checkIfItsWaldo = (coords) => {
-    ;(0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromFirebase)('level_02', 'waldo').then(data=>{
+    (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromFirebase)('level_02', 'waldo').then(data=>{
         console.log(data, "waldos data!!", coords);
         checkIfCoordsWithinPositionRange(data, coords, 'waldo');
-    }).catch(err=>console.log("no data!!", err));
-}
-
-let checkIfItsOdlaw = (coords) => {
-    ;(0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromFirebase)('level_02', 'odlaw').then(data=>{
-        console.log(data, "odlaws data!!", coords);
-        checkIfCoordsWithinPositionRange(data, coords, 'odlaw');
-    }).catch(err=>console.log("no data!!", err));
-}
-
-let checkIfItsWilma = (coords) => {
-    ;(0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromFirebase)('level_02', 'wilma').then(data=>{
-        console.log(data, "wilmas data!!", coords);
-        checkIfCoordsWithinPositionRange(data, coords, 'wilma');
     }).catch(err=>console.log("no data!!", err));
 }
 
@@ -416,8 +337,8 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
         console.log('found!!'+who, data['X'][0], data['X'][1]);
-        let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.calculateTotalTimeElapsed)();
-        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.decideEffeciencyFindingWaldo)(timeSpent, "level_02");
+        let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_1__.calculateTotalTimeElapsed)();
+        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_1__.decideEffeciencyFindingWaldo)(timeSpent, "level_02");
     } else {
         console.log('go fish!!'+who, coords);
     }
@@ -425,9 +346,6 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 
 let checkPositionWithFirebaseForGameLevel02 = (coords) => {
     checkIfItsWaldo(coords);
-    // checkIfItsWizard(coords);
-    // checkIfItsOdlaw(coords);
-    // checkIfItsWilma(coords);
 }
 
 /***/ }),
@@ -511,14 +429,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "storeCharacterIntoFirestrore": () => (/* binding */ storeCharacterIntoFirestrore),
 /* harmony export */   "storeEachLevelResult": () => (/* binding */ storeEachLevelResult),
-/* harmony export */   "waldosPosition": () => (/* binding */ waldosPosition),
-/* harmony export */   "odlawsPosition": () => (/* binding */ odlawsPosition),
-/* harmony export */   "wizardsPosition": () => (/* binding */ wizardsPosition),
 /* harmony export */   "readCharacterCoordsDataFromFirebase": () => (/* binding */ readCharacterCoordsDataFromFirebase)
 /* harmony export */ });
-/* harmony import */ var _level_01_characterPositions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./level_01/characterPositions */ "./src/server_side/level_01/characterPositions.js");
-
-
 let db = firebase.firestore();
 
 let storeCharacterIntoFirestrore = (characterPos, whichLevel, characterName) => {
@@ -533,18 +445,6 @@ let storeEachLevelResult = (time, name, level, stars) => {
     .set({stars:stars, time:time})
     .then(()=> console.log('result stored!!'))
     .catch(err => console.log("error while storing result!!", err));
-}
-
-let waldosPosition = () => {
-    storeCharacterIntoFirestrore([_level_01_characterPositions__WEBPACK_IMPORTED_MODULE_0__.waldosRangeOfX, _level_01_characterPositions__WEBPACK_IMPORTED_MODULE_0__.waldosRangeOfY], 'level_01', 'waldo');
-}
-
-let odlawsPosition = () => {
-    storeCharacterIntoFirestrore([_level_01_characterPositions__WEBPACK_IMPORTED_MODULE_0__.odlawsRangeOfX, _level_01_characterPositions__WEBPACK_IMPORTED_MODULE_0__.odlawsRangeOfY], 'level_01', 'odlaw');
-}
-
-let wizardsPosition = () => {
-    storeCharacterIntoFirestrore([_level_01_characterPositions__WEBPACK_IMPORTED_MODULE_0__.wizardRangeOfX, _level_01_characterPositions__WEBPACK_IMPORTED_MODULE_0__.wizardRangeOfY], 'level_01', 'wizard');
 }
 
 let readCharacterCoordsDataFromFirebase = (collectionName, docName) => {
@@ -599,26 +499,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "coords_for_level_01": () => (/* binding */ coords_for_level_01)
 /* harmony export */ });
-/* harmony import */ var _characterPositions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./characterPositions */ "./src/server_side/level_01/characterPositions.js");
+/* harmony import */ var _accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../accessingData */ "./src/server_side/accessingData.js");
+/* harmony import */ var _characterPositions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./characterPositions */ "./src/server_side/level_01/characterPositions.js");
 
 
-let db = firebase.firestore();
-
-let storeCharacterIntoFirestrore = (characterPos, whichLevel, characterName) => {
-    let [x,y] = [...characterPos];
-    db.collection(whichLevel).doc(characterName).set({X: x, Y: y}).then(()=>console.log(characterName+' coords details saved!!')).catch(err=>console.log("something's wrong!!"));
-}
 
 let waldosPosition = () => {
-    storeCharacterIntoFirestrore([_characterPositions__WEBPACK_IMPORTED_MODULE_0__.waldosRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_0__.waldosRangeOfY], 'level_01', 'waldo');
+    (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_characterPositions__WEBPACK_IMPORTED_MODULE_1__.waldosRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_1__.waldosRangeOfY], 'level_01', 'waldo');
 }
 
 let odlawsPosition = () => {
-    storeCharacterIntoFirestrore([_characterPositions__WEBPACK_IMPORTED_MODULE_0__.odlawsRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_0__.odlawsRangeOfY], 'level_01', 'odlaw');
+    ;(0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_characterPositions__WEBPACK_IMPORTED_MODULE_1__.odlawsRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_1__.odlawsRangeOfY], 'level_01', 'odlaw');
 }
 
 let wizardsPosition = () => {
-    storeCharacterIntoFirestrore([_characterPositions__WEBPACK_IMPORTED_MODULE_0__.wizardRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_0__.wizardRangeOfY], 'level_01', 'wizard');
+    ;(0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_characterPositions__WEBPACK_IMPORTED_MODULE_1__.wizardRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_1__.wizardRangeOfY], 'level_01', 'wizard');
 }
 
 let coords_for_level_01 = () => {
@@ -638,66 +533,47 @@ let coords_for_level_01 = () => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "waldosRangeOfX": () => (/* binding */ waldosRangeOfX),
-/* harmony export */   "waldosRangeOfY": () => (/* binding */ waldosRangeOfY),
-/* harmony export */   "wizardRangeOfX": () => (/* binding */ wizardRangeOfX),
-/* harmony export */   "wizardRangeOfY": () => (/* binding */ wizardRangeOfY),
-/* harmony export */   "odlawsRangeOfX": () => (/* binding */ odlawsRangeOfX),
-/* harmony export */   "odlawsRangeOfY": () => (/* binding */ odlawsRangeOfY),
-/* harmony export */   "wilmasRangeOfX": () => (/* binding */ wilmasRangeOfX),
-/* harmony export */   "wilmasRangeOfY": () => (/* binding */ wilmasRangeOfY)
+/* harmony export */   "waldosRangeOfY": () => (/* binding */ waldosRangeOfY)
 /* harmony export */ });
 let waldosRangeOfX = [383, 387];
 let waldosRangeOfY = [33, 42];
 
-let wizardRangeOfX = [470, 496];
-let wizardRangeOfY = [101, 132];
 
-let odlawsRangeOfX = [203, 213];
-let odlawsRangeOfY = [110, 117];
+// let wizardRangeOfX = [470, 496];
+// let wizardRangeOfY = [101, 132];
 
-let wilmasRangeOfX = [203, 213];
-let wilmasRangeOfY = [110, 117];
+// let odlawsRangeOfX = [203, 213];
+// let odlawsRangeOfY = [110, 117];
 
+// let wilmasRangeOfX = [203, 213];
+// let wilmasRangeOfY = [110, 117];
 
+// export {waldosRangeOfX, waldosRangeOfY, wizardRangeOfX, wizardRangeOfY, odlawsRangeOfX, odlawsRangeOfY, wilmasRangeOfX, wilmasRangeOfY}
 
 /***/ }),
 
-/***/ "./src/server_side/storingDataByLevels.js":
-/*!************************************************!*\
-  !*** ./src/server_side/storingDataByLevels.js ***!
-  \************************************************/
+/***/ "./src/server_side/level_02/storingPositions.js":
+/*!******************************************************!*\
+  !*** ./src/server_side/level_02/storingPositions.js ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "coords_for_level_02": () => (/* binding */ coords_for_level_02)
+/* harmony export */   "saving_coords_for_level02": () => (/* binding */ saving_coords_for_level02)
 /* harmony export */ });
-/* harmony import */ var _accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./accessingData */ "./src/server_side/accessingData.js");
-/* harmony import */ var _level_02_characterPositions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./level_02/characterPositions */ "./src/server_side/level_02/characterPositions.js");
+/* harmony import */ var _accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../accessingData */ "./src/server_side/accessingData.js");
+/* harmony import */ var _characterPositions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./characterPositions */ "./src/server_side/level_02/characterPositions.js");
+// import { storeCharacterIntoFirestrore } from "../accessingData";
 
 
 
 let waldosPosition = (level) => {
-    (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_level_02_characterPositions__WEBPACK_IMPORTED_MODULE_1__.waldosRangeOfX, _level_02_characterPositions__WEBPACK_IMPORTED_MODULE_1__.waldosRangeOfY], level, 'waldo');
+    (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_characterPositions__WEBPACK_IMPORTED_MODULE_1__.waldosRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_1__.waldosRangeOfY], level, 'waldo');
 }
 
-let odlawsPosition = (level) => {
-    ;(0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_level_02_characterPositions__WEBPACK_IMPORTED_MODULE_1__.odlawsRangeOfX, _level_02_characterPositions__WEBPACK_IMPORTED_MODULE_1__.odlawsRangeOfY], level, 'odlaw');
-}
-
-let wizardsPosition = (level) => {
-    ;(0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_level_02_characterPositions__WEBPACK_IMPORTED_MODULE_1__.wizardRangeOfX, _level_02_characterPositions__WEBPACK_IMPORTED_MODULE_1__.wizardRangeOfY], level, 'wizard');
-}
-
-let wilmasPosition = (level) => {
-    ;(0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_level_02_characterPositions__WEBPACK_IMPORTED_MODULE_1__.wilmasRangeOfX, _level_02_characterPositions__WEBPACK_IMPORTED_MODULE_1__.wilmasRangeOfY], level, 'wilma');
-}
-
-let coords_for_level_02 = () => {
+let saving_coords_for_level02 = () => {
     waldosPosition('level_02');
-    // odlawsPosition('level_02');
-    // wizardsPosition('level_02');
-    // wilmasPosition('level_02');
 }
 
 /***/ })
@@ -768,17 +644,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _client_side_choose_level_renderLevels__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./client_side/choose_level/renderLevels */ "./src/client_side/choose_level/renderLevels.js");
 /* harmony import */ var _client_side_gamePlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./client_side/gamePlay */ "./src/client_side/gamePlay.js");
 /* harmony import */ var _server_side_level_01_storingPositions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./server_side/level_01/storingPositions */ "./src/server_side/level_01/storingPositions.js");
-/* harmony import */ var _server_side_storingDataByLevels__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./server_side/storingDataByLevels */ "./src/server_side/storingDataByLevels.js");
+/* harmony import */ var _server_side_level_02_storingPositions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./server_side/level_02/storingPositions */ "./src/server_side/level_02/storingPositions.js");
+
 
 
 
 // import { coords_for_level_01 } from "./server_side/savingPositions";
+// import { coords_for_level_02, saving_coords_for_level02 } from "./server_side/storingDataByLevels";
 
 
 (0,_client_side_gamePlay__WEBPACK_IMPORTED_MODULE_1__.gamePlay)();
 (0,_server_side_level_01_storingPositions__WEBPACK_IMPORTED_MODULE_2__.coords_for_level_01)();
-// saving_coords_for_level02();
-(0,_server_side_storingDataByLevels__WEBPACK_IMPORTED_MODULE_3__.coords_for_level_02)();
+(0,_server_side_level_02_storingPositions__WEBPACK_IMPORTED_MODULE_3__.saving_coords_for_level02)();
+// coords_for_level_02();
 (0,_client_side_choose_level_renderLevels__WEBPACK_IMPORTED_MODULE_0__.awaitsUserChooseLevel)();
 })();
 

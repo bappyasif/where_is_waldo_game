@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "implementing where's waldo game",
   "main": "index.js",
+  "homepage": "https://bappyasif.github.io/where_is_waldo_game",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "debugMode": "npx webpack --watch --mode 'development' --devtool source-map"
+    "debugMode": "npx webpack --watch --mode 'development' --devtool source-map",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "author": "abappy",
   "license": "ISC",
@@ -15,6 +18,7 @@
     "webpack-cli": "^4.7.2"
   },
   "devDependencies": {
-    "firebase": "^8.6.8"
+    "firebase": "^8.6.8",
+    "gh-pages": "^3.2.3"
   }
 }

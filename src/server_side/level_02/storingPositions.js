@@ -1,4 +1,6 @@
+// import { storeCharacterIntoFirestrore } from "../accessingData";
 import { storeCharacterIntoFirestrore } from "../accessingData";
+import { waldosRangeOfX, waldosRangeOfY } from "./characterPositions";
 
 let waldosPosition = (level) => {
     storeCharacterIntoFirestrore([waldosRangeOfX, waldosRangeOfY], level, 'waldo');
