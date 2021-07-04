@@ -228,8 +228,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "gamePlay": () => (/* binding */ gamePlay)
 /* harmony export */ });
 /* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
-/* harmony import */ var _gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gamePlayLevelWise/level_01_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_01_gamePlay_control.js");
-/* harmony import */ var _gamePlayLevelWise_level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gamePlayLevelWise/level_02_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_02_gamePlay_control.js");
+/* harmony import */ var _gamePlayLevelWise_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gamePlayLevelWise/characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
+/* harmony import */ var _gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gamePlayLevelWise/level_01_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_01_gamePlay_control.js");
+/* harmony import */ var _gamePlayLevelWise_level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./gamePlayLevelWise/level_02_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_02_gamePlay_control.js");
+
 
 
 
@@ -246,12 +248,61 @@ let checkWhichLevelIsInPlay = evt => {
     let imageAltTagText = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.alt;
     let levelID = imageAltTagText.split(' ')[1];
     console.log(levelID);
+    
+    let dropDown;
 
     if(levelID == '01') {
-        (0,_gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_1__.checkPositionWithFirebaseForGameLevel01)([x,y])
+        (0,_gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_2__.checkPositionWithFirebaseForGameLevel01)([x,y])
+        dropDown = (0,_gamePlayLevelWise_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.charactersDD)();
+        console.log(evt.pageX, evt.pageY)
+        // stickDropDownWhereItsClicked(dropDown, [x,y])
+        ;(0,_gamePlayLevelWise_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickDropDownWhereItsClicked)(dropDown, [evt.pageX, evt.pageY])
     } else if(levelID == '02') {
-        (0,_gamePlayLevelWise_level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_2__.checkPositionWithFirebaseForGameLevel02)([x,y]);
+        dropDown = (0,_gamePlayLevelWise_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.charactersDD)();
+        (0,_gamePlayLevelWise_level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_3__.checkPositionWithFirebaseForGameLevel02)([x,y]);
     }
+    // console.log(dropDown, "checks?!", dropDown.options);
+}
+
+/***/ }),
+
+/***/ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js":
+/*!*************************************************************************!*\
+  !*** ./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "charactersDD": () => (/* binding */ charactersDD),
+/* harmony export */   "stickDropDownWhereItsClicked": () => (/* binding */ stickDropDownWhereItsClicked)
+/* harmony export */ });
+let  charactersDD = () => {
+    let dropDownMarkUp = document.createElement('select');
+    let charactersAreInDisplay = document.querySelector('.characters-display').children;
+    Array.from(charactersAreInDisplay).forEach(character => {
+        let option = document.createElement('option');
+        // console.log(character)
+        if(character.style.display != 'none') {
+            option.value = character.alt;
+        option.textContent = character.alt;
+        dropDownMarkUp.append(option);
+        }
+    });
+    return dropDownMarkUp;
+}
+
+let stickDropDownWhereItsClicked = (dropDown, coords) => {
+    dropDown.setAttribute('style', 'color: green');
+    dropDown.style.marginLeft = coords[0]+'px';
+    dropDown.style.top = coords[1]+'px';
+    dropDown.style.zIndex = '-2';
+    dropDown.setAttribute('style', 'position: fixed');
+    document.querySelector('.game-panel').append(dropDown);
+    // document.querySelector('#level-image').append(dropDown);
+    // if(document.querySelector('.level-image')) {
+    //     document.querySelector('.game-panel').append(dropDown);
+    // }
 }
 
 /***/ }),

@@ -79,3 +79,7 @@ body {
     margin-left: 20vw;
     display: none;
 }
+
+.disabled-character {
+    opacity: 31%;
+}
