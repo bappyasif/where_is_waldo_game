@@ -75,7 +75,11 @@ body {
 
 .level-result {
     position: absolute;
-    margin-top: 110vh;
-    margin-left: 38vw;
+    margin-top: 65vh;
+    margin-left: 20vw;
     display: none;
+}
+
+.disabled-character {
+    opacity: 31%;
 }
