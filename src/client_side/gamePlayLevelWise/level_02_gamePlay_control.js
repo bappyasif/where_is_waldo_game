@@ -1,4 +1,4 @@
-import { readCharacterCoordsDataFromFirebase } from "../../server_side/accessingData";
+import { readCharacterCoordsDataFromArray, readCharacterCoordsDataFromFirebase } from "../../server_side/accessingData";
 import { calculateTotalTimeElapsed, decideEffeciencyFindingWaldo } from "./requiredByEachLevel";
 
 let checkIfItsWaldo = (coords) => {
@@ -6,6 +6,12 @@ let checkIfItsWaldo = (coords) => {
         console.log(data, "waldos data!!", coords);
         checkIfCoordsWithinPositionRange(data, coords, 'waldo');
     }).catch(err=>console.log("no data!!", err));
+}
+
+let checkIfItsWaldoVer02 = (coords) => {
+    let waldosData = readCharacterCoordsDataFromArray()['level_02']['waldo'];
+    console.log(waldosData, "waldos data!!", coords);
+    checkIfCoordsWithinPositionRange(waldosData, coords, 'waldo');
 }
 
 let checkIfCoordsWithinPositionRange = (data, coords, who) => {
@@ -20,5 +26,6 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 }
 
 export let checkPositionWithFirebaseForGameLevel02 = (coords) => {
-    checkIfItsWaldo(coords);
+    // checkIfItsWaldo(coords);
+    checkIfItsWaldoVer02(coords)
 }

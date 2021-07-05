@@ -1,4 +1,4 @@
-import { storeEachLevelResult } from "../../server_side/accessingData";
+import { storeEachLevelResult, storeResultsInLocally } from "../../server_side/accessingData";
 import { necessaryCleanUpTasks } from "../all_levels/neededByAllLevels";
 import { playAgain, resultDiv, resultText } from "../each_game_required_divs/requiredDivs";
 
@@ -48,5 +48,6 @@ let announceCompleted = (stars, name) => {
 }
 
 let storeResultToFirebase = (completionTime, name, stars, level) => {
-    storeEachLevelResult(completionTime, name, level, stars);
+    // storeEachLevelResult(completionTime, name, level, stars);
+    storeResultsInLocally(completionTime,name,stars, level);
 }

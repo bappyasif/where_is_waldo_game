@@ -21,7 +21,7 @@ let checkWhichLevelIsInPlay = evt => {
     if(levelID == '01') {
         checkPositionWithFirebaseForGameLevel01([x,y])
         dropDown = charactersDD();
-        console.log(evt.pageX, evt.pageY)
+        console.log(evt.pageX, evt.pageY, "here!!", dropDown)
         // stickDropDownWhereItsClicked(dropDown, [x,y])
         stickDropDownWhereItsClicked(dropDown, [evt.pageX, evt.pageY])
     } else if(levelID == '02') {

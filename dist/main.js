@@ -254,7 +254,7 @@ let checkWhichLevelIsInPlay = evt => {
     if(levelID == '01') {
         (0,_gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_2__.checkPositionWithFirebaseForGameLevel01)([x,y])
         dropDown = (0,_gamePlayLevelWise_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.charactersDD)();
-        console.log(evt.pageX, evt.pageY)
+        console.log(evt.pageX, evt.pageY, "here!!", dropDown)
         // stickDropDownWhereItsClicked(dropDown, [x,y])
         ;(0,_gamePlayLevelWise_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickDropDownWhereItsClicked)(dropDown, [evt.pageX, evt.pageY])
     } else if(levelID == '02') {
@@ -285,8 +285,8 @@ let  charactersDD = () => {
         // console.log(character)
         if(character.style.display != 'none') {
             option.value = character.alt;
-        option.textContent = character.alt;
-        dropDownMarkUp.append(option);
+            option.textContent = character.alt;
+            dropDownMarkUp.append(option);
         }
     });
     return dropDownMarkUp;
@@ -296,10 +296,10 @@ let stickDropDownWhereItsClicked = (dropDown, coords) => {
     dropDown.setAttribute('style', 'color: green');
     dropDown.style.marginLeft = coords[0]+'px';
     dropDown.style.top = coords[1]+'px';
-    dropDown.style.zIndex = '-2';
-    dropDown.setAttribute('style', 'position: fixed');
-    document.querySelector('.game-panel').append(dropDown);
-    // document.querySelector('#level-image').append(dropDown);
+    // dropDown.style.zIndex = '-2';
+    dropDown.setAttribute('style', 'position: relative');
+    // document.querySelector('.game-panel').append(dropDown);
+    document.querySelector('#level-image').append(dropDown);
     // if(document.querySelector('.level-image')) {
     //     document.querySelector('.game-panel').append(dropDown);
     // }
@@ -343,6 +343,24 @@ let checkIfItsOdlaw = (coords) => {
     }).catch(err=>console.log("no data!!", err));
 }
 
+let checkIfItsOdlawVer02 = (coords) => {
+    let odlawsData = (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromArray)()['level_01']['odlaw'];
+    console.log(odlawsData, "odlaws data!!", coords);
+    checkIfCoordsWithinPositionRange(odlawsData, coords, 'odlaw');
+}
+
+let checkIfItsWaldoVer02 = (coords) => {
+    let waldosData = (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromArray)()['level_01']['waldo'];
+    console.log(waldosData, "waldos data!!", coords);
+    checkIfCoordsWithinPositionRange(waldosData, coords, 'waldo');
+}
+
+let checkIfItsWizardVer02 = (coords) => {
+    let wizardsData = (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromArray)()['level_01']['wizard'];
+    console.log(wizardsData, "wizards data!!", coords);
+    checkIfCoordsWithinPositionRange(wizardsData, coords, 'wizard');
+}
+
 let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
@@ -355,9 +373,13 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 }
 
 let checkPositionWithFirebaseForGameLevel01 = (coords) => {
-    checkIfItsWaldo(coords);
-    checkIfItsWizard(coords);
-    checkIfItsOdlaw(coords);
+    // checkIfItsWaldo(coords);
+    // checkIfItsWizard(coords);
+    // checkIfItsOdlaw(coords);
+    // readCharacterCoordsDataFromArray();
+    checkIfItsOdlawVer02(coords);
+    checkIfItsWaldoVer02(coords);
+    checkIfItsWizardVer02(coords);
 }
 
 /***/ }),
@@ -384,6 +406,12 @@ let checkIfItsWaldo = (coords) => {
     }).catch(err=>console.log("no data!!", err));
 }
 
+let checkIfItsWaldoVer02 = (coords) => {
+    let waldosData = (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromArray)()['level_02']['waldo'];
+    console.log(waldosData, "waldos data!!", coords);
+    checkIfCoordsWithinPositionRange(waldosData, coords, 'waldo');
+}
+
 let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
@@ -396,7 +424,8 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 }
 
 let checkPositionWithFirebaseForGameLevel02 = (coords) => {
-    checkIfItsWaldo(coords);
+    // checkIfItsWaldo(coords);
+    checkIfItsWaldoVer02(coords)
 }
 
 /***/ }),
@@ -465,7 +494,8 @@ let announceCompleted = (stars, name) => {
 }
 
 let storeResultToFirebase = (completionTime, name, stars, level) => {
-    ;(0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeEachLevelResult)(completionTime, name, level, stars);
+    // storeEachLevelResult(completionTime, name, level, stars);
+    ;(0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeResultsInLocally)(completionTime,name,stars, level);
 }
 
 /***/ }),
@@ -480,9 +510,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "storeCharacterIntoFirestrore": () => (/* binding */ storeCharacterIntoFirestrore),
 /* harmony export */   "storeEachLevelResult": () => (/* binding */ storeEachLevelResult),
-/* harmony export */   "readCharacterCoordsDataFromFirebase": () => (/* binding */ readCharacterCoordsDataFromFirebase)
+/* harmony export */   "readCharacterCoordsDataFromFirebase": () => (/* binding */ readCharacterCoordsDataFromFirebase),
+/* harmony export */   "readCharacterCoordsDataFromArray": () => (/* binding */ readCharacterCoordsDataFromArray),
+/* harmony export */   "testData": () => (/* binding */ testData),
+/* harmony export */   "storeResultsInLocally": () => (/* binding */ storeResultsInLocally)
 /* harmony export */ });
-let db = firebase.firestore();
+/* harmony import */ var _locallyStoredCoordsData_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./locallyStoredCoordsData.json */ "./src/server_side/locallyStoredCoordsData.json");
+// let db = firebase.firestore();
+
 
 let storeCharacterIntoFirestrore = (characterPos, whichLevel, characterName) => {
     let [x,y] = [...characterPos];
@@ -508,6 +543,20 @@ let readCharacterCoordsDataFromFirebase = (collectionName, docName) => {
         console.log('data loaded');
         return coordsRanges;
     }).catch(err => console.log("data couldn't be loaded!!", err));
+}
+
+let readCharacterCoordsDataFromArray = (collectionName, docName) => {
+    return _locallyStoredCoordsData_json__WEBPACK_IMPORTED_MODULE_0__;
+    // console.log(data);
+    // fetch(data).then(data=> console.log(data)).catch(err=>console.log('error!!', err));
+}
+
+let testData = {}
+let storeResultsInLocally = (time,name,stars, level) => {
+    testData[name] = {time, stars, level}
+    console.log(testData)
+    // testData[level]['results'][name] = {time, stars}
+    // testData['results'][level]['results'][name] = {time, stars}
 }
 
 /***/ }),
@@ -627,6 +676,16 @@ let saving_coords_for_level02 = () => {
     waldosPosition('level_02');
 }
 
+/***/ }),
+
+/***/ "./src/server_side/locallyStoredCoordsData.json":
+/*!******************************************************!*\
+  !*** ./src/server_side/locallyStoredCoordsData.json ***!
+  \******************************************************/
+/***/ ((module) => {
+
+module.exports = JSON.parse('{"level_01":{"waldo":{"X":[400,420],"Y":[103,132]},"odlaw":{"X":[203,213],"Y":[110,117]},"wizard":{"X":[470,496],"Y":[101,132]}},"level_02":{"waldo":{"X":[220,225],"Y":[191,197]}}}');
+
 /***/ })
 
 /******/ 	});
@@ -705,8 +764,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (0,_client_side_gamePlay__WEBPACK_IMPORTED_MODULE_1__.gamePlay)();
-(0,_server_side_level_01_storingPositions__WEBPACK_IMPORTED_MODULE_2__.coords_for_level_01)();
-(0,_server_side_level_02_storingPositions__WEBPACK_IMPORTED_MODULE_3__.saving_coords_for_level02)();
+// coords_for_level_01();
+// saving_coords_for_level02();
 // coords_for_level_02();
 (0,_client_side_choose_level_renderLevels__WEBPACK_IMPORTED_MODULE_0__.awaitsUserChooseLevel)();
 })();
