@@ -1,4 +1,5 @@
-let db = firebase.firestore();
+// let db = firebase.firestore();
+import data from "./locallyStoredCoordsData.json";
 
 export let storeCharacterIntoFirestrore = (characterPos, whichLevel, characterName) => {
     let [x,y] = [...characterPos];
@@ -24,4 +25,18 @@ export let readCharacterCoordsDataFromFirebase = (collectionName, docName) => {
         console.log('data loaded');
         return coordsRanges;
     }).catch(err => console.log("data couldn't be loaded!!", err));
+}
+
+export let readCharacterCoordsDataFromArray = (collectionName, docName) => {
+    return data;
+    // console.log(data);
+    // fetch(data).then(data=> console.log(data)).catch(err=>console.log('error!!', err));
+}
+
+export let testData = {}
+export let storeResultsInLocally = (time,name,stars, level) => {
+    testData[name] = {time, stars, level}
+    console.log(testData)
+    // testData[level]['results'][name] = {time, stars}
+    // testData['results'][level]['results'][name] = {time, stars}
 }

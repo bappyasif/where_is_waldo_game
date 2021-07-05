@@ -1,4 +1,4 @@
-import { storeEachLevelResult } from "../../server_side/accessingData";
+import { storeEachLevelResult, storeResultsInLocally } from "../../server_side/accessingData";
 import { necessaryCleanUpTasks } from "../all_levels/neededByAllLevels";
 import { playAgain, resultDiv, resultText } from "../each_game_required_divs/requiredDivs";
 
@@ -34,12 +34,17 @@ let whatHappensAfterGame = (stars, time, level) => {
 }
 
 let awaitsUsersPlayAgain = () => {
+    // document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
+    // document.querySelector('select').remove();
+    // console.log(document.querySelector('select'), "??!!")
     playAgain.addEventListener('click', gettingReadyForGame);
+    console.log(document.querySelector('select'), "??!!")
 }
 
 let gettingReadyForGame = evt => {
     necessaryCleanUpTasks();
-    resultDiv.style.display = 'none';
+    document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
+    resultDiv.style.display = 'none';    
 }
 
 let announceCompleted = (stars, name) => {
@@ -48,5 +53,6 @@ let announceCompleted = (stars, name) => {
 }
 
 let storeResultToFirebase = (completionTime, name, stars, level) => {
-    storeEachLevelResult(completionTime, name, level, stars);
+    // storeEachLevelResult(completionTime, name, level, stars);
+    storeResultsInLocally(completionTime,name,stars, level);
 }
