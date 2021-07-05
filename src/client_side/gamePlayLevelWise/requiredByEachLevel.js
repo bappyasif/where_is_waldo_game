@@ -34,12 +34,17 @@ let whatHappensAfterGame = (stars, time, level) => {
 }
 
 let awaitsUsersPlayAgain = () => {
+    // document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
+    // document.querySelector('select').remove();
+    // console.log(document.querySelector('select'), "??!!")
     playAgain.addEventListener('click', gettingReadyForGame);
+    console.log(document.querySelector('select'), "??!!")
 }
 
 let gettingReadyForGame = evt => {
     necessaryCleanUpTasks();
-    resultDiv.style.display = 'none';
+    document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
+    resultDiv.style.display = 'none';    
 }
 
 let announceCompleted = (stars, name) => {
