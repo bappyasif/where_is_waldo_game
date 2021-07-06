@@ -29,14 +29,10 @@ export let readCharacterCoordsDataFromFirebase = (collectionName, docName) => {
 
 export let readCharacterCoordsDataFromArray = (collectionName, docName) => {
     return data;
-    // console.log(data);
-    // fetch(data).then(data=> console.log(data)).catch(err=>console.log('error!!', err));
 }
 
 export let testData = {}
 export let storeResultsInLocally = (time,name,stars, level) => {
     testData[name] = {time, stars, level}
-    console.log(testData)
-    // testData[level]['results'][name] = {time, stars}
-    // testData['results'][level]['results'][name] = {time, stars}
+    // console.log(testData);
 }

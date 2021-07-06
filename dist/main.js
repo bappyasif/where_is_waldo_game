@@ -86,15 +86,8 @@ let renderCharactersOnDisplay = () => {
     document.querySelectorAll('.characters-display img').forEach(node => {
         if(node.id == 'waldo') {
             node.style.display = 'block';
-        } 
-        // else if(node.id == 'odlaw') {
-        //     node.style.display = 'block';
-        // } else if(node.id == 'wizard') {
-        //     node.style.display = 'block';
-        // } else if(node.id == 'wilma') {
-        //     node.style.display = 'block';
-        // }
-    })
+        }
+    });
 }
 
 /***/ }),
@@ -255,8 +248,6 @@ let gamePlay = () => {
     worldImage.addEventListener('click', checkWhichLevelIsInPlay);
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.toggle_text.addEventListener('click', toggleTextInDisplay);
     initialToogleTextDisplay();
-    // console.log('data....', testData)
-    // if(Object.keys(testData)) showLevelHighestScores();
 }
 
 let showLevelHighestScores = () => {
@@ -272,43 +263,6 @@ let showLevelHighestScores = () => {
     }
 }
 
-
-// let showLevelHighestScores = () => {
-//     for(let key in testData) {
-//         console.log(testData, 'data here!!')
-//         let trDiv = document.createElement('tr');
-//         let nameEl = document.createElement('td');
-//         let timeEl = document.createElement('td');
-//         let starsEl = document.createElement('td');
-//         nameEl.textContent = key;
-//         timeEl.textContent = (testData[key].time.toFixed(2)) + 'secs';
-//         timeEl.style.marginLeft = '8px';
-//         timeEl.style.marginRight = '8px';
-//         starsEl.textContent = testData[key].stars;
-//         // liDiv.classList.add('li-items');
-//         trDiv.classList.add('tr-item');
-//         trDiv.append(nameEl, timeEl, starsEl);
-//         highScores.append(trDiv);
-//     }
-// }
-
-
-// let showLevelHighestScores = () => {
-//     for(let key in testData) {
-//         console.log(testData, 'data here!!')
-//         let liDiv = document.createElement('li');
-//         let nameEl = document.createElement('span');
-//         let timeEl = document.createElement('span');
-//         let starsEl = document.createElement('span');
-//         nameEl.textContent = key;
-//         timeEl.textContent = testData[key].time.toFixed(2);
-//         starsEl.textContent = testData[key].stars;
-//         // liDiv.classList.add('li-items');
-//         liDiv.append(nameEl, timeEl, starsEl);
-//         highScores.append(liDiv);
-//     }
-// }
-
 let initialToogleTextDisplay = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.toggle_text.classList.add('show');
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.toggle_text.textContent = "Show/Hide Characters";
@@ -318,18 +272,15 @@ let toggleTextInDisplay = evt => {
     if(evt.target.classList.contains('show')) {
         evt.target.parentNode.style.marginLeft = '0%';
         evt.target.textContent = "Hide Characters";
+
         evt.target.classList.remove('show');
-        // evt.target.parentNode.parentNode.firstChild.style.display = 'block';
         _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.charactersDisplayed.parentNode.firstChild.nextSibling.style.display = 'flex';
-        // console.log(charactersDisplayed.parentNode.firstChild)
     } else {
         evt.target.classList.add('show');
         evt.target.textContent = "Show Characters";
-        // evt.target.parentNode.parentNode.firstChild.style.display = 'none';
-        // charactersDisplayed.parentNode.firstChild.style.display = 'none'
+
         _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.charactersDisplayed.parentNode.firstChild.nextSibling.style.display = 'none';
         evt.target.parentNode.style.marginLeft = '92%';
-        // evt.target.parentNode.style.marginBottom = '11px';
     }
 }
 
@@ -351,46 +302,6 @@ let checkWhichLevelIsInPlay = evt => {
     if(Object.keys(_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.testData)) showLevelHighestScores();
 }
 
-
-
-
-
-
-
-// export let checkWhichLevelIsInPlay = evt => {
-//     let x = evt.clientX;
-//     let y = evt.clientY;
-
-//     let imageAltTagText = levelImage.alt;
-//     let levelID = imageAltTagText.split(' ')[1];
-//     console.log(levelID);
-    
-//     let dropDown;
-
-//     if(levelID == '01') {
-//         // dropDown = charactersDD();
-//         // stickDropDownWhereItsClicked(dropDown, [x,y]);
-//         // let who = whichOptionWasSelected();
-//         // console.log(who, "<><>")
-//         // checkPositionWithFirebaseForGameLevel01([x,y], who?who:'waldo');
-//         checkPositionWithFirebaseForGameLevel01([x,y])
-//         // console.log(evt.pageX, evt.pageY, "here!!", evt.clientX, evt.clientY, dropDown)
-        
-//         // if(!document.querySelector('select').value) {
-//         //     document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
-//         // }
-
-//         // let who = whichOptionWasSelected();
-//         // console.log(who, "who")
-//         //256, 144 for wizard!!
-//         // stickDropDownWhereItsClicked(dropDown, [evt.pageX, evt.pageY])
-//     } else if(levelID == '02') {
-//         // dropDown = charactersDD();
-//         checkPositionWithFirebaseForGameLevel02([x,y]);
-//     }
-//     // console.log(dropDown, "checks?!", dropDown.options);
-// }
-
 /***/ }),
 
 /***/ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js":
@@ -405,12 +316,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "stickDropDownWhereItsClicked": () => (/* binding */ stickDropDownWhereItsClicked),
 /* harmony export */   "whichOptionWasSelected": () => (/* binding */ whichOptionWasSelected)
 /* harmony export */ });
-/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
-/* harmony import */ var _gamePlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../gamePlay */ "./src/client_side/gamePlay.js");
-
-
 let value = '';
-
 let  charactersDD = () => {
     let dropDownMarkUp = document.createElement('select');
     let option = document.createElement('option');
@@ -437,31 +343,15 @@ let stickDropDownWhereItsClicked = (dropDown, coords) => {
     dropDown.style.top = coords[1]+'px';
     dropDown.style.position = 'absolute';
     if(dropDown.length > 1) document.querySelector('.game-panel').append(dropDown);
-    // dropDown.style.zIndex = '-2';
-    // dropDown.setAttribute('style', 'position: absolute');
-    // document.querySelector('.game-panel').append(dropDown);
-    // document.querySelector('#level-image').append(dropDown);
 }
 
 let whichOptionWasSelected = () => {
     let select = document.querySelector('.found-who');
-    
-    // console.log(select, "here@@")
-    // levelImage.removeEventListener('click', checkWhichLevelIsInPlay);
-    // console.log(select.value, "oink oink", evt.target.value, select[])
-    // levelImage.addEventListener('click', checkWhichLevelIsInPlay)
     select.addEventListener('change', (evt)=> {
-        // console.log('oink oink', evt.target.value);
-        // value = evt.target.value;
         value = select.value;
-        // console.log(value,"????")
         select.remove();
         return value;
-    })
-    // let value = select.value;
-    // select.remove();
-    // return value;
-    // console.log(">>>>",value);
+    });
 }
 
 /***/ }),
@@ -482,17 +372,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 let length = 3;
 
 let checkWho = (coords, who) => {
     let characterData = (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromArray)()['level_01'][who];
     checkIfCoordsWithinPositionRange(characterData, coords, who);
 }
-// let disableCharacterFromDisplay = who => {
-//     let charactersDisplayed = document.querySelector('.characters-display').children;
-//     Array.from(charactersDisplayed).forEach(character => character.id == who ? character.classList.add('character-found') : false)  
-// }
 
 let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
@@ -505,19 +390,15 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
             let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.calculateTotalTimeElapsed)();
             (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.decideEffeciencyFindingWaldo)(timeSpent, 'level_01');
         }
-        // decideEffeciencyFindingWaldo(timeSpent, 'level_01');
     } else {
         console.log('go fish!!'+who, coords);
     }
-    console.log(document.querySelector('select'), "??!!")
-    // document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
-    // document.querySelector('#level-image').remove();
 }
 
 let checkPositionWithFirebaseForGameLevel01 = (coords) => {
     let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.charactersDD)();
-    // length = length ? length : dropDown.length;
     (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickDropDownWhereItsClicked)(dropDown, coords);
+
     let select = document.querySelector('.found-who');
 
     if(select) {
@@ -528,83 +409,6 @@ let checkPositionWithFirebaseForGameLevel01 = (coords) => {
         });
     }
 }
-
-
-
-
-
-
-
-
-/**
- * 
- * 
- let checkIfItsWizard = coords => {
-    readCharacterCoordsDataFromFirebase('level_01', 'wizard').then(data=>{
-        console.log(data, "wizard data!!", coords);
-        checkIfCoordsWithinPositionRange(data, coords, 'wizard');
-    }).catch(err=>console.log("no data!!", err));
-}
-
-let checkIfItsWaldo = (coords) => {
-    readCharacterCoordsDataFromFirebase('level_01', 'waldo').then(data=>{
-        console.log(data, "waldos data!!", coords);
-        checkIfCoordsWithinPositionRange(data, coords, 'waldo');
-    }).catch(err=>console.log("no data!!", err));
-}
-
-let checkIfItsOdlaw = (coords) => {
-    readCharacterCoordsDataFromFirebase('level_01', 'odlaw').then(data=>{
-        console.log(data, "odlaws data!!", coords);
-        checkIfCoordsWithinPositionRange(data, coords, 'odlaw');
-    }).catch(err=>console.log("no data!!", err));
-}
-
-let checkIfItsOdlawVer02 = (coords) => {
-    let odlawsData = readCharacterCoordsDataFromArray()['level_01']['odlaw'];
-    console.log(odlawsData, "odlaws data!!", coords);
-    checkIfCoordsWithinPositionRange(odlawsData, coords, 'odlaw');
-}
-
-let checkIfItsWaldoVer02 = (coords) => {
-    let waldosData = readCharacterCoordsDataFromArray()['level_01']['waldo'];
-    console.log(waldosData, "waldos data!!", coords);
-    checkIfCoordsWithinPositionRange(waldosData, coords, 'waldo');
-}
-
-let checkIfItsWizardVer02 = (coords) => {
-    let wizardsData = readCharacterCoordsDataFromArray()['level_01']['wizard'];
-    console.log(wizardsData, "wizards data!!", coords);
-    checkIfCoordsWithinPositionRange(wizardsData, coords, 'wizard');
-}
-*/
-
-
-// export let checkPositionWithFirebaseForGameLevel01 = (coords) => {
-//     // checkIfItsWaldo(coords);
-//     // checkIfItsWizard(coords);
-//     // checkIfItsOdlaw(coords);
-//     // readCharacterCoordsDataFromArray();
-//     // checkIfItsOdlawVer02(coords);
-//     // checkIfItsWaldoVer02(coords);
-//     // checkIfItsWizardVer02(coords);
-//     let dropDown = charactersDD();
-//     stickDropDownWhereItsClicked(dropDown, coords);
-//     let select = document.querySelector('.found-who');
-//     // let who = select.value;
-//     // checkWho(coords, who);
-//     select.addEventListener('change', ()=>{
-//         let who = select.value;
-//         checkWho(coords, who);
-//         document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
-//         // if(select.value == '') {
-//         //     console.log('here!!')
-//         //     document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
-//         // }
-//     });
-    
-//     // select.remove()
-// }
 
 /***/ }),
 
@@ -646,17 +450,11 @@ let checkWho = (coords, who, level) => {
     let characterData = (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromArray)()[level][who];
     checkIfCoordsWithinPositionRange(characterData, coords, who);
 }
-// let disableCharacterFromDisplay = who => {
-//     let charactersDisplayed = document.querySelector('.characters-display').children;
-//     Array.from(charactersDisplayed).forEach(character => character.id == who ? character.classList.add('character-found') : false)
-// }
 
 let checkPositionWithFirebaseForGameLevel02 = (coords) => {
-    // checkIfItsWaldo(coords);
-    // checkIfItsWaldoVer02(coords);
     let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.charactersDD)();
-    // length = length ? length : dropDown.length;
     (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickDropDownWhereItsClicked)(dropDown, coords);
+    
     let select = document.querySelector('.found-who');
     if(select) {
         select.addEventListener('change', ()=>{
@@ -666,23 +464,6 @@ let checkPositionWithFirebaseForGameLevel02 = (coords) => {
         });
     }
 }
-
-/**
- * 
- * 
- let checkIfItsWaldo = (coords) => {
-    readCharacterCoordsDataFromFirebase('level_02', 'waldo').then(data=>{
-        console.log(data, "waldos data!!", coords);
-        checkIfCoordsWithinPositionRange(data, coords, 'waldo');
-    }).catch(err=>console.log("no data!!", err));
-}
-
-let checkIfItsWaldoVer02 = (coords) => {
-    let waldosData = readCharacterCoordsDataFromArray()['level_02']['waldo'];
-    console.log(waldosData, "waldos data!!", coords);
-    checkIfCoordsWithinPositionRange(waldosData, coords, 'waldo');
-}
- */
 
 /***/ }),
 
@@ -737,9 +518,6 @@ let whatHappensAfterGame = (stars, time, level) => {
 }
 
 let awaitsUsersPlayAgain = () => {
-    // document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
-    // document.querySelector('select').remove();
-    // console.log(document.querySelector('select'), "??!!")
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.playAgain.addEventListener('click', gettingReadyForGame);
     console.log(document.querySelector('select'), "??!!")
 }
@@ -818,16 +596,12 @@ let readCharacterCoordsDataFromFirebase = (collectionName, docName) => {
 
 let readCharacterCoordsDataFromArray = (collectionName, docName) => {
     return _locallyStoredCoordsData_json__WEBPACK_IMPORTED_MODULE_0__;
-    // console.log(data);
-    // fetch(data).then(data=> console.log(data)).catch(err=>console.log('error!!', err));
 }
 
 let testData = {}
 let storeResultsInLocally = (time,name,stars, level) => {
     testData[name] = {time, stars, level}
-    console.log(testData)
-    // testData[level]['results'][name] = {time, stars}
-    // testData['results'][level]['results'][name] = {time, stars}
+    // console.log(testData);
 }
 
 /***/ }),

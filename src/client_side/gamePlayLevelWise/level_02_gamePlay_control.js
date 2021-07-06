@@ -23,17 +23,11 @@ let checkWho = (coords, who, level) => {
     let characterData = readCharacterCoordsDataFromArray()[level][who];
     checkIfCoordsWithinPositionRange(characterData, coords, who);
 }
-// let disableCharacterFromDisplay = who => {
-//     let charactersDisplayed = document.querySelector('.characters-display').children;
-//     Array.from(charactersDisplayed).forEach(character => character.id == who ? character.classList.add('character-found') : false)
-// }
 
 export let checkPositionWithFirebaseForGameLevel02 = (coords) => {
-    // checkIfItsWaldo(coords);
-    // checkIfItsWaldoVer02(coords);
     let dropDown = charactersDD();
-    // length = length ? length : dropDown.length;
     stickDropDownWhereItsClicked(dropDown, coords);
+    
     let select = document.querySelector('.found-who');
     if(select) {
         select.addEventListener('change', ()=>{
@@ -43,20 +37,3 @@ export let checkPositionWithFirebaseForGameLevel02 = (coords) => {
         });
     }
 }
-
-/**
- * 
- * 
- let checkIfItsWaldo = (coords) => {
-    readCharacterCoordsDataFromFirebase('level_02', 'waldo').then(data=>{
-        console.log(data, "waldos data!!", coords);
-        checkIfCoordsWithinPositionRange(data, coords, 'waldo');
-    }).catch(err=>console.log("no data!!", err));
-}
-
-let checkIfItsWaldoVer02 = (coords) => {
-    let waldosData = readCharacterCoordsDataFromArray()['level_02']['waldo'];
-    console.log(waldosData, "waldos data!!", coords);
-    checkIfCoordsWithinPositionRange(waldosData, coords, 'waldo');
-}
- */

@@ -34,9 +34,6 @@ let whatHappensAfterGame = (stars, time, level) => {
 }
 
 let awaitsUsersPlayAgain = () => {
-    // document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
-    // document.querySelector('select').remove();
-    // console.log(document.querySelector('select'), "??!!")
     playAgain.addEventListener('click', gettingReadyForGame);
     console.log(document.querySelector('select'), "??!!")
 }
