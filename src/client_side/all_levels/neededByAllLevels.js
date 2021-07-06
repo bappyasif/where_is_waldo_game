@@ -19,8 +19,14 @@ let removeCharactersFromDisplay = () => {
     document.querySelectorAll('.characters-display img').forEach(node=> node.style.display = 'none');
 }
 
+let removeOpacityFreomCharcters = () => {
+    document.querySelectorAll('.characters-display img').forEach(node=> node.classList.remove('character-found'));
+    // document.querySelectorAll('.characters-display img').forEach(node=> node.classList.contains('character-found') ? node.classList.remove('character-found') : false);
+}
+
 export let necessaryCleanUpTasks = () => {
     removingLevelWorldImage();
     removingLevelAndTimer();
     removeCharactersFromDisplay();
+    removeOpacityFreomCharcters()   ;
 }

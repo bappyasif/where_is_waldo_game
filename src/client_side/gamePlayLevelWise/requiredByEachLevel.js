@@ -56,3 +56,12 @@ let storeResultToFirebase = (completionTime, name, stars, level) => {
     // storeEachLevelResult(completionTime, name, level, stars);
     storeResultsInLocally(completionTime,name,stars, level);
 }
+
+// export let checkWho = (coords, who, level) => {
+//     let characterData = readCharacterCoordsDataFromArray()[level][who];
+//     checkIfCoordsWithinPositionRange(characterData, coords, who);
+// }
+export let disableCharacterFromDisplay = who => {
+    let charactersDisplayed = document.querySelector('.characters-display').children;
+    Array.from(charactersDisplayed).forEach(character => character.id == who ? character.classList.add('character-found') : false)
+}

@@ -1,6 +1,6 @@
 import { readCharacterCoordsDataFromArray, readCharacterCoordsDataFromFirebase } from "../../server_side/accessingData";
 import { charactersDD, stickDropDownWhereItsClicked } from "./characterSelectionDropDown";
-import { calculateTotalTimeElapsed, decideEffeciencyFindingWaldo } from "./requiredByEachLevel";
+import { calculateTotalTimeElapsed, decideEffeciencyFindingWaldo, disableCharacterFromDisplay } from "./requiredByEachLevel";
 
 let length = 3;
 
@@ -8,14 +8,22 @@ let checkWho = (coords, who) => {
     let characterData = readCharacterCoordsDataFromArray()['level_01'][who];
     checkIfCoordsWithinPositionRange(characterData, coords, who);
 }
+// let disableCharacterFromDisplay = who => {
+//     let charactersDisplayed = document.querySelector('.characters-display').children;
+//     Array.from(charactersDisplayed).forEach(character => character.id == who ? character.classList.add('character-found') : false)  
+// }
 
 let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
         console.log('found!!'+who, data['X'][0], data['X'][1]);
-        let timeSpent = calculateTotalTimeElapsed();
+        disableCharacterFromDisplay(who)
+
         length--;
-        if(length == 0) decideEffeciencyFindingWaldo(timeSpent, 'level_01');
+        if(length == 0) {
+            let timeSpent = calculateTotalTimeElapsed();
+            decideEffeciencyFindingWaldo(timeSpent, 'level_01');
+        }
         // decideEffeciencyFindingWaldo(timeSpent, 'level_01');
     } else {
         console.log('go fish!!'+who, coords);

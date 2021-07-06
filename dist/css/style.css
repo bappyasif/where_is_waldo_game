@@ -33,6 +33,7 @@ body {
 
 .characters-display {
     width: 65vw;
+    /* width: 74%; */
     justify-content: space-evenly;
 }
 
@@ -41,11 +42,25 @@ body {
 }
 
 #wizard {
-    width: 20%;
+    width: 13%;
+}
+
+#waldo, #wilma, #wenda {
+    width: 8%;
 }
 
 .toggle-display-for-characters {
-    align-self: baseline;
+    /* float: right; */
+    display: flex;
+    align-items: center;
+    /* justify-content: right; */
+    /* margin-right: 0px; */
+    width: 20%;
+    margin-right: 0px;
+}
+
+#toggle-text {
+    font-size: larger;
 }
 
 .game-panel {
@@ -60,7 +75,12 @@ body {
 .choose-levels {
     display: flex;
     flex-direction: row;
-    /* justify-content: space-around; */
+    /* justify-content: baseline; */
+    align-self: flex-start;
+}
+
+header {
+    align-self: flex-start;
 }
 
 .choose-levels img {
@@ -75,11 +95,30 @@ body {
 
 .level-result {
     position: absolute;
-    margin-top: 65vh;
-    margin-left: 20vw;
+    margin-top: 35vh;
+    margin-left: 15vw;
     display: none;
 }
 
-.disabled-character {
+.character-found {
     opacity: 31%;
+}
+
+.high-scores, .scores {
+    margin-left: 58vw;
+    top: 2vh;
+    position: absolute;
+    text-align: center;
+}
+
+.high-scores li {
+    margin-left: 4vw;
+}
+
+li span {
+    margin-left: 2vw;
+}
+
+.tr-item {
+    border: 2px dashed red;
 }
