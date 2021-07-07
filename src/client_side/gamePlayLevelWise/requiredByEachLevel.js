@@ -1,9 +1,7 @@
 import { storeEachLevelResult, storeResultsInLocally } from "../../server_side/accessingData";
 import { necessaryCleanUpTasks } from "../all_levels/neededByAllLevels";
-import { chooseLevel, headerDiv, playAgain, resultDiv, resultText, scoresContainer, scoresText } from "../each_game_required_divs/requiredDivs";
-import { removePreviousScoresDetails, showDataInHighScoresTable, showLevelHighestScores } from "../gamePlay";
-import { howManyCharactersExist, howManyCharactersExistInLevelOne } from "./level_01_gamePlay_control";
-import { howManyCharactersExistInLevelTwo } from "./level_02_gamePlay_control";
+import { chooseLevel, headerDiv, playAgain, resultDiv, resultText, scoresContainer } from "../each_game_required_divs/requiredDivs";
+import { removePreviousScoresDetails, showLevelHighestScores } from "../gamePlay";
 
 let timeStarted = Date.now();
 
@@ -29,16 +27,10 @@ export let decideEffeciencyFindingWaldo = (timeTook, level) => {
     whatHappensAfterGame(stars, timeTook, level);
 }
 
-// let refreshLevelesCharactersCounts = () => {
-//     howManyCharactersExistInLevelOne = 0;
-//     howManyCharactersExistInLevelTwo = 0;
-// }
-
 export let movingDivsFromDisplayToShowScores = (level, name) => {
     showScores();
     moveLevelsAndHeaderDivsToLeft();
-    // showLevelHighestScores();
-    // showDataInHighScoresTable(level)
+
     showLevelHighestScores(level, name);
     removePreviousScoresDetails();
 }
@@ -64,12 +56,10 @@ let movingDivsFromDisplayToHideScores = () => {
 
 let whatHappensAfterGame = (stars, time, level) => {
     let name = prompt('please enter your name for leaderboard');
-    // announceCompleted(stars, name);
+
     storeResultToFirebase(time,name,stars, level);
-    // awaitsUsersPlayAgain();
+
     movingDivsFromDisplayToShowScores(level, name);
-    // refreshLevelesCharactersCounts();
-    // makingLevelsImagesUnclickable();
 
     setTimeout(() => {
         makingLevelsImagesUnclickable();
@@ -80,7 +70,6 @@ let whatHappensAfterGame = (stars, time, level) => {
 
 let awaitsUsersPlayAgain = () => {
     playAgain.addEventListener('click', gettingReadyForGame);
-    // console.log(document.querySelector('select'), "??!!")
 }
 
 let gettingReadyForGame = evt => {
@@ -98,14 +87,9 @@ let announceCompleted = (stars, name) => {
 }
 
 let storeResultToFirebase = (completionTime, name, stars, level) => {
-    // storeEachLevelResult(completionTime, name, level, stars);
     storeResultsInLocally(completionTime,name,stars, level);
 }
 
-// export let checkWho = (coords, who, level) => {
-//     let characterData = readCharacterCoordsDataFromArray()[level][who];
-//     checkIfCoordsWithinPositionRange(characterData, coords, who);
-// }
 export let disableCharacterFromDisplay = who => {
     let charactersDisplayed = document.querySelector('.characters-display').children;
     Array.from(charactersDisplayed).forEach(character => character.id == who ? character.classList.add('character-found') : false)
@@ -114,9 +98,6 @@ export let disableCharacterFromDisplay = who => {
 export let moveLevelsAndHeaderDivsToLeft = () => {
     headerDiv.classList.add('move-left');
     chooseLevel.classList.add('move-left');
-
-    // headerDiv.style.alignSelf = 'flex-start';
-    // chooseLevel.style.alignSelf = 'flext-start';
 }
 
 export let moveLevelsAndHeaderDivsToCenter = () => {

@@ -34,11 +34,9 @@ export let readCharacterCoordsDataFromArray = (collectionName, docName) => {
 export let testData = {}
 export let test2 = {};
 export let storeResultsInLocally = (time,name,stars, level) => {
-    // testData[level] = {[name]: {time, stars,}}
     // testData[name] = {time, stars, level}
-    // console.log(testData);
+
     // test2[level] = {[name]: {time, stars}}
     // test2[name] = {[level]: {time, stars}}
     test2[name] = {time, stars, level}
-    // console.log(test2, "checking data!!");
 }

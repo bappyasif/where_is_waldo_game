@@ -248,11 +248,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../server_side/accessingData */ "./src/server_side/accessingData.js");
 /* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
-/* harmony import */ var _gamePlayLevelWise_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gamePlayLevelWise/characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
-/* harmony import */ var _gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./gamePlayLevelWise/level_01_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_01_gamePlay_control.js");
-/* harmony import */ var _gamePlayLevelWise_level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./gamePlayLevelWise/level_02_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_02_gamePlay_control.js");
-/* harmony import */ var _gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./gamePlayLevelWise/requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
-
+/* harmony import */ var _gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gamePlayLevelWise/level_01_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_01_gamePlay_control.js");
+/* harmony import */ var _gamePlayLevelWise_level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./gamePlayLevelWise/level_02_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_02_gamePlay_control.js");
+/* harmony import */ var _gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./gamePlayLevelWise/requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
 
 
 
@@ -264,40 +262,17 @@ let gamePlay = () => {
     worldImage.addEventListener('click', checkWhichLevelIsInPlay);
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.toggle_text.addEventListener('click', toggleTextInDisplay);
     initialToogleTextDisplay();
-    (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.hideScores)();
+    (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__.hideScores)();
 }
 
 let removePreviousScoresDetails = () => {
-    // Array.from(highScores.children).forEach((node, idx) => idx >= 1 ? node.remove() : false);
-    // console.log(highScores, highScores.children)
     for(let idx in _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.highScores.rows) {
-        // removal seems to be working just fine
-        // console.log(highScores.rows, 'rows!!')
         let row = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.highScores.rows[idx];
-        // console.log(row, 'rows!!', idx);
         if(idx >=1) {
-            console.log(row, 'rows!!', idx)
             row.remove();
         }
     }
 }
-
-// export let showLevelHighestScores = () => {
-//     // removing previously placed data from DOM
-//     removePreviousScoresDetails();
-
-//     // re rendering table data 
-//     for(let key in testData) {
-//         console.log(testData, 'data here!!');
-//         let row = highScores.insertRow(1);
-//         let nameCell = row.insertCell(0);
-//         let timeCell = row.insertCell(1);
-//         let starsCell = row.insertCell(2);
-//         nameCell.innerHTML = key;
-//         timeCell.innerHTML = (testData[key].time.toFixed(2))+'sec';
-//         starsCell.innerHTML = testData[key].stars;
-//     }
-// }
 
 let showLevelHighestScores = (level, name) => {
     // removing previously placed data from DOM
@@ -309,15 +284,8 @@ let showLevelHighestScores = (level, name) => {
 }
 
 let showDataInHighScoresTable = (level, name) => {
-    // removePreviousScoresDetails();
-    let data = _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.test2[name];
-    // console.log(data, "here data!!", data[name].level == lvl);
-    console.log(data, "here data!!", data.level, _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.test2);
-    // let row = highScores.insertRow(1);
     for(let key in _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.test2) {
         if(_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.test2[key].level == level) {
-            // looks like adding is doing alright, there is an issue in removal after all
-            // console.log(test2[key].level, level, key);
             let row = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.highScores.insertRow(1);
             let nameCell = row.insertCell(0);
             let timeCell = row.insertCell(1);
@@ -329,22 +297,7 @@ let showDataInHighScoresTable = (level, name) => {
     }
 }
 
-// export let showDataInHighScoresTable = (level) => {
-//     removePreviousScoresDetails();
-//     let data = test2[level];
-//     for(let key in data) {
-//         let row = highScores.insertRow(1);
-//         let nameCell = row.insertCell(0);
-//         let timeCell = row.insertCell(1);
-//         let starsCell = row.insertCell(2);
-//         nameCell.innerHTML = key;
-//         timeCell.innerHTML = (data[key].time.toFixed(2))+' sec';
-//         starsCell.innerHTML = data[key].stars;
-//     }
-// }
-
 let initialToogleTextDisplay = () => {
-    // toggle_text.classList.add('show');
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.toggle_text.textContent = "Hide Characters";
 }
 
@@ -369,14 +322,12 @@ let  refreshingFlag = () => flag = 0;
 
 let checkAndShowResults = (level) => {
     if(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.textContent) {
-        (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.movingDivsFromDisplayToShowScores)(level);
+        (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__.movingDivsFromDisplayToShowScores)(level);
         flag = 1;
     }
 }
 
 let checkWhichLevelIsInPlay = evt => {
-    // checkAndShowResults();
-
     let x = evt.clientX;
     let y = evt.clientY;
 
@@ -385,21 +336,10 @@ let checkWhichLevelIsInPlay = evt => {
     console.log(levelID);
 
     if(levelID == '01') {
-        (0,_gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_3__.checkPositionWithFirebaseForGameLevel01)([x,y]);
-        // checkAndShowResults();
+        (0,_gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_2__.checkPositionWithFirebaseForGameLevel01)([x,y]);
     } else if(levelID == '02') {
-        // dropDown = charactersDD();
-        (0,_gamePlayLevelWise_level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_4__.checkPositionWithFirebaseForGameLevel02)([x,y]);
-        // checkAndShowResults();
+        (0,_gamePlayLevelWise_level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_3__.checkPositionWithFirebaseForGameLevel02)([x,y]);
     }
-    // checkAndShowResults(imageAltTagText);
-    // showDataInHighScoresTable(imageAltTagText)
-    // checkAndShowResults();
-    // movingDivsFromDisplayToShowScores();
-    // console.log('data....', testData)
-    // showScores();
-    // moveLevelsAndHeaderDivsToLeft();
-    // if(Object.keys(testData)) showLevelHighestScores();
 }
 
 /***/ }),
@@ -594,10 +534,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _all_levels_neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../all_levels/neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
 /* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
 /* harmony import */ var _gamePlay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../gamePlay */ "./src/client_side/gamePlay.js");
-/* harmony import */ var _level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./level_01_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_01_gamePlay_control.js");
-/* harmony import */ var _level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./level_02_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_02_gamePlay_control.js");
-
-
 
 
 
@@ -627,16 +563,10 @@ let decideEffeciencyFindingWaldo = (timeTook, level) => {
     whatHappensAfterGame(stars, timeTook, level);
 }
 
-// let refreshLevelesCharactersCounts = () => {
-//     howManyCharactersExistInLevelOne = 0;
-//     howManyCharactersExistInLevelTwo = 0;
-// }
-
 let movingDivsFromDisplayToShowScores = (level, name) => {
     showScores();
     moveLevelsAndHeaderDivsToLeft();
-    // showLevelHighestScores();
-    // showDataInHighScoresTable(level)
+
     (0,_gamePlay__WEBPACK_IMPORTED_MODULE_3__.showLevelHighestScores)(level, name);
     (0,_gamePlay__WEBPACK_IMPORTED_MODULE_3__.removePreviousScoresDetails)();
 }
@@ -662,12 +592,10 @@ let movingDivsFromDisplayToHideScores = () => {
 
 let whatHappensAfterGame = (stars, time, level) => {
     let name = prompt('please enter your name for leaderboard');
-    // announceCompleted(stars, name);
+
     storeResultToFirebase(time,name,stars, level);
-    // awaitsUsersPlayAgain();
+
     movingDivsFromDisplayToShowScores(level, name);
-    // refreshLevelesCharactersCounts();
-    // makingLevelsImagesUnclickable();
 
     setTimeout(() => {
         makingLevelsImagesUnclickable();
@@ -678,7 +606,6 @@ let whatHappensAfterGame = (stars, time, level) => {
 
 let awaitsUsersPlayAgain = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.playAgain.addEventListener('click', gettingReadyForGame);
-    // console.log(document.querySelector('select'), "??!!")
 }
 
 let gettingReadyForGame = evt => {
@@ -696,14 +623,9 @@ let announceCompleted = (stars, name) => {
 }
 
 let storeResultToFirebase = (completionTime, name, stars, level) => {
-    // storeEachLevelResult(completionTime, name, level, stars);
     ;(0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeResultsInLocally)(completionTime,name,stars, level);
 }
 
-// export let checkWho = (coords, who, level) => {
-//     let characterData = readCharacterCoordsDataFromArray()[level][who];
-//     checkIfCoordsWithinPositionRange(characterData, coords, who);
-// }
 let disableCharacterFromDisplay = who => {
     let charactersDisplayed = document.querySelector('.characters-display').children;
     Array.from(charactersDisplayed).forEach(character => character.id == who ? character.classList.add('character-found') : false)
@@ -712,9 +634,6 @@ let disableCharacterFromDisplay = who => {
 let moveLevelsAndHeaderDivsToLeft = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.headerDiv.classList.add('move-left');
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.chooseLevel.classList.add('move-left');
-
-    // headerDiv.style.alignSelf = 'flex-start';
-    // chooseLevel.style.alignSelf = 'flext-start';
 }
 
 let moveLevelsAndHeaderDivsToCenter = () => {
@@ -785,13 +704,11 @@ let readCharacterCoordsDataFromArray = (collectionName, docName) => {
 let testData = {}
 let test2 = {};
 let storeResultsInLocally = (time,name,stars, level) => {
-    // testData[level] = {[name]: {time, stars,}}
     // testData[name] = {time, stars, level}
-    // console.log(testData);
+
     // test2[level] = {[name]: {time, stars}}
     // test2[name] = {[level]: {time, stars}}
     test2[name] = {time, stars, level}
-    // console.log(test2, "checking data!!");
 }
 
 /***/ }),
