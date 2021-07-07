@@ -1,7 +1,7 @@
 import { readCharacterCoordsDataFromArray, readCharacterCoordsDataFromFirebase } from "../../server_side/accessingData";
 import { charactersDD, stickDropDownWhereItsClicked } from "./characterSelectionDropDown";
 import { calculateTotalTimeElapsed, decideEffeciencyFindingWaldo, disableCharacterFromDisplay } from "./requiredByEachLevel";
-let length = 3;
+export let howManyCharactersExistInLevelOne = 3;
 
 let checkWho = (coords, who) => {
     let characterData = readCharacterCoordsDataFromArray()['level_01'][who];
@@ -14,10 +14,12 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
         console.log('found!!'+who, data['X'][0], data['X'][1]);
         disableCharacterFromDisplay(who)
 
-        length--;
-        if(length == 0) {
+        howManyCharactersExistInLevelOne--;
+        if(howManyCharactersExistInLevelOne == 0) {
             let timeSpent = calculateTotalTimeElapsed();
             decideEffeciencyFindingWaldo(timeSpent, 'level_01');
+            // moving it back to it's initial value, so that when play again is in motion it starts from initial count
+            howManyCharactersExistInLevelOne = 3;
         }
     } else {
         console.log('go fish!!'+who, coords);

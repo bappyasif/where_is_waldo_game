@@ -9,7 +9,7 @@ export let level_one_game_view = () => {
 }
 
 let renderingLevelWorldImage = () => {
-    levelImage.src = '../../../dist/images/level-1.jpg';
+    levelImage.src = '../../../dist/images/level-1.jpg' || './images/level-1.jpg';
     levelImage.alt = 'level 01';
     gamePanel.appendChild(levelImage);
 }

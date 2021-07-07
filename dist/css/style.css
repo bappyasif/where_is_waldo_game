@@ -76,10 +76,14 @@ body {
     display: flex;
     flex-direction: row;
     /* justify-content: baseline; */
-    align-self: flex-start;
+    align-self: center;
 }
 
 header {
+    align-self: center;
+}
+
+.move-left {
     align-self: flex-start;
 }
 
@@ -121,4 +125,17 @@ li span {
 
 .tr-item {
     border: 2px dashed red;
+}
+
+.scores-hidden {
+    display: none;
+}
+
+.unclickable {
+    pointer-events: none;
+    opacity: 20%;
+}
+
+.clickable {
+    opacity: 100%;
 }

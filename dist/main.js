@@ -25,7 +25,7 @@ let level_one_game_view = () => {
 }
 
 let renderingLevelWorldImage = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.src = '../../../dist/images/level-1.jpg';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.src = '../../../dist/images/level-1.jpg' || 0;
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.alt = 'level 01';
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.gamePanel.appendChild(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage);
 }
@@ -72,7 +72,7 @@ let level_two_game_view = () => {
 }
 
 let renderingLevelWorldImage = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.src = '../../../dist/images/level-2.png';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.src = '../../../dist/images/level-2.png' || 0;
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.alt = 'level 02';
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.gamePanel.appendChild(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage);
 }
@@ -195,7 +195,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "playAgain": () => (/* binding */ playAgain),
 /* harmony export */   "toggle_text": () => (/* binding */ toggle_text),
 /* harmony export */   "charactersDisplayed": () => (/* binding */ charactersDisplayed),
-/* harmony export */   "highScores": () => (/* binding */ highScores)
+/* harmony export */   "highScores": () => (/* binding */ highScores),
+/* harmony export */   "chooseLevel": () => (/* binding */ chooseLevel),
+/* harmony export */   "headerDiv": () => (/* binding */ headerDiv),
+/* harmony export */   "scoresContainer": () => (/* binding */ scoresContainer),
+/* harmony export */   "scoresText": () => (/* binding */ scoresText)
 /* harmony export */ });
 let waldo = document.querySelector('#waldo');
 let odlaw = document.querySelector('#odlaw');
@@ -218,6 +222,11 @@ let toggle_text = document.querySelector('#toggle-text');
 let charactersDisplayed = document.querySelector('.characters-display');
 let highScores = document.querySelector('.high-scores');
 
+let chooseLevel = document.querySelector('.choose-levels');
+let headerDiv = document.querySelector('.levels-header');
+let scoresContainer = document.querySelector('.keeping-scores');
+let scoresText = document.querySelector('.scores');
+
 
 /***/ }),
 
@@ -230,6 +239,11 @@ let highScores = document.querySelector('.high-scores');
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "gamePlay": () => (/* binding */ gamePlay),
+/* harmony export */   "removePreviousScoresDetails": () => (/* binding */ removePreviousScoresDetails),
+/* harmony export */   "showLevelHighestScores": () => (/* binding */ showLevelHighestScores),
+/* harmony export */   "showDataInHighScoresTable": () => (/* binding */ showDataInHighScoresTable),
+/* harmony export */   "refreshingFlag": () => (/* binding */ refreshingFlag),
+/* harmony export */   "checkAndShowResults": () => (/* binding */ checkAndShowResults),
 /* harmony export */   "checkWhichLevelIsInPlay": () => (/* binding */ checkWhichLevelIsInPlay)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../server_side/accessingData */ "./src/server_side/accessingData.js");
@@ -237,6 +251,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _gamePlayLevelWise_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./gamePlayLevelWise/characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
 /* harmony import */ var _gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./gamePlayLevelWise/level_01_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_01_gamePlay_control.js");
 /* harmony import */ var _gamePlayLevelWise_level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./gamePlayLevelWise/level_02_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_02_gamePlay_control.js");
+/* harmony import */ var _gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./gamePlayLevelWise/requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+
 
 
 
@@ -248,24 +264,88 @@ let gamePlay = () => {
     worldImage.addEventListener('click', checkWhichLevelIsInPlay);
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.toggle_text.addEventListener('click', toggleTextInDisplay);
     initialToogleTextDisplay();
+    (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.hideScores)();
 }
 
-let showLevelHighestScores = () => {
-    for(let key in _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.testData) {
-        console.log(_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.testData, 'data here!!')
-        let row = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.highScores.insertRow(1);
-        let nameCell = row.insertCell(0);
-        let timeCell = row.insertCell(1);
-        let starsCell = row.insertCell(2);
-        nameCell.innerHTML = key;
-        timeCell.innerHTML = (_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.testData[key].time.toFixed(2))+'sec';
-        starsCell.innerHTML = _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.testData[key].stars;
+let removePreviousScoresDetails = () => {
+    // Array.from(highScores.children).forEach((node, idx) => idx >= 1 ? node.remove() : false);
+    // console.log(highScores, highScores.children)
+    for(let idx in _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.highScores.rows) {
+        // removal seems to be working just fine
+        // console.log(highScores.rows, 'rows!!')
+        let row = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.highScores.rows[idx];
+        // console.log(row, 'rows!!', idx);
+        if(idx >=1) {
+            console.log(row, 'rows!!', idx)
+            row.remove();
+        }
     }
 }
 
+// export let showLevelHighestScores = () => {
+//     // removing previously placed data from DOM
+//     removePreviousScoresDetails();
+
+//     // re rendering table data 
+//     for(let key in testData) {
+//         console.log(testData, 'data here!!');
+//         let row = highScores.insertRow(1);
+//         let nameCell = row.insertCell(0);
+//         let timeCell = row.insertCell(1);
+//         let starsCell = row.insertCell(2);
+//         nameCell.innerHTML = key;
+//         timeCell.innerHTML = (testData[key].time.toFixed(2))+'sec';
+//         starsCell.innerHTML = testData[key].stars;
+//     }
+// }
+
+let showLevelHighestScores = (level, name) => {
+    // removing previously placed data from DOM
+    removePreviousScoresDetails();
+
+    // re rendering table data
+    // showDataInHighScoresTable(level, name);
+    setTimeout(()=>showDataInHighScoresTable(level, name), 2000);
+}
+
+let showDataInHighScoresTable = (level, name) => {
+    // removePreviousScoresDetails();
+    let data = _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.test2[name];
+    // console.log(data, "here data!!", data[name].level == lvl);
+    console.log(data, "here data!!", data.level, _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.test2);
+    // let row = highScores.insertRow(1);
+    for(let key in _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.test2) {
+        if(_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.test2[key].level == level) {
+            // looks like adding is doing alright, there is an issue in removal after all
+            // console.log(test2[key].level, level, key);
+            let row = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.highScores.insertRow(1);
+            let nameCell = row.insertCell(0);
+            let timeCell = row.insertCell(1);
+            let starsCell = row.insertCell(2);
+            nameCell.innerHTML = key;
+            timeCell.innerHTML = (_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.test2[key].time.toFixed(2))+' sec';
+            starsCell.innerHTML = _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.test2[key].stars;
+        }
+    }
+}
+
+// export let showDataInHighScoresTable = (level) => {
+//     removePreviousScoresDetails();
+//     let data = test2[level];
+//     for(let key in data) {
+//         let row = highScores.insertRow(1);
+//         let nameCell = row.insertCell(0);
+//         let timeCell = row.insertCell(1);
+//         let starsCell = row.insertCell(2);
+//         nameCell.innerHTML = key;
+//         timeCell.innerHTML = (data[key].time.toFixed(2))+' sec';
+//         starsCell.innerHTML = data[key].stars;
+//     }
+// }
+
 let initialToogleTextDisplay = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.toggle_text.classList.add('show');
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.toggle_text.textContent = "Show/Hide Characters";
+    // toggle_text.classList.add('show');
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.toggle_text.textContent = "Hide Characters";
 }
 
 let toggleTextInDisplay = evt => {
@@ -284,7 +364,19 @@ let toggleTextInDisplay = evt => {
     }
 }
 
+let flag = 0;
+let  refreshingFlag = () => flag = 0;
+
+let checkAndShowResults = (level) => {
+    if(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.textContent) {
+        (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.movingDivsFromDisplayToShowScores)(level);
+        flag = 1;
+    }
+}
+
 let checkWhichLevelIsInPlay = evt => {
+    // checkAndShowResults();
+
     let x = evt.clientX;
     let y = evt.clientY;
 
@@ -294,12 +386,20 @@ let checkWhichLevelIsInPlay = evt => {
 
     if(levelID == '01') {
         (0,_gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_3__.checkPositionWithFirebaseForGameLevel01)([x,y]);
+        // checkAndShowResults();
     } else if(levelID == '02') {
         // dropDown = charactersDD();
         (0,_gamePlayLevelWise_level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_4__.checkPositionWithFirebaseForGameLevel02)([x,y]);
+        // checkAndShowResults();
     }
+    // checkAndShowResults(imageAltTagText);
+    // showDataInHighScoresTable(imageAltTagText)
+    // checkAndShowResults();
+    // movingDivsFromDisplayToShowScores();
     // console.log('data....', testData)
-    if(Object.keys(_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.testData)) showLevelHighestScores();
+    // showScores();
+    // moveLevelsAndHeaderDivsToLeft();
+    // if(Object.keys(testData)) showLevelHighestScores();
 }
 
 /***/ }),
@@ -364,6 +464,7 @@ let whichOptionWasSelected = () => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "howManyCharactersExistInLevelOne": () => (/* binding */ howManyCharactersExistInLevelOne),
 /* harmony export */   "checkPositionWithFirebaseForGameLevel01": () => (/* binding */ checkPositionWithFirebaseForGameLevel01)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
@@ -372,7 +473,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let length = 3;
+let howManyCharactersExistInLevelOne = 3;
 
 let checkWho = (coords, who) => {
     let characterData = (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromArray)()['level_01'][who];
@@ -385,10 +486,12 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
         console.log('found!!'+who, data['X'][0], data['X'][1]);
         (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.disableCharacterFromDisplay)(who)
 
-        length--;
-        if(length == 0) {
+        howManyCharactersExistInLevelOne--;
+        if(howManyCharactersExistInLevelOne == 0) {
             let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.calculateTotalTimeElapsed)();
             (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.decideEffeciencyFindingWaldo)(timeSpent, 'level_01');
+            // moving it back to it's initial value, so that when play again is in motion it starts from initial count
+            howManyCharactersExistInLevelOne = 3;
         }
     } else {
         console.log('go fish!!'+who, coords);
@@ -420,6 +523,7 @@ let checkPositionWithFirebaseForGameLevel01 = (coords) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "howManyCharactersExistInLevelTwo": () => (/* binding */ howManyCharactersExistInLevelTwo),
 /* harmony export */   "checkPositionWithFirebaseForGameLevel02": () => (/* binding */ checkPositionWithFirebaseForGameLevel02)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
@@ -428,7 +532,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let length = 1;
+let howManyCharactersExistInLevelTwo = 1;
 
 let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
@@ -436,10 +540,12 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
         console.log('found!!'+who, data['X'][0], data['X'][1]);
         (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.disableCharacterFromDisplay)(who);
 
-        length--;
-        if(length == 0) {
+        howManyCharactersExistInLevelTwo--;
+        if(howManyCharactersExistInLevelTwo == 0) {
             let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.calculateTotalTimeElapsed)();
             (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.decideEffeciencyFindingWaldo)(timeSpent, "level_02");
+            // moving it back to it's initial value, so that when play again is in motion it starts from initial count
+            howManyCharactersExistInLevelTwo = 1;
         }
     } else {
         console.log('go fish!!'+who, coords);
@@ -477,11 +583,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "calculateTotalTimeElapsed": () => (/* binding */ calculateTotalTimeElapsed),
 /* harmony export */   "decideEffeciencyFindingWaldo": () => (/* binding */ decideEffeciencyFindingWaldo),
-/* harmony export */   "disableCharacterFromDisplay": () => (/* binding */ disableCharacterFromDisplay)
+/* harmony export */   "movingDivsFromDisplayToShowScores": () => (/* binding */ movingDivsFromDisplayToShowScores),
+/* harmony export */   "disableCharacterFromDisplay": () => (/* binding */ disableCharacterFromDisplay),
+/* harmony export */   "moveLevelsAndHeaderDivsToLeft": () => (/* binding */ moveLevelsAndHeaderDivsToLeft),
+/* harmony export */   "moveLevelsAndHeaderDivsToCenter": () => (/* binding */ moveLevelsAndHeaderDivsToCenter),
+/* harmony export */   "hideScores": () => (/* binding */ hideScores),
+/* harmony export */   "showScores": () => (/* binding */ showScores)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
 /* harmony import */ var _all_levels_neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../all_levels/neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
 /* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
+/* harmony import */ var _gamePlay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../gamePlay */ "./src/client_side/gamePlay.js");
+/* harmony import */ var _level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./level_01_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_01_gamePlay_control.js");
+/* harmony import */ var _level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./level_02_gamePlay_control */ "./src/client_side/gamePlayLevelWise/level_02_gamePlay_control.js");
+
+
+
 
 
 
@@ -510,22 +627,67 @@ let decideEffeciencyFindingWaldo = (timeTook, level) => {
     whatHappensAfterGame(stars, timeTook, level);
 }
 
+// let refreshLevelesCharactersCounts = () => {
+//     howManyCharactersExistInLevelOne = 0;
+//     howManyCharactersExistInLevelTwo = 0;
+// }
+
+let movingDivsFromDisplayToShowScores = (level, name) => {
+    showScores();
+    moveLevelsAndHeaderDivsToLeft();
+    // showLevelHighestScores();
+    // showDataInHighScoresTable(level)
+    (0,_gamePlay__WEBPACK_IMPORTED_MODULE_3__.showLevelHighestScores)(level, name);
+    (0,_gamePlay__WEBPACK_IMPORTED_MODULE_3__.removePreviousScoresDetails)();
+}
+
+let makingLevelsImagesUnclickable = () => {
+    Array.from(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.chooseLevel.children).forEach(node=>{
+        node.classList.add('unclickable');
+        node.classList.remove('clickable');
+    });
+}
+
+let makingLevelsImagesClickable = () => {
+    Array.from(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.chooseLevel.children).forEach(node=>{
+        node.classList.remove('unclickable');
+        node.classList.add('clickable');
+    });
+}
+
+let movingDivsFromDisplayToHideScores = () => {
+    hideScores();
+    moveLevelsAndHeaderDivsToCenter();
+}
+
 let whatHappensAfterGame = (stars, time, level) => {
     let name = prompt('please enter your name for leaderboard');
-    announceCompleted(stars, name);
+    // announceCompleted(stars, name);
     storeResultToFirebase(time,name,stars, level);
-    awaitsUsersPlayAgain();
+    // awaitsUsersPlayAgain();
+    movingDivsFromDisplayToShowScores(level, name);
+    // refreshLevelesCharactersCounts();
+    // makingLevelsImagesUnclickable();
+
+    setTimeout(() => {
+        makingLevelsImagesUnclickable();
+        announceCompleted(stars, name);
+        awaitsUsersPlayAgain();
+    }, 1001);
 }
 
 let awaitsUsersPlayAgain = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.playAgain.addEventListener('click', gettingReadyForGame);
-    console.log(document.querySelector('select'), "??!!")
+    // console.log(document.querySelector('select'), "??!!")
 }
 
 let gettingReadyForGame = evt => {
     ;(0,_all_levels_neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__.necessaryCleanUpTasks)();
+    movingDivsFromDisplayToHideScores();
+
     document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.resultDiv.style.display = 'none';    
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.resultDiv.style.display = 'none';
+    makingLevelsImagesClickable();
 }
 
 let announceCompleted = (stars, name) => {
@@ -547,6 +709,27 @@ let disableCharacterFromDisplay = who => {
     Array.from(charactersDisplayed).forEach(character => character.id == who ? character.classList.add('character-found') : false)
 }
 
+let moveLevelsAndHeaderDivsToLeft = () => {
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.headerDiv.classList.add('move-left');
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.chooseLevel.classList.add('move-left');
+
+    // headerDiv.style.alignSelf = 'flex-start';
+    // chooseLevel.style.alignSelf = 'flext-start';
+}
+
+let moveLevelsAndHeaderDivsToCenter = () => {
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.headerDiv.classList.remove('move-left');
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.chooseLevel.classList.remove('move-left');
+}
+
+let hideScores = () => {
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.scoresContainer.classList.add('scores-hidden');
+}
+
+let showScores = () => {
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.scoresContainer.classList.remove('scores-hidden');
+}
+
 /***/ }),
 
 /***/ "./src/server_side/accessingData.js":
@@ -562,6 +745,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "readCharacterCoordsDataFromFirebase": () => (/* binding */ readCharacterCoordsDataFromFirebase),
 /* harmony export */   "readCharacterCoordsDataFromArray": () => (/* binding */ readCharacterCoordsDataFromArray),
 /* harmony export */   "testData": () => (/* binding */ testData),
+/* harmony export */   "test2": () => (/* binding */ test2),
 /* harmony export */   "storeResultsInLocally": () => (/* binding */ storeResultsInLocally)
 /* harmony export */ });
 /* harmony import */ var _locallyStoredCoordsData_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./locallyStoredCoordsData.json */ "./src/server_side/locallyStoredCoordsData.json");
@@ -599,9 +783,15 @@ let readCharacterCoordsDataFromArray = (collectionName, docName) => {
 }
 
 let testData = {}
+let test2 = {};
 let storeResultsInLocally = (time,name,stars, level) => {
-    testData[name] = {time, stars, level}
+    // testData[level] = {[name]: {time, stars,}}
+    // testData[name] = {time, stars, level}
     // console.log(testData);
+    // test2[level] = {[name]: {time, stars}}
+    // test2[name] = {[level]: {time, stars}}
+    test2[name] = {time, stars, level}
+    // console.log(test2, "checking data!!");
 }
 
 /***/ }),
@@ -729,7 +919,7 @@ let saving_coords_for_level02 = () => {
   \******************************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"level_01":{"waldo":{"X":[240,245],"Y":[223,234]},"odlaw":{"X":[120,124],"Y":[223,233]},"wizard":{"X":[280,285],"Y":[220,235]}},"level_02":{"waldo":{"X":[211,218],"Y":[193,200]}}}');
+module.exports = JSON.parse('{"level_01":{"waldo":{"X":[230,235],"Y":[230,237]},"odlaw":{"X":[115,119],"Y":[232,239]},"wizard":{"X":[268,275],"Y":[230,244]}},"level_02":{"waldo":{"X":[211,218],"Y":[193,200]}}}');
 
 /***/ })
 

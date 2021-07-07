@@ -18,4 +18,9 @@ let playAgain = document.querySelector('#play-again');
 let toggle_text = document.querySelector('#toggle-text');
 let charactersDisplayed = document.querySelector('.characters-display');
 let highScores = document.querySelector('.high-scores');
-export {waldo, odlaw, wizard, wilma, wenda, level, timer, levelImage, gamePanel, level_01, level_02, resultDiv, resultText, playAgain, toggle_text, charactersDisplayed, highScores}
+
+let chooseLevel = document.querySelector('.choose-levels');
+let headerDiv = document.querySelector('.levels-header');
+let scoresContainer = document.querySelector('.keeping-scores');
+let scoresText = document.querySelector('.scores');
+export {waldo, odlaw, wizard, wilma, wenda, level, timer, levelImage, gamePanel, level_01, level_02, resultDiv, resultText, playAgain, toggle_text, charactersDisplayed, highScores, chooseLevel, headerDiv, scoresContainer, scoresText}
