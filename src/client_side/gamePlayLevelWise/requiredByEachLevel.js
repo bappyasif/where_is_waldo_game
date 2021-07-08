@@ -1,6 +1,6 @@
 import { storeEachLevelResult, storeResultsInLocally } from "../../server_side/accessingData";
 import { necessaryCleanUpTasks } from "../all_levels/neededByAllLevels";
-import { chooseLevel, headerDiv, playAgain, resultDiv, resultText, scoresContainer } from "../each_game_required_divs/requiredDivs";
+import { chooseLevel, headerDiv, playAgain, resultDiv, resultText, scoresContainer, toggle_text } from "../each_game_required_divs/requiredDivs";
 import { removePreviousScoresDetails, showLevelHighestScores } from "../gamePlay";
 
 let timeStarted = Date.now();
@@ -111,4 +111,8 @@ export let hideScores = () => {
 
 export let showScores = () => {
     scoresContainer.classList.remove('scores-hidden');
+}
+
+export let show_hideOrShowButton = () => {
+    toggle_text.style.display = 'block';
 }

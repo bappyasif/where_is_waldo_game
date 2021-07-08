@@ -13,19 +13,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "level_one_game_view": () => (/* binding */ level_one_game_view)
 /* harmony export */ });
 /* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
-/* harmony import */ var _neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
+/* harmony import */ var _gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../gamePlayLevelWise/requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+/* harmony import */ var _neededByAllLevels__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
+
 
 
 
 let level_one_game_view = () => {
-    (0,_neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__.necessaryCleanUpTasks)();
+    (0,_neededByAllLevels__WEBPACK_IMPORTED_MODULE_2__.necessaryCleanUpTasks)();
     renderingLevelAndTimer('01', '02-00-00');
     renderCharactersOnDisplay();
     renderingLevelWorldImage();
+    (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_1__.show_hideOrShowButton)();
 }
 
 let renderingLevelWorldImage = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.src = '../../../dist/images/level-1.jpg' || 0;
+    // levelImage.src = '../../../dist/images/level-1.jpg' || './images/level-1.jpg';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.src = './images/level-1.jpg';
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.alt = 'level 01';
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.gamePanel.appendChild(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage);
 }
@@ -72,7 +76,8 @@ let level_two_game_view = () => {
 }
 
 let renderingLevelWorldImage = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.src = '../../../dist/images/level-2.png' || 0;
+    // levelImage.src = '../../../dist/images/level-2.png' || './images/level-2.png';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.src = './images/level-2.png';
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.alt = 'level 02';
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.gamePanel.appendChild(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage);
 }
@@ -129,11 +134,16 @@ let removeOpacityFreomCharcters = () => {
     // document.querySelectorAll('.characters-display img').forEach(node=> node.classList.contains('character-found') ? node.classList.remove('character-found') : false);
 }
 
+let hide_showOrHideButton = () => {
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.toggle_text.style.display = 'none';
+}
+
 let necessaryCleanUpTasks = () => {
     removingLevelWorldImage();
     removingLevelAndTimer();
     removeCharactersFromDisplay();
-    removeOpacityFreomCharcters()   ;
+    removeOpacityFreomCharcters();
+    hide_showOrHideButton();
 }
 
 /***/ }),
@@ -528,7 +538,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "moveLevelsAndHeaderDivsToLeft": () => (/* binding */ moveLevelsAndHeaderDivsToLeft),
 /* harmony export */   "moveLevelsAndHeaderDivsToCenter": () => (/* binding */ moveLevelsAndHeaderDivsToCenter),
 /* harmony export */   "hideScores": () => (/* binding */ hideScores),
-/* harmony export */   "showScores": () => (/* binding */ showScores)
+/* harmony export */   "showScores": () => (/* binding */ showScores),
+/* harmony export */   "show_hideOrShowButton": () => (/* binding */ show_hideOrShowButton)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
 /* harmony import */ var _all_levels_neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../all_levels/neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
@@ -647,6 +658,10 @@ let hideScores = () => {
 
 let showScores = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.scoresContainer.classList.remove('scores-hidden');
+}
+
+let show_hideOrShowButton = () => {
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.toggle_text.style.display = 'block';
 }
 
 /***/ }),

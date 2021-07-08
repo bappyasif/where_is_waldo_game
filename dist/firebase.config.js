@@ -11,4 +11,4 @@ const firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
-  firebase.auth().signInAnonymously().then(()=>console.log('succes!!')).catch(err=>console.log('error!!',err.code, err.message, err));
+  firebase.auth().signInAnonymously().then(()=>console.log('succesfull login!!')).catch(err=>console.log('error!!',err.code, err.message, err));

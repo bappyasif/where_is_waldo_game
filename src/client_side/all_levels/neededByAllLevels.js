@@ -1,4 +1,4 @@
-import { level, levelImage, timer } from "../each_game_required_divs/requiredDivs";
+import { level, levelImage, timer, toggle_text } from "../each_game_required_divs/requiredDivs";
 
 // let renderingLevelWorldImage = (src, alt) => {
 //     levelImage.src = src;
@@ -24,9 +24,14 @@ let removeOpacityFreomCharcters = () => {
     // document.querySelectorAll('.characters-display img').forEach(node=> node.classList.contains('character-found') ? node.classList.remove('character-found') : false);
 }
 
+let hide_showOrHideButton = () => {
+    toggle_text.style.display = 'none';
+}
+
 export let necessaryCleanUpTasks = () => {
     removingLevelWorldImage();
     removingLevelAndTimer();
     removeCharactersFromDisplay();
-    removeOpacityFreomCharcters()   ;
+    removeOpacityFreomCharcters();
+    hide_showOrHideButton();
 }
