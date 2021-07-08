@@ -10,8 +10,18 @@
 <body>
     <div class="container">
         <header>Where's Waldo</header>
+        <div class="keeping-scores">
+            <div class="scores">scores</div>
+            <table class="high-scores" style="margin-top: 4.9vh;">
+                <tr>
+                    <th>name</th>
+                    <th>time</th>
+                    <th>stars</th>
+                </tr>
+            </table>
+        </div>
         <div class="game-container">
-            <header>Choose Levels</header>
+            <header class="levels-header">Choose Levels</header>
             <div class="choose-levels">
                 <img id="level-01" src="./images/level-1.jpg" alt="">
                 <img id="level-02" src="./images/level-2.png" alt="">
@@ -29,7 +39,7 @@
                     <img id='wenda' src="./images/Character.Wenda.jpg" alt="wenda" />
                 </div>
                 <div class="toggle-display-for-characters">
-                    <button>Show/Hide</button>
+                    <button id="toggle-text">Show/Hide Characters</button>
                 </div>
             </div>
             <div class="game-panel" style="position: relative;">
@@ -43,20 +53,17 @@
             </div>
         </div>
     </div>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<!-- <script src="../src/index.js"></script> -->
+<!-- <script src="../src/server_side/test.js"></script> -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
-
-<!-- Add Firebase products that you want to use -->
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-
+ https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
 <!-- <script src="./firebase.config.js"></script> -->
-<!-- <script src="../src/index.js"></script> -->
-<script src="../src/server_side/test.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
