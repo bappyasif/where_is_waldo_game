@@ -64,15 +64,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "level_two_game_view": () => (/* binding */ level_two_game_view)
 /* harmony export */ });
 /* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
-/* harmony import */ var _neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
+/* harmony import */ var _gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../gamePlayLevelWise/requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+/* harmony import */ var _neededByAllLevels__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
+
 
 
 
 let level_two_game_view = () => {
-    (0,_neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__.necessaryCleanUpTasks)();
+    (0,_neededByAllLevels__WEBPACK_IMPORTED_MODULE_2__.necessaryCleanUpTasks)();
     renderingLevelAndTimer('02', '01-40-00');
     renderCharactersOnDisplay();
     renderingLevelWorldImage();
+    (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_1__.show_hideOrShowButton)();
 }
 
 let renderingLevelWorldImage = () => {

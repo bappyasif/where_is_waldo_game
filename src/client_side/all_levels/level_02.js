@@ -1,4 +1,5 @@
 import { gamePanel, level, levelImage, timer } from "../each_game_required_divs/requiredDivs";
+import { show_hideOrShowButton } from "../gamePlayLevelWise/requiredByEachLevel";
 import { necessaryCleanUpTasks } from "./neededByAllLevels"
 
 export let level_two_game_view = () => {
@@ -6,6 +7,7 @@ export let level_two_game_view = () => {
     renderingLevelAndTimer('02', '01-40-00');
     renderCharactersOnDisplay();
     renderingLevelWorldImage();
+    show_hideOrShowButton();
 }
 
 let renderingLevelWorldImage = () => {
