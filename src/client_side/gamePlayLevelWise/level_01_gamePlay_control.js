@@ -8,6 +8,18 @@ let checkWho = (coords, who) => {
     checkIfCoordsWithinPositionRange(characterData, coords, who);
 }
 
+let checkWhoWithFirebase = (collectionName, characterName, coords) => {
+    // let characterData;
+    // readCharacterCoordsDataFromFirebase(collectionName, characterName).then(data=>characterData=data).catch(err=>console.log("could not read data!!", err));
+    // console.log(characterData, 'data read!!', collectionName, characterName);
+    readCharacterCoordsDataFromFirebase(collectionName, characterName).then(data=>{
+        console.log(data, 'data read!!');
+        let characterData = data;
+        checkIfCoordsWithinPositionRange(characterData, coords, characterName);
+    }).catch(err=>console.log("could not read data!!", err));
+    // checkIfCoordsWithinPositionRange(characterData, coords, who);
+}
+
 let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
@@ -35,7 +47,8 @@ export let checkPositionWithFirebaseForGameLevel01 = (coords) => {
     if(select) {
         select.addEventListener('change', ()=>{
             let who = select.value;
-            checkWho(coords, who);
+            // checkWho(coords, who);
+            checkWhoWithFirebase('level_01', who, coords);
             document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
         });
     }

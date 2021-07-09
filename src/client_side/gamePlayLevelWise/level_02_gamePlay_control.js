@@ -21,9 +21,21 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     }
 }
 
+let checkWhoWithFirebase = (collectionName, characterName, coords) => {
+    readCharacterCoordsDataFromFirebase(collectionName, characterName).then(data=>{
+        console.log(data, 'data read!!');
+        let characterData = data;
+        checkIfCoordsWithinPositionRange(characterData, coords, characterName);
+    }).catch(err=>console.log("could not read data!!", err));
+}
+
 let checkWho = (coords, who, level) => {
     let characterData = readCharacterCoordsDataFromArray()[level][who];
     checkIfCoordsWithinPositionRange(characterData, coords, who);
+}
+
+let checkWhoVer02 = (coords, who, level) => {
+    checkWhoWithFirebase(level, who, coords);
 }
 
 export let checkPositionWithFirebaseForGameLevel02 = (coords) => {
@@ -34,7 +46,9 @@ export let checkPositionWithFirebaseForGameLevel02 = (coords) => {
     if(select) {
         select.addEventListener('change', ()=>{
             let who = select.value;
-            checkWho(coords, who, 'level_02');
+            // checkWho(coords, who, 'level_02');
+            // checkWhoVer02('level_02', who, coords)
+            checkWhoWithFirebase('level_02', who, coords);
             document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
         });
     }

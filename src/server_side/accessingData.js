@@ -1,9 +1,10 @@
-// let db = firebase.firestore();
+let db = firebase.firestore();
+import { results } from "../client_side/gamePlay";
 import data from "./locallyStoredCoordsData.json";
 
 export let storeCharacterIntoFirestrore = (characterPos, whichLevel, characterName) => {
     let [x,y] = [...characterPos];
-    db.collection(whichLevel).doc(characterName).set({X: x, Y: y}).then(()=>console.log(characterName+' coords details saved!!')).catch(err=>console.log("something's wrong!!"));
+    db.collection(whichLevel).doc(characterName).set({X: x, Y: y}).then(()=>console.log(characterName+' coords details saved!!')).catch(err=>console.log("something's wrong!!", err));
 }
 
 export let storeEachLevelResult = (time, name, level, stars) => {
@@ -15,8 +16,29 @@ export let storeEachLevelResult = (time, name, level, stars) => {
     .catch(err => console.log("error while storing result!!", err));
 }
 
+export let readEachLevelResult = (docName, whichCharacter) => {
+    let datas = {};
+    return db
+    .collection('results').doc(docName)
+    .collection('results')
+    .get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+            datas[doc.id] = doc.data();
+            // return doc.data(); 
+        });
+        // console.log(datas, "results?!")
+        return datas;
+    }).then(data=>{
+        console.log(data, 'results');
+        // results = data;
+        return data;
+    }).catch(err => console.log('error!!', err));
+    // return datas;
+}
+
 export let readCharacterCoordsDataFromFirebase = (collectionName, docName) => {
     let coordsRanges = {}
+    console.log('<><>', coordsRanges)
     return db.collection(collectionName).doc(docName)
     .get().then(doc => {
         coordsRanges.X = doc.data().X;
