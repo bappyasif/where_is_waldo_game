@@ -26,41 +26,24 @@ export let showLevelHighestScores = (level, name) => {
     removePreviousScoresDetails();
 
     // re rendering table data
-    // showDataInHighScoresTable(level, name);
     // setTimeout(()=>showDataInHighScoresTable(level, name), 2000);
     setTimeout(()=>showDataOnTable(level, name), 1001);
 }
 
 export let showDataOnTable = (level, name) => {
     readEachLevelResult(level,  name).then(data=> {
-        // console.log(data, 'results');
-        // addingDatasOntoTable(level, data);
         bringOutMaxFourFromResults(data);
     })
 }
 
 let bringOutMaxFourFromResults = data=> {
-    // let vals = Object.values(data)
-    // console.log(vals);
-    // let test = Object.fromEntries(
-    //     Object.entries(data).sort(([,a], [,b]) => a[1].time-b[1].time )
-    // );
-    // console.log(test, 'sorted!!', Object.entries(data));
-    // let test = Object.entries(data).sort(([a,b], [c,d]) => b.time - d.time ).slice(0,4);
-    // console.log(test, 'test!!', Object.fromEntries(test))
-    // console.log(test, 'test!!', Object.fromEntries(test));
     let maxFour = Object.entries(data).sort(([a,b], [c,d]) => b.time - d.time ).slice(0,4);
     let sortedFour = maxFour.sort(([,a],[,b])=>b.time-a.time);
-    // console.log(test, "??")
-    // addingDatasOntoTable(maxFour)
-    // addingDatasOntoTable(Object.fromEntries(maxFour))
     addingDatasOntoTable(Object.fromEntries(sortedFour));
 }
 
-// let announceWhenPlayerIsInLeadingGameScorer = 
-
 let addingDatasOntoTable = (datas) => {
-    console.log('results', datas);
+    // console.log('results', datas);
     for(let key in datas) {
         let row = highScores.insertRow(1);
         let nameCell = row.insertCell(0);
@@ -71,21 +54,6 @@ let addingDatasOntoTable = (datas) => {
         starsCell.innerHTML = datas[key].stars;
     }
 }
-
-// export let showDataInHighScoresTable = (level, name) => {
-//     // readEachLevelResult(level,  name);
-//     for(let key in test2) {
-//         if(test2[key].level == level) {
-//             let row = highScores.insertRow(1);
-//             let nameCell = row.insertCell(0);
-//             let timeCell = row.insertCell(1);
-//             let starsCell = row.insertCell(2);
-//             nameCell.innerHTML = key;
-//             timeCell.innerHTML = (test2[key].time.toFixed(2))+' sec';
-//             starsCell.innerHTML = test2[key].stars;
-//         }
-//     }
-// }
 
 let initialToogleTextDisplay = () => {
     toggle_text.textContent = "Hide Characters";

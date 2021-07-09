@@ -46,8 +46,6 @@ export let checkPositionWithFirebaseForGameLevel02 = (coords) => {
     if(select) {
         select.addEventListener('change', ()=>{
             let who = select.value;
-            // checkWho(coords, who, 'level_02');
-            // checkWhoVer02('level_02', who, coords)
             checkWhoWithFirebase('level_02', who, coords);
             document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
         });

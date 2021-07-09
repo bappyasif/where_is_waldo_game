@@ -3,21 +3,12 @@ import { charactersDD, stickDropDownWhereItsClicked } from "./characterSelection
 import { calculateTotalTimeElapsed, decideEffeciencyFindingWaldo, disableCharacterFromDisplay } from "./requiredByEachLevel";
 export let howManyCharactersExistInLevelOne = 3;
 
-let checkWho = (coords, who) => {
-    let characterData = readCharacterCoordsDataFromArray()['level_01'][who];
-    checkIfCoordsWithinPositionRange(characterData, coords, who);
-}
-
 let checkWhoWithFirebase = (collectionName, characterName, coords) => {
-    // let characterData;
-    // readCharacterCoordsDataFromFirebase(collectionName, characterName).then(data=>characterData=data).catch(err=>console.log("could not read data!!", err));
-    // console.log(characterData, 'data read!!', collectionName, characterName);
     readCharacterCoordsDataFromFirebase(collectionName, characterName).then(data=>{
-        console.log(data, 'data read!!');
+        // console.log(data, 'data read!!');
         let characterData = data;
         checkIfCoordsWithinPositionRange(characterData, coords, characterName);
     }).catch(err=>console.log("could not read data!!", err));
-    // checkIfCoordsWithinPositionRange(characterData, coords, who);
 }
 
 let checkIfCoordsWithinPositionRange = (data, coords, who) => {
@@ -47,7 +38,6 @@ export let checkPositionWithFirebaseForGameLevel01 = (coords) => {
     if(select) {
         select.addEventListener('change', ()=>{
             let who = select.value;
-            // checkWho(coords, who);
             checkWhoWithFirebase('level_01', who, coords);
             document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
         });

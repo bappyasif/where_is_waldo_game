@@ -293,41 +293,24 @@ let showLevelHighestScores = (level, name) => {
     removePreviousScoresDetails();
 
     // re rendering table data
-    // showDataInHighScoresTable(level, name);
     // setTimeout(()=>showDataInHighScoresTable(level, name), 2000);
     setTimeout(()=>showDataOnTable(level, name), 1001);
 }
 
 let showDataOnTable = (level, name) => {
     ;(0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readEachLevelResult)(level,  name).then(data=> {
-        // console.log(data, 'results');
-        // addingDatasOntoTable(level, data);
         bringOutMaxFourFromResults(data);
     })
 }
 
 let bringOutMaxFourFromResults = data=> {
-    // let vals = Object.values(data)
-    // console.log(vals);
-    // let test = Object.fromEntries(
-    //     Object.entries(data).sort(([,a], [,b]) => a[1].time-b[1].time )
-    // );
-    // console.log(test, 'sorted!!', Object.entries(data));
-    // let test = Object.entries(data).sort(([a,b], [c,d]) => b.time - d.time ).slice(0,4);
-    // console.log(test, 'test!!', Object.fromEntries(test))
-    // console.log(test, 'test!!', Object.fromEntries(test));
     let maxFour = Object.entries(data).sort(([a,b], [c,d]) => b.time - d.time ).slice(0,4);
     let sortedFour = maxFour.sort(([,a],[,b])=>b.time-a.time);
-    // console.log(test, "??")
-    // addingDatasOntoTable(maxFour)
-    // addingDatasOntoTable(Object.fromEntries(maxFour))
     addingDatasOntoTable(Object.fromEntries(sortedFour));
 }
 
-// let announceWhenPlayerIsInLeadingGameScorer = 
-
 let addingDatasOntoTable = (datas) => {
-    console.log('results', datas);
+    // console.log('results', datas);
     for(let key in datas) {
         let row = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.highScores.insertRow(1);
         let nameCell = row.insertCell(0);
@@ -338,21 +321,6 @@ let addingDatasOntoTable = (datas) => {
         starsCell.innerHTML = datas[key].stars;
     }
 }
-
-// export let showDataInHighScoresTable = (level, name) => {
-//     // readEachLevelResult(level,  name);
-//     for(let key in test2) {
-//         if(test2[key].level == level) {
-//             let row = highScores.insertRow(1);
-//             let nameCell = row.insertCell(0);
-//             let timeCell = row.insertCell(1);
-//             let starsCell = row.insertCell(2);
-//             nameCell.innerHTML = key;
-//             timeCell.innerHTML = (test2[key].time.toFixed(2))+' sec';
-//             starsCell.innerHTML = test2[key].stars;
-//         }
-//     }
-// }
 
 let initialToogleTextDisplay = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.toggle_text.textContent = "Hide Characters";
@@ -472,21 +440,12 @@ __webpack_require__.r(__webpack_exports__);
 
 let howManyCharactersExistInLevelOne = 3;
 
-let checkWho = (coords, who) => {
-    let characterData = (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromArray)()['level_01'][who];
-    checkIfCoordsWithinPositionRange(characterData, coords, who);
-}
-
 let checkWhoWithFirebase = (collectionName, characterName, coords) => {
-    // let characterData;
-    // readCharacterCoordsDataFromFirebase(collectionName, characterName).then(data=>characterData=data).catch(err=>console.log("could not read data!!", err));
-    // console.log(characterData, 'data read!!', collectionName, characterName);
-    ;(0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromFirebase)(collectionName, characterName).then(data=>{
-        console.log(data, 'data read!!');
+    (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromFirebase)(collectionName, characterName).then(data=>{
+        // console.log(data, 'data read!!');
         let characterData = data;
         checkIfCoordsWithinPositionRange(characterData, coords, characterName);
     }).catch(err=>console.log("could not read data!!", err));
-    // checkIfCoordsWithinPositionRange(characterData, coords, who);
 }
 
 let checkIfCoordsWithinPositionRange = (data, coords, who) => {
@@ -516,7 +475,6 @@ let checkPositionWithFirebaseForGameLevel01 = (coords) => {
     if(select) {
         select.addEventListener('change', ()=>{
             let who = select.value;
-            // checkWho(coords, who);
             checkWhoWithFirebase('level_01', who, coords);
             document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
         });
@@ -587,8 +545,6 @@ let checkPositionWithFirebaseForGameLevel02 = (coords) => {
     if(select) {
         select.addEventListener('change', ()=>{
             let who = select.value;
-            // checkWho(coords, who, 'level_02');
-            // checkWhoVer02('level_02', who, coords)
             checkWhoWithFirebase('level_02', who, coords);
             document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
         });
@@ -739,32 +695,6 @@ let show_hideOrShowButton = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.toggle_text.style.display = 'block';
 }
 
-// export let checkWhoWithFirebase = (collectionName, characterName, coords) => {
-//     readCharacterCoordsDataFromFirebase(collectionName, characterName).then(data=>{
-//         console.log(data, 'data read!!');
-//         let characterData = data;
-//         checkIfCoordsWithinPositionRange(characterData, coords, characterName, collectionName);
-//     }).catch(err=>console.log("could not read data!!", err));
-// }
-
-// let checkIfCoordsWithinPositionRange = (data, coords, who, level) => {
-//     console.log(data['X'][0], data.X[1], who);
-//     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
-//         console.log('found!!'+who, data['X'][0], data['X'][1]);
-//         disableCharacterFromDisplay(who);
-
-//         howManyCharactersExistInLevelTwo--;
-//         if(howManyCharactersExistInLevelTwo == 0) {
-//             let timeSpent = calculateTotalTimeElapsed();
-//             decideEffeciencyFindingWaldo(timeSpent, level);
-//             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
-//             howManyCharactersExistInLevelTwo = 1;
-//         }
-//     } else {
-//         console.log('go fish!!'+who, coords);
-//     }
-// }
-
 /***/ }),
 
 /***/ "./src/server_side/accessingData.js":
@@ -826,7 +756,6 @@ let readEachLevelResult = (docName, whichCharacter) => {
 
 let readCharacterCoordsDataFromFirebase = (collectionName, docName) => {
     let coordsRanges = {}
-    console.log('<><>', coordsRanges)
     return db.collection(collectionName).doc(docName)
     .get().then(doc => {
         coordsRanges.X = doc.data().X;
@@ -868,24 +797,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "wizardRangeOfX": () => (/* binding */ wizardRangeOfX),
 /* harmony export */   "wizardRangeOfY": () => (/* binding */ wizardRangeOfY)
 /* harmony export */ });
-// let waldosRangeOfX = [400, 420];
-// let waldosRangeOfY = [103, 132];
-
-// let wizardRangeOfX = [470, 496];
-// let wizardRangeOfY = [101, 132];
-
-// let odlawsRangeOfX = [203, 213];
-// let odlawsRangeOfY = [110, 117];
-
-// let waldosRangeOfX = [247, 253];
-// let waldosRangeOfY = [220, 228];
-
-// let wizardRangeOfX = [288, 294];
-// let wizardRangeOfY = [218, 230];
-
-// let odlawsRangeOfX = [123, 125];
-// let odlawsRangeOfY = [218, 227];
-
 let waldosRangeOfX = [200, 204];
 let waldosRangeOfY = [234, 244];
 
@@ -952,17 +863,6 @@ let waldosRangeOfX = [186, 189];
 let waldosRangeOfY = [203, 209];
 
 
-
-// let wizardRangeOfX = [470, 496];
-// let wizardRangeOfY = [101, 132];
-
-// let odlawsRangeOfX = [203, 213];
-// let odlawsRangeOfY = [110, 117];
-
-// let wilmasRangeOfX = [203, 213];
-// let wilmasRangeOfY = [110, 117];
-
-// export {waldosRangeOfX, waldosRangeOfY, wizardRangeOfX, wizardRangeOfY, odlawsRangeOfX, odlawsRangeOfY, wilmasRangeOfX, wilmasRangeOfY}
 
 /***/ }),
 

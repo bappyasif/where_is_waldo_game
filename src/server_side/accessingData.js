@@ -38,7 +38,6 @@ export let readEachLevelResult = (docName, whichCharacter) => {
 
 export let readCharacterCoordsDataFromFirebase = (collectionName, docName) => {
     let coordsRanges = {}
-    console.log('<><>', coordsRanges)
     return db.collection(collectionName).doc(docName)
     .get().then(doc => {
         coordsRanges.X = doc.data().X;
