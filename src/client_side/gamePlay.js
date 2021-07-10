@@ -6,7 +6,8 @@ import { hideScores, movingDivsFromDisplayToShowScores } from "./gamePlayLevelWi
 export let results = {};
 export let gamePlay = () => {
     let worldImage = document.querySelector('.game-panel');
-    worldImage.addEventListener('click', checkWhichLevelIsInPlay);
+    // worldImage.addEventListener('click', checkWhichLevelIsInPlay);
+    levelImage.addEventListener('click', checkWhichLevelIsInPlay);
     toggle_text.addEventListener('click', toggleTextInDisplay);
     initialToogleTextDisplay();
     hideScores();
@@ -97,5 +98,6 @@ export let checkWhichLevelIsInPlay = evt => {
         checkPositionWithFirebaseForGameLevel01([x,y]);
     } else if(levelID == '02') {
         checkPositionWithFirebaseForGameLevel02([x,y]);
+        // checkPositionWithFirebaseForGameLevel02([x,y], evt);
     }
 }

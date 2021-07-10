@@ -273,7 +273,8 @@ __webpack_require__.r(__webpack_exports__);
 let results = {};
 let gamePlay = () => {
     let worldImage = document.querySelector('.game-panel');
-    worldImage.addEventListener('click', checkWhichLevelIsInPlay);
+    // worldImage.addEventListener('click', checkWhichLevelIsInPlay);
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.addEventListener('click', checkWhichLevelIsInPlay);
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.toggle_text.addEventListener('click', toggleTextInDisplay);
     initialToogleTextDisplay();
     (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__.hideScores)();
@@ -364,6 +365,7 @@ let checkWhichLevelIsInPlay = evt => {
         (0,_gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_2__.checkPositionWithFirebaseForGameLevel01)([x,y]);
     } else if(levelID == '02') {
         (0,_gamePlayLevelWise_level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_3__.checkPositionWithFirebaseForGameLevel02)([x,y]);
+        // checkPositionWithFirebaseForGameLevel02([x,y], evt);
     }
 }
 
@@ -379,8 +381,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "charactersDD": () => (/* binding */ charactersDD),
 /* harmony export */   "stickDropDownWhereItsClicked": () => (/* binding */ stickDropDownWhereItsClicked),
+/* harmony export */   "stickItVer05": () => (/* binding */ stickItVer05),
+/* harmony export */   "stickItVer04": () => (/* binding */ stickItVer04),
+/* harmony export */   "stickItVer03": () => (/* binding */ stickItVer03),
+/* harmony export */   "stickItVer02": () => (/* binding */ stickItVer02),
 /* harmony export */   "whichOptionWasSelected": () => (/* binding */ whichOptionWasSelected)
 /* harmony export */ });
+/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
+
+
 let value = '';
 let  charactersDD = () => {
     let dropDownMarkUp = document.createElement('select');
@@ -408,6 +417,67 @@ let stickDropDownWhereItsClicked = (dropDown, coords) => {
     dropDown.style.top = coords[1]+'px';
     dropDown.style.position = 'absolute';
     if(dropDown.length > 1) document.querySelector('.game-panel').append(dropDown);
+    // if(dropDown.length > 1) levelImage.append(dropDown);
+    
+    // stickItVer02();
+}
+
+let stickItVer05 = () => {
+    let elemRect = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
+    let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return {
+        top: elemRect.top + scrollTop,
+        left: elemRect.left + scrollLeft
+    }
+}
+
+
+let stickItVer04 = evt => {
+    return {
+        top: evt.pageY,
+        left: evt.pageX
+    }
+}
+
+let stickItVer03 = (coords) => {
+    let pos = stickItVer02();
+    let left = pos.left;
+    let top = pos.top;
+    console.log(left-coords[0], top-coords[1], coords[0]-left, coords[1]-top);
+    return {
+        left: coords[0]-left,
+        top: top-coords[1]
+    }
+}
+
+let stickItVer02 = () => {
+    let bodyRect = document.body.getBoundingClientRect();
+    let elemRect = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
+    // console.log(bodyRect, elemRect)
+    return {
+        left: elemRect.left + window.scrollX,
+        top: elemRect.top + window.scrollY
+    }
+
+    // let topOffset = elemRect.top - bodyRect.top
+    // let leftOffset = elemRect.left - bodyRect.left;
+    // let rightOffset =  elemRect.right - bodyRect.right;
+    // let bottomOffset =  elemRect.bottom - bodyRect.bottom;
+    // console.log(topOffset, leftOffset, rightOffset, bottomOffset);
+    // console.log(elemRect.scrollLeft, elemRect.scrollTop);
+    // console.log(elemRect.left + window.scrollX, elemRect.top + window.scrollY)
+
+    // let crdsTop = levelImage.offsetTop;
+    // let crdsLeft = levelImage.offsetLeft;
+    // let crdsRight = levelImage.offsetRight;
+    // let crdsBottom = levelImage.offsetBottom;
+
+    // let crdsTop = levelImage.scrollTop;
+    // let crdsLeft = levelImage.scollLeft;
+    // let crdsRight = levelImage.scollRight;
+    // let crdsBottom = levelImage.scollBottom;
+    // console.log(crdsTop,crdsLeft, crdsRight, crdsBottom);
 }
 
 let whichOptionWasSelected = () => {
@@ -539,7 +609,16 @@ let checkWhoVer02 = (coords, who, level) => {
 
 let checkPositionWithFirebaseForGameLevel02 = (coords) => {
     let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.charactersDD)();
+    // let getPostions = stickItVer02();
+    // let newCoords = [getPostions.left, getPostions.top]
+    // console.log(newCoords, "new", coords, 'old');
+    // let pos = stickItVer03(coords);
+    // let pos = stickItVer04(evt);
+    // let pos = stickItVer05(coords);
+    // let newCoords = [pos.left, pos.top];
+    // stickDropDownWhereItsClicked(dropDown, newCoords);
     (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickDropDownWhereItsClicked)(dropDown, coords);
+    // stickDropDownWhereItsClicked(dropDown, newCoords);
     
     let select = document.querySelector('.found-who');
     if(select) {
