@@ -29,15 +29,6 @@ let checkWhoWithFirebase = (collectionName, characterName, coords) => {
     }).catch(err=>console.log("could not read data!!", err));
 }
 
-let checkWho = (coords, who, level) => {
-    let characterData = readCharacterCoordsDataFromArray()[level][who];
-    checkIfCoordsWithinPositionRange(characterData, coords, who);
-}
-
-let checkWhoVer02 = (coords, who, level) => {
-    checkWhoWithFirebase(level, who, coords);
-}
-
 export let checkPositionWithFirebaseForGameLevel02 = (coords) => {
     let dropDown = charactersDD();
     stickDropDownWhereItsClicked(dropDown, coords);

@@ -5,8 +5,9 @@ import { checkPositionWithFirebaseForGameLevel02 } from "./gamePlayLevelWise/lev
 import { hideScores, movingDivsFromDisplayToShowScores } from "./gamePlayLevelWise/requiredByEachLevel";
 export let results = {};
 export let gamePlay = () => {
-    let worldImage = document.querySelector('.game-panel');
-    worldImage.addEventListener('click', checkWhichLevelIsInPlay);
+    // let worldImage = document.querySelector('.game-panel');
+    // worldImage.addEventListener('click', checkWhichLevelIsInPlay);
+    levelImage.addEventListener('click', checkWhichLevelIsInPlay);
     toggle_text.addEventListener('click', toggleTextInDisplay);
     initialToogleTextDisplay();
     hideScores();
@@ -72,16 +73,6 @@ let toggleTextInDisplay = evt => {
 
         charactersDisplayed.parentNode.firstChild.nextSibling.style.display = 'none';
         evt.target.parentNode.style.marginLeft = '92%';
-    }
-}
-
-let flag = 0;
-export let  refreshingFlag = () => flag = 0;
-
-export let checkAndShowResults = (level) => {
-    if(levelImage.textContent) {
-        movingDivsFromDisplayToShowScores(level);
-        flag = 1;
     }
 }
 

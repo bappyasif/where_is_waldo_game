@@ -256,8 +256,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "removePreviousScoresDetails": () => (/* binding */ removePreviousScoresDetails),
 /* harmony export */   "showLevelHighestScores": () => (/* binding */ showLevelHighestScores),
 /* harmony export */   "showDataOnTable": () => (/* binding */ showDataOnTable),
-/* harmony export */   "refreshingFlag": () => (/* binding */ refreshingFlag),
-/* harmony export */   "checkAndShowResults": () => (/* binding */ checkAndShowResults),
 /* harmony export */   "checkWhichLevelIsInPlay": () => (/* binding */ checkWhichLevelIsInPlay)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../server_side/accessingData */ "./src/server_side/accessingData.js");
@@ -272,8 +270,9 @@ __webpack_require__.r(__webpack_exports__);
 
 let results = {};
 let gamePlay = () => {
-    let worldImage = document.querySelector('.game-panel');
-    worldImage.addEventListener('click', checkWhichLevelIsInPlay);
+    // let worldImage = document.querySelector('.game-panel');
+    // worldImage.addEventListener('click', checkWhichLevelIsInPlay);
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.addEventListener('click', checkWhichLevelIsInPlay);
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.toggle_text.addEventListener('click', toggleTextInDisplay);
     initialToogleTextDisplay();
     (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__.hideScores)();
@@ -339,16 +338,6 @@ let toggleTextInDisplay = evt => {
 
         _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.charactersDisplayed.parentNode.firstChild.nextSibling.style.display = 'none';
         evt.target.parentNode.style.marginLeft = '92%';
-    }
-}
-
-let flag = 0;
-let  refreshingFlag = () => flag = 0;
-
-let checkAndShowResults = (level) => {
-    if(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.textContent) {
-        (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__.movingDivsFromDisplayToShowScores)(level);
-        flag = 1;
     }
 }
 
@@ -526,15 +515,6 @@ let checkWhoWithFirebase = (collectionName, characterName, coords) => {
         let characterData = data;
         checkIfCoordsWithinPositionRange(characterData, coords, characterName);
     }).catch(err=>console.log("could not read data!!", err));
-}
-
-let checkWho = (coords, who, level) => {
-    let characterData = (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromArray)()[level][who];
-    checkIfCoordsWithinPositionRange(characterData, coords, who);
-}
-
-let checkWhoVer02 = (coords, who, level) => {
-    checkWhoWithFirebase(level, who, coords);
 }
 
 let checkPositionWithFirebaseForGameLevel02 = (coords) => {
