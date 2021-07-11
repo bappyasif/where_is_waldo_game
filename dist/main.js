@@ -327,7 +327,7 @@ let initialToogleTextDisplay = () => {
 
 let toggleTextInDisplay = evt => {
     if(evt.target.classList.contains('show')) {
-        evt.target.parentNode.style.marginLeft = '0%';
+        evt.target.parentNode.style.marginLeft = '-10.91%';
         evt.target.textContent = "Hide Characters";
 
         evt.target.classList.remove('show');
@@ -367,9 +367,13 @@ let checkWhichLevelIsInPlay = evt => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "charactersDD": () => (/* binding */ charactersDD),
+/* harmony export */   "adjustDropDownPosition": () => (/* binding */ adjustDropDownPosition),
 /* harmony export */   "stickDropDownWhereItsClicked": () => (/* binding */ stickDropDownWhereItsClicked),
 /* harmony export */   "whichOptionWasSelected": () => (/* binding */ whichOptionWasSelected)
 /* harmony export */ });
+/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
+
+
 let value = '';
 let  charactersDD = () => {
     let dropDownMarkUp = document.createElement('select');
@@ -389,6 +393,19 @@ let  charactersDD = () => {
     });
     dropDownMarkUp.classList.add('found-who')
     return dropDownMarkUp;
+}
+
+let adjustDropDownPosition = coords => {
+    let elemRect = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
+    let left = elemRect.left;
+    let top = elemRect.top;
+    // console.log(elemRect.x, elemRect.y, elemRect.height, elemRect.width, levelImage.height, elemRect.height+((levelImage.height*20)/100) );
+    // console.log(window.scrollX, window.scrollY)
+    console.log(((elemRect.height*20)/100)+elemRect.height, elemRect.height)
+    return {
+        left: coords[0]-left,
+        top: coords[1]-top
+    }
 }
 
 let stickDropDownWhereItsClicked = (dropDown, coords) => {
@@ -457,7 +474,10 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 
 let checkPositionWithFirebaseForGameLevel01 = (coords) => {
     let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.charactersDD)();
-    (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickDropDownWhereItsClicked)(dropDown, coords);
+    let positionAdjusted = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.adjustDropDownPosition)(coords);
+    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
+    // stickDropDownWhereItsClicked(dropDown, coords);
+    ;(0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickDropDownWhereItsClicked)(dropDown, newCoordsForDropdown);
 
     let select = document.querySelector('.found-who');
 
@@ -519,7 +539,10 @@ let checkWhoWithFirebase = (collectionName, characterName, coords) => {
 
 let checkPositionWithFirebaseForGameLevel02 = (coords) => {
     let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.charactersDD)();
-    (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickDropDownWhereItsClicked)(dropDown, coords);
+    let positionAdjusted = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.adjustDropDownPosition)(coords);
+    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
+    // stickDropDownWhereItsClicked(dropDown, coords);
+    ;(0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickDropDownWhereItsClicked)(dropDown, newCoordsForDropdown);
     
     let select = document.querySelector('.found-who');
     if(select) {
@@ -838,6 +861,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 // let waldosRangeOfX = [383, 387];
 // let waldosRangeOfY = [33, 42];
+
+// let elemRect = levelImage.getBoundingClientRect();
+// let left = elemRect.left;
+// let top = elemRect.top;
 
 let waldosRangeOfX = [186, 189];
 let waldosRangeOfY = [203, 209];

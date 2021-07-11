@@ -1,141 +1,157 @@
 body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 1.3em;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 1.3em;
 }
 
-.game-container, .character-container, .characters-display {
-    /* text-align: center; */
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
+.game-container,
+.character-container,
+.characters-display {
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
 }
 
-.characters-display, .characters-display {
-    flex-direction: row;
+.characters-display,
+.characters-display {
+  flex-direction: row;
 }
 
-.characters-panel{
-    display: flex;
+.characters-panel {
+  display: flex;
+  justify-content: center;
+  align-items: end;
 }
 
 .game-intel {
-    display: flex;
-    justify-content: flex-end;
-    /* margin-right: 0; */
-    /* margin: auto; */
+  display: flex;
+  justify-content: flex-end;
+  /* margin-right: 0; */
+  /* margin: auto; */
 }
 
 #level {
-    margin-right: 20vw;
-    /* margin-left: 0px; */
+  margin-right: 20vw;
+  /* margin-left: 0px; */
 }
 
 .characters-display {
-    width: 65vw;
-    /* width: 74%; */
-    justify-content: space-evenly;
+  width: 35vw;
+  /* width: 74%; */
+  justify-content: space-evenly;
 }
 
 .characters-display img {
-    width: 11%
+  width: 11%;
 }
 
 #wizard {
-    width: 13%;
+  width: 13%;
 }
 
-#waldo, #wilma, #wenda {
-    width: 8%;
+#waldo,
+#wilma,
+#wenda {
+  width: 8%;
 }
 
 .toggle-display-for-characters {
-    /* float: right; */
-    display: flex;
-    align-items: center;
-    /* justify-content: right; */
-    /* margin-right: 0px; */
-    width: 20%;
-    margin-right: 0px;
+  /* float: right; */
+  display: flex;
+  align-items: center;
+  /* justify-content: right; */
+  /* margin-right: 0px; */
+  width: 29%;
+  margin-right: 0px;
 }
 
 #toggle-text {
-    font-size: larger;
+  font-size: larger;
 }
 
 .game-panel {
-    max-width: 89vw;
-    text-align: center;
+  max-width: 71vw;
+  /* width: 650px; */
+  text-align: center;
 }
 
 .game-panel img {
-    width: 100%;
+  width: 100%;
 }
 
 .choose-levels {
-    display: flex;
-    flex-direction: row;
-    /* justify-content: baseline; */
-    align-self: center;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: baseline; */
+  align-self: center;
 }
 
 header {
-    align-self: center;
+  align-self: center;
 }
 
 .move-left {
-    align-self: flex-start;
+  align-self: flex-start;
 }
 
 .choose-levels img {
-    width: 20vw;
-    border: 2px dotted silver;
-    margin: 8px;
+  width: 20vw;
+  border: 2px dotted silver;
+  margin: 8px;
 }
 
 .choose-levels img:hover {
-    background-color: blue;
+  background-color: blue;
 }
 
 .level-result {
-    position: absolute;
-    margin-top: 35vh;
-    margin-left: 15vw;
-    display: none;
+  position: absolute;
+  margin-top: 35vh;
+  margin-left: 15vw;
+  display: none;
 }
 
 .character-found {
-    opacity: 31%;
+  opacity: 31%;
 }
 
-.high-scores, .scores {
-    margin-left: 58vw;
-    top: 2vh;
-    position: absolute;
-    text-align: center;
+.high-scores,
+.scores {
+  margin-left: 58vw;
+  top: 2vh;
+  position: absolute;
+  text-align: center;
 }
 
 .high-scores li {
-    margin-left: 4vw;
+  margin-left: 4vw;
 }
 
 li span {
-    margin-left: 2vw;
+  margin-left: 2vw;
 }
 
 .tr-item {
-    border: 2px dashed red;
+  border: 2px dashed red;
 }
 
 .scores-hidden {
-    display: none;
+  display: none;
 }
 
 .unclickable {
-    pointer-events: none;
-    opacity: 20%;
+  pointer-events: none;
+  opacity: 20%;
 }
 
 .clickable {
-    opacity: 100%;
+  opacity: 100%;
 }
+
+/* #tooltip {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+} */

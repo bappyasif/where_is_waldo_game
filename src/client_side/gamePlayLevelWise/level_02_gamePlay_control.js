@@ -1,5 +1,5 @@
 import { readCharacterCoordsDataFromArray, readCharacterCoordsDataFromFirebase } from "../../server_side/accessingData";
-import { charactersDD, stickDropDownWhereItsClicked } from "./characterSelectionDropDown";
+import { adjustDropDownPosition, charactersDD, stickDropDownWhereItsClicked } from "./characterSelectionDropDown";
 import { calculateTotalTimeElapsed, decideEffeciencyFindingWaldo, disableCharacterFromDisplay } from "./requiredByEachLevel";
 export let howManyCharactersExistInLevelTwo = 1;
 
@@ -31,7 +31,10 @@ let checkWhoWithFirebase = (collectionName, characterName, coords) => {
 
 export let checkPositionWithFirebaseForGameLevel02 = (coords) => {
     let dropDown = charactersDD();
-    stickDropDownWhereItsClicked(dropDown, coords);
+    let positionAdjusted = adjustDropDownPosition(coords);
+    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
+    // stickDropDownWhereItsClicked(dropDown, coords);
+    stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
     
     let select = document.querySelector('.found-who');
     if(select) {
