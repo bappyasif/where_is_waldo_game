@@ -1,3 +1,5 @@
+import { levelImage } from "../each_game_required_divs/requiredDivs";
+
 let value = '';
 export let  charactersDD = () => {
     let dropDownMarkUp = document.createElement('select');
@@ -25,6 +27,16 @@ export let stickDropDownWhereItsClicked = (dropDown, coords) => {
     dropDown.style.top = coords[1]+'px';
     dropDown.style.position = 'absolute';
     if(dropDown.length > 1) document.querySelector('.game-panel').append(dropDown);
+}
+
+export let adjustDropDownPosition = coords => {
+    let elemRect = levelImage.getBoundingClientRect();
+    let left = elemRect.left;
+    let top = elemRect.top;
+    return {
+        left: coords[0]-left,
+        top: coords[1]-top
+    }
 }
 
 export let whichOptionWasSelected = () => {
