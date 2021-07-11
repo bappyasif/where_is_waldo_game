@@ -32,6 +32,20 @@ export let stickDropDownWhereItsClicked = (dropDown, coords) => {
     // stickItVer02();
 }
 
+export let stickItVer06 = (coords) => {
+    let elemRect = levelImage.getBoundingClientRect();
+    let left = elemRect.left;
+    let top = elemRect.top;
+    console.log(left, top, 'stick it', window.scrollX, window.scrollY, coords[0]-left, coords[1]-top)
+    // return {
+    //     left, top
+    // }
+    return {
+        left: coords[0]-left,
+        top: coords[1]-top
+    }
+}
+
 export let stickItVer05 = () => {
     let elemRect = levelImage.getBoundingClientRect();
     let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;

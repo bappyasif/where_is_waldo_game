@@ -381,6 +381,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "charactersDD": () => (/* binding */ charactersDD),
 /* harmony export */   "stickDropDownWhereItsClicked": () => (/* binding */ stickDropDownWhereItsClicked),
+/* harmony export */   "stickItVer06": () => (/* binding */ stickItVer06),
 /* harmony export */   "stickItVer05": () => (/* binding */ stickItVer05),
 /* harmony export */   "stickItVer04": () => (/* binding */ stickItVer04),
 /* harmony export */   "stickItVer03": () => (/* binding */ stickItVer03),
@@ -420,6 +421,20 @@ let stickDropDownWhereItsClicked = (dropDown, coords) => {
     // if(dropDown.length > 1) levelImage.append(dropDown);
     
     // stickItVer02();
+}
+
+let stickItVer06 = (coords) => {
+    let elemRect = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
+    let left = elemRect.left;
+    let top = elemRect.top;
+    console.log(left, top, 'stick it', window.scrollX, window.scrollY, coords[0]-left, coords[1]-top)
+    // return {
+    //     left, top
+    // }
+    return {
+        left: coords[0]-left,
+        top: coords[1]-top
+    }
 }
 
 let stickItVer05 = () => {
@@ -615,9 +630,10 @@ let checkPositionWithFirebaseForGameLevel02 = (coords) => {
     // let pos = stickItVer03(coords);
     // let pos = stickItVer04(evt);
     // let pos = stickItVer05(coords);
-    // let newCoords = [pos.left, pos.top];
-    // stickDropDownWhereItsClicked(dropDown, newCoords);
-    (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickDropDownWhereItsClicked)(dropDown, coords);
+    let pos = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickItVer06)(coords);
+    let newCoords = [pos.left, pos.top];
+    (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickDropDownWhereItsClicked)(dropDown, newCoords);
+    // stickDropDownWhereItsClicked(dropDown, coords);
     // stickDropDownWhereItsClicked(dropDown, newCoords);
     
     let select = document.querySelector('.found-who');
