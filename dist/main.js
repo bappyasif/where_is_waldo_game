@@ -12,31 +12,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "level_one_game_view": () => (/* binding */ level_one_game_view)
 /* harmony export */ });
-/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
-/* harmony import */ var _gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../gamePlayLevelWise/requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
-/* harmony import */ var _neededByAllLevels__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
+/* harmony import */ var _server_side_level_01_storingPositions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/level_01/storingPositions */ "./src/server_side/level_01/storingPositions.js");
+/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
+/* harmony import */ var _gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../gamePlayLevelWise/requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+/* harmony import */ var _neededByAllLevels__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
+
 
 
 
 
 let level_one_game_view = () => {
-    (0,_neededByAllLevels__WEBPACK_IMPORTED_MODULE_2__.necessaryCleanUpTasks)();
+    (0,_neededByAllLevels__WEBPACK_IMPORTED_MODULE_3__.necessaryCleanUpTasks)();
     renderingLevelAndTimer('01', '02-00-00');
     renderCharactersOnDisplay();
     renderingLevelWorldImage();
-    (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_1__.show_hideOrShowButton)();
+    (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.show_hideOrShowButton)();
+    (0,_server_side_level_01_storingPositions__WEBPACK_IMPORTED_MODULE_0__.coords_for_level_01)();
 }
 
 let renderingLevelWorldImage = () => {
     // levelImage.src = '../../../dist/images/level-1.jpg' || './images/level-1.jpg';
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.src = './images/level-1.jpg';
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.alt = 'level 01';
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.gamePanel.appendChild(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage);
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.src = './images/level-1.jpg';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.alt = 'level 01';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.gamePanel.appendChild(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage);
 }
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level.textContent = levelNum;
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.timer.textContent = levelTimer;
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.level.textContent = levelNum;
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.timer.textContent = levelTimer;
 }
 
 let renderCharactersOnDisplay = () => {
@@ -63,31 +66,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "level_two_game_view": () => (/* binding */ level_two_game_view)
 /* harmony export */ });
-/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
-/* harmony import */ var _gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../gamePlayLevelWise/requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
-/* harmony import */ var _neededByAllLevels__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
+/* harmony import */ var _server_side_level_02_storingPositions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/level_02/storingPositions */ "./src/server_side/level_02/storingPositions.js");
+/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
+/* harmony import */ var _gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../gamePlayLevelWise/requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+/* harmony import */ var _neededByAllLevels__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
+
 
 
 
 
 let level_two_game_view = () => {
-    (0,_neededByAllLevels__WEBPACK_IMPORTED_MODULE_2__.necessaryCleanUpTasks)();
+    (0,_neededByAllLevels__WEBPACK_IMPORTED_MODULE_3__.necessaryCleanUpTasks)();
     renderingLevelAndTimer('02', '01-40-00');
     renderCharactersOnDisplay();
     renderingLevelWorldImage();
-    (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_1__.show_hideOrShowButton)();
+    (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.show_hideOrShowButton)();
+    (0,_server_side_level_02_storingPositions__WEBPACK_IMPORTED_MODULE_0__.saving_coords_for_level02)();
 }
 
 let renderingLevelWorldImage = () => {
     // levelImage.src = '../../../dist/images/level-2.png' || './images/level-2.png';
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.src = './images/level-2.png';
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.alt = 'level 02';
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.gamePanel.appendChild(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage);
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.src = './images/level-2.png';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.alt = 'level 02';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.gamePanel.appendChild(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage);
 }
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level.textContent = levelNum;
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.timer.textContent = levelTimer;
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.level.textContent = levelNum;
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.timer.textContent = levelTimer;
 }
 
 let renderCharactersOnDisplay = () => {
@@ -790,6 +796,9 @@ let storeResultsInLocally = (time,name,stars, level) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "forWaldo": () => (/* binding */ forWaldo),
+/* harmony export */   "forOdlaw": () => (/* binding */ forOdlaw),
+/* harmony export */   "forWizard": () => (/* binding */ forWizard),
 /* harmony export */   "waldosRangeOfX": () => (/* binding */ waldosRangeOfX),
 /* harmony export */   "waldosRangeOfY": () => (/* binding */ waldosRangeOfY),
 /* harmony export */   "odlawsRangeOfX": () => (/* binding */ odlawsRangeOfX),
@@ -797,6 +806,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "wizardRangeOfX": () => (/* binding */ wizardRangeOfX),
 /* harmony export */   "wizardRangeOfY": () => (/* binding */ wizardRangeOfY)
 /* harmony export */ });
+/* harmony import */ var _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../client_side/each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
+
+
 let waldosRangeOfX = [200, 204];
 let waldosRangeOfY = [234, 244];
 
@@ -805,6 +817,57 @@ let wizardRangeOfY = [240, 251];
 
 let odlawsRangeOfX = [99, 103];
 let odlawsRangeOfY = [235, 246];
+
+let forWaldo = () => {
+    let elemRect = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
+    let left = elemRect.left;
+    let top = elemRect.top;
+    let height = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
+    let width = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
+    console.log('l', left, 't', top, 'w', width, 'h', height)
+    let yCoordStart = (top+(height*48.2)/100).toFixed(2);
+    let yCoordEnd = (top+(height*51.1)/100).toFixed(2);
+    let xCoordStart = (left+(width*52.45)/100).toFixed(2);
+    let xCoordEnd = (left+(width*54.29)/100).toFixed(2);
+    console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
+    let waldosRangeOfX = [xCoordStart, xCoordEnd];
+    let waldosRangeOfY = [yCoordStart, yCoordEnd];
+    return [waldosRangeOfX, waldosRangeOfY];
+}
+
+let forOdlaw = () => {
+    let elemRect = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
+    let left = elemRect.left;
+    let top = elemRect.top;
+    let height = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
+    let width = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
+    console.log('l', left, 't', top, 'w', width, 'h', height)
+    let yCoordStart = (top+(height*47.9)/100).toFixed(2);
+    let yCoordEnd = (top+(height*48.9)/100).toFixed(2);
+    let xCoordStart = (left+(width*23.25)/100).toFixed(2);
+    let xCoordEnd = (left+(width*25.29)/100).toFixed(2);
+    console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
+    let waldosRangeOfX = [xCoordStart, xCoordEnd];
+    let waldosRangeOfY = [yCoordStart, yCoordEnd];
+    return [waldosRangeOfX, waldosRangeOfY];
+}
+
+let forWizard = () => {
+    let elemRect = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
+    let left = elemRect.left;
+    let top = elemRect.top;
+    let height = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
+    let width = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
+    console.log('l', left, 't', top, 'w', width, 'h', height)
+    let yCoordStart = (top+(height*47.65)/100).toFixed(2);
+    let yCoordEnd = (top+(height*49.1)/100).toFixed(2);
+    let xCoordStart = (left+(width*60.45)/100).toFixed(2);
+    let xCoordEnd = (left+(width*62.99)/100).toFixed(2);
+    console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
+    let waldosRangeOfX = [xCoordStart, xCoordEnd];
+    let waldosRangeOfY = [yCoordStart, yCoordEnd];
+    return [waldosRangeOfX, waldosRangeOfY];
+}
 
 
 
@@ -827,14 +890,26 @@ __webpack_require__.r(__webpack_exports__);
 
 let waldosPosition = () => {
     (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_characterPositions__WEBPACK_IMPORTED_MODULE_1__.waldosRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_1__.waldosRangeOfY], 'level_01', 'waldo');
+    let pos = (0,_characterPositions__WEBPACK_IMPORTED_MODULE_1__.forWaldo)();
+    let [x,y] = [...pos];
+    (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([x,y], 'level_01', 'waldo');
+    // storeCharacterIntoFirestrore([waldosRangeOfX, waldosRangeOfY], 'level_01', 'waldo');
 }
 
 let odlawsPosition = () => {
     ;(0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_characterPositions__WEBPACK_IMPORTED_MODULE_1__.odlawsRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_1__.odlawsRangeOfY], 'level_01', 'odlaw');
+    let pos = (0,_characterPositions__WEBPACK_IMPORTED_MODULE_1__.forOdlaw)();
+    let [x,y] = [...pos];
+    (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([x,y], 'level_01', 'odlaw');
+    // storeCharacterIntoFirestrore([odlawsRangeOfX, odlawsRangeOfY], 'level_01', 'odlaw');
 }
 
 let wizardsPosition = () => {
     ;(0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_characterPositions__WEBPACK_IMPORTED_MODULE_1__.wizardRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_1__.wizardRangeOfY], 'level_01', 'wizard');
+    let pos = (0,_characterPositions__WEBPACK_IMPORTED_MODULE_1__.forWizard)();
+    let [x,y] = [...pos];
+    (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([x,y], 'level_01', 'wizard');
+    // storeCharacterIntoFirestrore([wizardRangeOfX, wizardRangeOfY], 'level_01', 'wizard');
 }
 
 let coords_for_level_01 = () => {
@@ -853,14 +928,40 @@ let coords_for_level_01 = () => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "calculateCoords": () => (/* binding */ calculateCoords),
 /* harmony export */   "waldosRangeOfX": () => (/* binding */ waldosRangeOfX),
 /* harmony export */   "waldosRangeOfY": () => (/* binding */ waldosRangeOfY)
 /* harmony export */ });
+/* harmony import */ var _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../client_side/each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
 // let waldosRangeOfX = [383, 387];
 // let waldosRangeOfY = [33, 42];
 
+
+let xCoordStart, xCoordEnd, yCoordStart, yCoordEnd;
+
 let waldosRangeOfX = [186, 189];
 let waldosRangeOfY = [203, 209];
+
+let calculateCoords = () => {
+    if(_client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage) {
+        let elemRect = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
+        let left = elemRect.left;
+        let top = elemRect.top;
+        // let top = window.scrollY - elemRect.top;
+        // let top = elemRect.top - window.scrollY;
+        let height = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
+        let width = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
+        console.log('l', left, 't', top, 'w', width, 'h', height)
+        yCoordStart = (top+(height*36)/100).toFixed(2);
+        yCoordEnd = (top+(height*37.8)/100).toFixed(2);
+        xCoordStart = (left+(width*49)/100).toFixed(2);
+        xCoordEnd = (left+(width*50.19)/100).toFixed(2);
+        console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
+        let waldosRangeOfX = [xCoordStart, xCoordEnd];
+        let waldosRangeOfY = [yCoordStart, yCoordEnd];
+        return [waldosRangeOfX, waldosRangeOfY];
+    }
+}
 
 
 
@@ -883,7 +984,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let waldosPosition = (level) => {
-    (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_characterPositions__WEBPACK_IMPORTED_MODULE_1__.waldosRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_1__.waldosRangeOfY], level, 'waldo');
+    let posRange = (0,_characterPositions__WEBPACK_IMPORTED_MODULE_1__.calculateCoords)();
+    let [x,y] = [...posRange];
+    (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([x, y], level, 'waldo');
+    // storeCharacterIntoFirestrore([waldosRangeOfX, waldosRangeOfY], level, 'waldo');
 }
 
 let saving_coords_for_level02 = () => {

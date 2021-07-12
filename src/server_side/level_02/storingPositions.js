@@ -1,9 +1,12 @@
 // import { storeCharacterIntoFirestrore } from "../accessingData";
 import { storeCharacterIntoFirestrore } from "../accessingData";
-import { waldosRangeOfX, waldosRangeOfY } from "./characterPositions";
+import { calculateCoords, waldosRangeOfX, waldosRangeOfY } from "./characterPositions";
 
 let waldosPosition = (level) => {
-    storeCharacterIntoFirestrore([waldosRangeOfX, waldosRangeOfY], level, 'waldo');
+    let posRange = calculateCoords();
+    let [x,y] = [...posRange];
+    storeCharacterIntoFirestrore([x, y], level, 'waldo');
+    // storeCharacterIntoFirestrore([waldosRangeOfX, waldosRangeOfY], level, 'waldo');
 }
 
 export let saving_coords_for_level02 = () => {
