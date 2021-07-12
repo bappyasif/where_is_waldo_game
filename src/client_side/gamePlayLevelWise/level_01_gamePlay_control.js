@@ -1,4 +1,5 @@
 import { readCharacterCoordsDataFromArray, readCharacterCoordsDataFromFirebase } from "../../server_side/accessingData";
+import { coords_for_level_01 } from "../../server_side/level_01/storingPositions";
 import { adjustDropDownPosition, charactersDD, stickDropDownWhereItsClicked } from "./characterSelectionDropDown";
 import { calculateTotalTimeElapsed, decideEffeciencyFindingWaldo, disableCharacterFromDisplay } from "./requiredByEachLevel";
 export let howManyCharactersExistInLevelOne = 3;
@@ -30,6 +31,8 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 }
 
 export let checkPositionWithFirebaseForGameLevel01 = (coords) => {
+    // coords_for_level_01();
+
     let dropDown = charactersDD();
     let positionAdjusted = adjustDropDownPosition(coords);
     let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]

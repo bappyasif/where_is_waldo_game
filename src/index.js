@@ -7,7 +7,7 @@ import { saving_coords_for_level02 } from "./server_side/level_02/storingPositio
 
 
 gamePlay();
-coords_for_level_01();
-saving_coords_for_level02();
+// coords_for_level_01();
+// saving_coords_for_level02();
 // coords_for_level_02();
 awaitsUserChooseLevel();

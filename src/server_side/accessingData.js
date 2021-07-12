@@ -4,6 +4,7 @@ import data from "./locallyStoredCoordsData.json";
 
 export let storeCharacterIntoFirestrore = (characterPos, whichLevel, characterName) => {
     let [x,y] = [...characterPos];
+    console.log(x,y,'?!')
     db.collection(whichLevel).doc(characterName).set({X: x, Y: y}).then(()=>console.log(characterName+' coords details saved!!')).catch(err=>console.log("something's wrong!!", err));
 }
 

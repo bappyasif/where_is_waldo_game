@@ -25,13 +25,67 @@ export let adjustDropDownPosition = coords => {
     let elemRect = levelImage.getBoundingClientRect();
     let left = elemRect.left;
     let top = elemRect.top;
+    // let height = levelImage.height;
+    // let width = levelImage.width;
+    // let yCoord = (top+(height*36)/100).toFixed(2);
+    // let xCoord = (left+(width*49)/100).toFixed(2);
+    // console.log(yCoord, '??', (top+(height*37.8)/100).toFixed(2));
+    // console.log(xCoord, "!!", (left+(width*50.19)/100).toFixed(2) )
     // console.log(elemRect.x, elemRect.y, elemRect.height, elemRect.width, levelImage.height, elemRect.height+((levelImage.height*20)/100) );
     // console.log(window.scrollX, window.scrollY)
-    console.log(((elemRect.height*20)/100)+elemRect.height, elemRect.height)
+    // console.log(((elemRect.height*20)/100)+elemRect.height, elemRect.height)
+
+    tryingCoords();
+    tryingCoordsWithRect();
+
     return {
         left: coords[0]-left,
         top: coords[1]-top
     }
+}
+
+let tryingCoordsWithRect = () => {
+    let elemRect = levelImage.getBoundingClientRect();
+    let left = elemRect.left;
+    let top = elemRect.top;
+    let height = levelImage.height;
+    let width = levelImage.width;
+    let yCoord = (top+(height*36)/100).toFixed(2);
+    let xCoord = (left+(width*49)/100).toFixed(2);
+    console.log('l', left, 't', top, 'w', width, 'h', height)
+    console.log(yCoord, '??', (top+(height*37.8)/100).toFixed(2));
+    console.log(xCoord, "!!", (left+(width*50.19)/100).toFixed(2));
+    
+}
+
+export let tryingCoordsWithRectVer02 = () => {
+    let elemRect = levelImage.getBoundingClientRect();
+    let left = elemRect.left;
+    // let top = elemRect.top;
+    // let top = window.scrollY;
+    let top = elemRect.y;
+    let height = levelImage.height;
+    let width = levelImage.width;
+    let yCoord = (top+(height*36)/100).toFixed(2);
+    let ycEnd = (top+(height*37.8)/100).toFixed(2);
+    let xCoord = (left+(width*49)/100).toFixed(2);
+    let xcEnd = (left+(width*50.19)/100).toFixed(2);
+    console.log('l', left, 't', top, 'w', width, 'h', height)
+    console.log(yCoord, '??', (top+(height*37.8)/100).toFixed(2));
+    console.log(xCoord, "!!", (left+(width*50.19)/100).toFixed(2));
+    return [xCoord, xcEnd, yCoord, ycEnd]
+}
+
+let tryingCoords = () => {
+    let left = window.scrollX;
+    let top = window.scrollY;
+    let height = levelImage.height;
+    let width = levelImage.width;
+    console.log('l', left, 't', top, 'w', width, 'h', height)
+    let yCoord = (top+(height*24.2)/100).toFixed(2);
+    let xCoord = (left+(width*67.2)/100).toFixed(2);
+    console.log(yCoord, '??', (top+(height*25.8)/100).toFixed(2));
+    console.log(xCoord, "!!", (left+(width*68)/100).toFixed(2) )
 }
 
 export let stickDropDownWhereItsClicked = (dropDown, coords) => {

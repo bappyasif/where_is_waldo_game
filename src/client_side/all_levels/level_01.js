@@ -1,3 +1,4 @@
+import { coords_for_level_01 } from "../../server_side/level_01/storingPositions";
 import { gamePanel, level, levelImage, timer } from "../each_game_required_divs/requiredDivs";
 import { show_hideOrShowButton } from "../gamePlayLevelWise/requiredByEachLevel";
 import { necessaryCleanUpTasks } from "./neededByAllLevels";
@@ -8,6 +9,7 @@ export let level_one_game_view = () => {
     renderCharactersOnDisplay();
     renderingLevelWorldImage();
     show_hideOrShowButton();
+    coords_for_level_01();
 }
 
 let renderingLevelWorldImage = () => {
