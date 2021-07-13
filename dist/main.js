@@ -39,7 +39,8 @@ let renderingLevelWorldImage = () => {
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.level.textContent = levelNum;
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.timer.textContent = levelTimer;
+    // timer.textContent = levelTimer;
+    (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.levelCountdown)(2);
 }
 
 let renderCharactersOnDisplay = () => {
@@ -224,7 +225,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "chooseLevel": () => (/* binding */ chooseLevel),
 /* harmony export */   "headerDiv": () => (/* binding */ headerDiv),
 /* harmony export */   "scoresContainer": () => (/* binding */ scoresContainer),
-/* harmony export */   "scoresText": () => (/* binding */ scoresText)
+/* harmony export */   "scoresText": () => (/* binding */ scoresText),
+/* harmony export */   "minSpan": () => (/* binding */ minSpan),
+/* harmony export */   "secSpan": () => (/* binding */ secSpan),
+/* harmony export */   "milliSpan": () => (/* binding */ milliSpan)
 /* harmony export */ });
 let waldo = document.querySelector('#waldo');
 let odlaw = document.querySelector('#odlaw');
@@ -251,6 +255,9 @@ let chooseLevel = document.querySelector('.choose-levels');
 let headerDiv = document.querySelector('.levels-header');
 let scoresContainer = document.querySelector('.keeping-scores');
 let scoresText = document.querySelector('.scores');
+let minSpan = document.querySelector('#min');
+let secSpan = document.querySelector('#sec');
+let milliSpan = document.querySelector('#mil');
 
 
 /***/ }),
@@ -647,7 +654,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "moveLevelsAndHeaderDivsToCenter": () => (/* binding */ moveLevelsAndHeaderDivsToCenter),
 /* harmony export */   "hideScores": () => (/* binding */ hideScores),
 /* harmony export */   "showScores": () => (/* binding */ showScores),
-/* harmony export */   "show_hideOrShowButton": () => (/* binding */ show_hideOrShowButton)
+/* harmony export */   "show_hideOrShowButton": () => (/* binding */ show_hideOrShowButton),
+/* harmony export */   "levelCountdown": () => (/* binding */ levelCountdown)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
 /* harmony import */ var _all_levels_neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../all_levels/neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
@@ -772,6 +780,77 @@ let showScores = () => {
 let show_hideOrShowButton = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.toggle_text.style.display = 'block';
 }
+
+let levelCountdown = timer => {
+    // time in milli seconds
+    let countDownTimerDeadline = timer * 60 * 1000;
+    // console.log(timer, countDownTimerDate);
+    let x = setInterval(() => {
+        // let now = Date.now() / (1000*60*60);
+        // let now = (Math.floor(Date.now() / (1000*60*60*24))%1000);
+        // let timerDistance = now - countDownTimerDeadline;
+        // let timerDistance = countDownTimerDeadline - now;
+        let timerDistance = countDownTimerDeadline - 1000;
+        countDownTimerDeadline = timerDistance;
+        // console.log(timerDistance)
+        // let timerDistance = now - countDownTimerDate;
+        // console.log(timer, countDownTimerDate, now, timerDistance, now/(1000*60));
+
+        let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
+        let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
+        let millis = Math.floor((timerDistance/(1000)));
+        // let millis = Math.floor(((timerDistance/1000)%(1000)));
+        // let millis = Math.floor((timerDistance/(1000)));
+        // console.log(mins, secs, millis);
+        displayTimerCountDown(mins, secs, millis);
+
+        if(timerDistance < 0) {
+            clearInterval(x);
+        }
+    }, 1000)
+}
+
+let displayTimerCountDown = (min,sec,mil) => {
+    console.log(min, sec, mil);
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.timer.textContent = min + ':'+ sec +":"+ mil
+    // minSpan.textContent = min;
+    // secSpan.textContent = sec;
+    // milliSpan.textContent = mil;
+    // timer.textContent = minSpan
+}
+
+
+// export let levelCountdown = timer => {
+//     // let countDownTimerDate = new Date(timer);
+//     // time in milli seconds
+//     let countDownTimerDate = timer * 60 * 1000;
+//     // console.log(timer, countDownTimerDate);
+//     let x = setInterval(() => {
+//         // let now = new Date().getTime();
+//         // let timerDistance = countDownTimerDate - now;
+//         // let now = Date.now();
+//         let now = Date.now() / (1000*60);
+
+//         let timerDistance = countDownTimerDate - now;
+//         // let timerDistance = now - countDownTimerDate;
+//         console.log(timer, countDownTimerDate, now, timerDistance, now/(1000*60));
+
+//         let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
+//         let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
+//         let millis = Math.floor((timerDistance%(1000)));
+//         displayTimerCountDown(mins, secs, millis);
+
+//         if(timerDistance < 0) {
+//             clearInterval(x);
+//         }
+//     }, 1000)
+// }
+
+// let displayTimerCountDown = (min,sec,mil) => {
+//     minSpan.textContent = min;
+//     secSpan.textContent = sec;
+//     milliSpan.textContent = mil;
+// }
 
 /***/ }),
 
