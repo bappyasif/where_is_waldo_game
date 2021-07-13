@@ -123,15 +123,9 @@ export let levelCountdown = timer => {
     let countDownTimerDeadline = timer * 60 * 1000;
     // console.log(timer, countDownTimerDate);
     let x = setInterval(() => {
-        // let now = Date.now() / (1000*60*60);
-        // let now = (Math.floor(Date.now() / (1000*60*60*24))%1000);
-        // let timerDistance = now - countDownTimerDeadline;
-        // let timerDistance = countDownTimerDeadline - now;
+        
         let timerDistance = countDownTimerDeadline - 1000;
         countDownTimerDeadline = timerDistance;
-        // console.log(timerDistance)
-        // let timerDistance = now - countDownTimerDate;
-        // console.log(timer, countDownTimerDate, now, timerDistance, now/(1000*60));
 
         let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
         let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
@@ -155,36 +149,3 @@ let displayTimerCountDown = (min,sec,mil) => {
     // milliSpan.textContent = mil;
     // timer.textContent = minSpan
 }
-
-
-// export let levelCountdown = timer => {
-//     // let countDownTimerDate = new Date(timer);
-//     // time in milli seconds
-//     let countDownTimerDate = timer * 60 * 1000;
-//     // console.log(timer, countDownTimerDate);
-//     let x = setInterval(() => {
-//         // let now = new Date().getTime();
-//         // let timerDistance = countDownTimerDate - now;
-//         // let now = Date.now();
-//         let now = Date.now() / (1000*60);
-
-//         let timerDistance = countDownTimerDate - now;
-//         // let timerDistance = now - countDownTimerDate;
-//         console.log(timer, countDownTimerDate, now, timerDistance, now/(1000*60));
-
-//         let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
-//         let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
-//         let millis = Math.floor((timerDistance%(1000)));
-//         displayTimerCountDown(mins, secs, millis);
-
-//         if(timerDistance < 0) {
-//             clearInterval(x);
-//         }
-//     }, 1000)
-// }
-
-// let displayTimerCountDown = (min,sec,mil) => {
-//     minSpan.textContent = min;
-//     secSpan.textContent = sec;
-//     milliSpan.textContent = mil;
-// }
