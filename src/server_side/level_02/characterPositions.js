@@ -14,9 +14,9 @@ export let calculateCoords = () => {
         let height = levelImage.height;
         let width = levelImage.width;
         console.log('l', left, 't', top, 'w', width, 'h', height)
-        yCoordStart = (top+(height*36)/100).toFixed(2);
+        yCoordStart = (top+(height*35.5)/100).toFixed(2);
         yCoordEnd = (top+(height*37.8)/100).toFixed(2);
-        xCoordStart = (left+(width*49)/100).toFixed(2);
+        xCoordStart = (left+(width*48.6)/100).toFixed(2);
         xCoordEnd = (left+(width*50.19)/100).toFixed(2);
         console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
         let waldosRangeOfX = [xCoordStart, xCoordEnd];

@@ -72,7 +72,7 @@ let toggleTextInDisplay = evt => {
         evt.target.textContent = "Show Characters";
 
         charactersDisplayed.parentNode.firstChild.nextSibling.style.display = 'none';
-        evt.target.parentNode.style.marginLeft = '92%';
+        evt.target.parentNode.style.marginLeft = '150%';
     }
 }
 

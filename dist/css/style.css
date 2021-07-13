@@ -21,8 +21,9 @@ body {
 
 .characters-panel {
   display: flex;
-  justify-content: center;
-  align-items: end;
+  justify-content: space-between;
+  /* justify-content: center; */
+  /* align-items: end; */
 }
 
 .game-intel {
@@ -63,8 +64,9 @@ body {
   align-items: center;
   /* justify-content: right; */
   /* margin-right: 0px; */
-  width: 29%;
-  margin-right: 0px;
+  width: 11%;
+  /* margin-right: 0px; */
+  margin-bottom: 2.9vh;
 }
 
 #toggle-text {
@@ -87,6 +89,7 @@ body {
   flex-direction: row;
   /* justify-content: baseline; */
   align-self: center;
+  border: sandybrown 2px solid;
 }
 
 header {
@@ -99,7 +102,7 @@ header {
 
 .choose-levels img {
   width: 17vw;
-  border: 2px dotted silver;
+  border: .4vw dotted silver;
   margin: 8px;
 }
 

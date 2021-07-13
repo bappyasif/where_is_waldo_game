@@ -349,7 +349,7 @@ let toggleTextInDisplay = evt => {
         evt.target.textContent = "Show Characters";
 
         _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.charactersDisplayed.parentNode.firstChild.nextSibling.style.display = 'none';
-        evt.target.parentNode.style.marginLeft = '92%';
+        evt.target.parentNode.style.marginLeft = '150%';
     }
 }
 
@@ -912,9 +912,9 @@ let forWaldo = () => {
     let xCoordStart = (left+(width*52.45)/100).toFixed(2);
     let xCoordEnd = (left+(width*54.29)/100).toFixed(2);
     console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
-    let waldosRangeOfX = [xCoordStart, xCoordEnd];
-    let waldosRangeOfY = [yCoordStart, yCoordEnd];
-    return [waldosRangeOfX, waldosRangeOfY];
+    let rangeOfX = [xCoordStart, xCoordEnd];
+    let rangeOfY = [yCoordStart, yCoordEnd];
+    return [rangeOfX, rangeOfY];
 }
 
 let forOdlaw = () => {
@@ -929,9 +929,9 @@ let forOdlaw = () => {
     let xCoordStart = (left+(width*23.25)/100).toFixed(2);
     let xCoordEnd = (left+(width*25.29)/100).toFixed(2);
     console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
-    let waldosRangeOfX = [xCoordStart, xCoordEnd];
-    let waldosRangeOfY = [yCoordStart, yCoordEnd];
-    return [waldosRangeOfX, waldosRangeOfY];
+    let rangeOfX = [xCoordStart, xCoordEnd];
+    let rangeOfY = [yCoordStart, yCoordEnd];
+    return [rangeOfX, rangeOfY];
 }
 
 let forWizard = () => {
@@ -946,9 +946,9 @@ let forWizard = () => {
     let xCoordStart = (left+(width*60.45)/100).toFixed(2);
     let xCoordEnd = (left+(width*62.99)/100).toFixed(2);
     console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
-    let waldosRangeOfX = [xCoordStart, xCoordEnd];
-    let waldosRangeOfY = [yCoordStart, yCoordEnd];
-    return [waldosRangeOfX, waldosRangeOfY];
+    let rangeOfX = [xCoordStart, xCoordEnd];
+    let rangeOfY = [yCoordStart, yCoordEnd];
+    return [rangeOfX, rangeOfY];
 }
 
 
@@ -1029,9 +1029,9 @@ let calculateCoords = () => {
         let height = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
         let width = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
         console.log('l', left, 't', top, 'w', width, 'h', height)
-        yCoordStart = (top+(height*36)/100).toFixed(2);
+        yCoordStart = (top+(height*35.5)/100).toFixed(2);
         yCoordEnd = (top+(height*37.8)/100).toFixed(2);
-        xCoordStart = (left+(width*49)/100).toFixed(2);
+        xCoordStart = (left+(width*48.6)/100).toFixed(2);
         xCoordEnd = (left+(width*50.19)/100).toFixed(2);
         console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
         let waldosRangeOfX = [xCoordStart, xCoordEnd];
