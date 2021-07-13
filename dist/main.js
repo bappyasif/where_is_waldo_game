@@ -39,7 +39,8 @@ let renderingLevelWorldImage = () => {
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.level.textContent = levelNum;
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.timer.textContent = levelTimer;
+    // timer.textContent = levelTimer;
+    (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.levelCountdown)(2);
 }
 
 let renderCharactersOnDisplay = () => {
@@ -333,7 +334,7 @@ let initialToogleTextDisplay = () => {
 
 let toggleTextInDisplay = evt => {
     if(evt.target.classList.contains('show')) {
-        evt.target.parentNode.style.marginLeft = '0%';
+        evt.target.parentNode.style.marginLeft = '-10.91%';
         evt.target.textContent = "Hide Characters";
 
         evt.target.classList.remove('show');
@@ -343,7 +344,7 @@ let toggleTextInDisplay = evt => {
         evt.target.textContent = "Show Characters";
 
         _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.charactersDisplayed.parentNode.firstChild.nextSibling.style.display = 'none';
-        evt.target.parentNode.style.marginLeft = '92%';
+        evt.target.parentNode.style.marginLeft = '150%';
     }
 }
 
@@ -575,7 +576,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "moveLevelsAndHeaderDivsToCenter": () => (/* binding */ moveLevelsAndHeaderDivsToCenter),
 /* harmony export */   "hideScores": () => (/* binding */ hideScores),
 /* harmony export */   "showScores": () => (/* binding */ showScores),
-/* harmony export */   "show_hideOrShowButton": () => (/* binding */ show_hideOrShowButton)
+/* harmony export */   "show_hideOrShowButton": () => (/* binding */ show_hideOrShowButton),
+/* harmony export */   "levelCountdown": () => (/* binding */ levelCountdown)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
 /* harmony import */ var _all_levels_neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../all_levels/neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
@@ -699,6 +701,38 @@ let showScores = () => {
 
 let show_hideOrShowButton = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.toggle_text.style.display = 'block';
+}
+
+let levelCountdown = timer => {
+    // time in milli seconds
+    let countDownTimerDeadline = timer * 60 * 1000;
+    // console.log(timer, countDownTimerDate);
+    let x = setInterval(() => {
+        
+        let timerDistance = countDownTimerDeadline - 1000;
+        countDownTimerDeadline = timerDistance;
+
+        let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
+        let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
+        let millis = Math.floor((timerDistance/(1000)));
+        // let millis = Math.floor(((timerDistance/1000)%(1000)));
+        // let millis = Math.floor((timerDistance/(1000)));
+        // console.log(mins, secs, millis);
+        displayTimerCountDown(mins, secs, millis);
+
+        if(timerDistance < 0) {
+            clearInterval(x);
+        }
+    }, 1000)
+}
+
+let displayTimerCountDown = (min,sec,mil) => {
+    console.log(min, sec, mil);
+    timer.textContent = min + ':'+ sec +":"+ mil
+    // minSpan.textContent = min;
+    // secSpan.textContent = sec;
+    // milliSpan.textContent = mil;
+    // timer.textContent = minSpan
 }
 
 /***/ }),
@@ -830,9 +864,9 @@ let forWaldo = () => {
     let xCoordStart = (left+(width*52.45)/100).toFixed(2);
     let xCoordEnd = (left+(width*54.29)/100).toFixed(2);
     console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
-    let waldosRangeOfX = [xCoordStart, xCoordEnd];
-    let waldosRangeOfY = [yCoordStart, yCoordEnd];
-    return [waldosRangeOfX, waldosRangeOfY];
+    let rangeOfX = [xCoordStart, xCoordEnd];
+    let rangeOfY = [yCoordStart, yCoordEnd];
+    return [rangeOfX, rangeOfY];
 }
 
 let forOdlaw = () => {
@@ -847,9 +881,9 @@ let forOdlaw = () => {
     let xCoordStart = (left+(width*23.25)/100).toFixed(2);
     let xCoordEnd = (left+(width*25.29)/100).toFixed(2);
     console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
-    let waldosRangeOfX = [xCoordStart, xCoordEnd];
-    let waldosRangeOfY = [yCoordStart, yCoordEnd];
-    return [waldosRangeOfX, waldosRangeOfY];
+    let rangeOfX = [xCoordStart, xCoordEnd];
+    let rangeOfY = [yCoordStart, yCoordEnd];
+    return [rangeOfX, rangeOfY];
 }
 
 let forWizard = () => {
@@ -864,9 +898,9 @@ let forWizard = () => {
     let xCoordStart = (left+(width*60.45)/100).toFixed(2);
     let xCoordEnd = (left+(width*62.99)/100).toFixed(2);
     console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
-    let waldosRangeOfX = [xCoordStart, xCoordEnd];
-    let waldosRangeOfY = [yCoordStart, yCoordEnd];
-    return [waldosRangeOfX, waldosRangeOfY];
+    let rangeOfX = [xCoordStart, xCoordEnd];
+    let rangeOfY = [yCoordStart, yCoordEnd];
+    return [rangeOfX, rangeOfY];
 }
 
 
@@ -962,6 +996,27 @@ let calculateCoords = () => {
         return [waldosRangeOfX, waldosRangeOfY];
     }
 }
+
+// export let calculateCoords = () => {
+//     if(levelImage) {
+//         let elemRect = levelImage.getBoundingClientRect();
+//         let left = elemRect.left;
+//         // let top = elemRect.top;
+//         // let top = window.scrollY - elemRect.top;
+//         let top = elemRect.top - window.scrollY;
+//         let height = levelImage.height;
+//         let width = levelImage.width;
+//         console.log('l', left, 't', top, 'w', width, 'h', height)
+//         yCoordStart = (top+(height*35.5)/100).toFixed(2);
+//         yCoordEnd = (top+(height*37.8)/100).toFixed(2);
+//         xCoordStart = (left+(width*48.6)/100).toFixed(2);
+//         xCoordEnd = (left+(width*50.19)/100).toFixed(2);
+//         console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
+//         let waldosRangeOfX = [xCoordStart, xCoordEnd];
+//         let waldosRangeOfY = [yCoordStart, yCoordEnd];
+//         return [waldosRangeOfX, waldosRangeOfY];
+//     }
+// }
 
 
 

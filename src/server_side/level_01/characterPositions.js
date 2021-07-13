@@ -21,9 +21,9 @@ export let forWaldo = () => {
     let xCoordStart = (left+(width*52.45)/100).toFixed(2);
     let xCoordEnd = (left+(width*54.29)/100).toFixed(2);
     console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
-    let waldosRangeOfX = [xCoordStart, xCoordEnd];
-    let waldosRangeOfY = [yCoordStart, yCoordEnd];
-    return [waldosRangeOfX, waldosRangeOfY];
+    let rangeOfX = [xCoordStart, xCoordEnd];
+    let rangeOfY = [yCoordStart, yCoordEnd];
+    return [rangeOfX, rangeOfY];
 }
 
 export let forOdlaw = () => {
@@ -38,9 +38,9 @@ export let forOdlaw = () => {
     let xCoordStart = (left+(width*23.25)/100).toFixed(2);
     let xCoordEnd = (left+(width*25.29)/100).toFixed(2);
     console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
-    let waldosRangeOfX = [xCoordStart, xCoordEnd];
-    let waldosRangeOfY = [yCoordStart, yCoordEnd];
-    return [waldosRangeOfX, waldosRangeOfY];
+    let rangeOfX = [xCoordStart, xCoordEnd];
+    let rangeOfY = [yCoordStart, yCoordEnd];
+    return [rangeOfX, rangeOfY];
 }
 
 export let forWizard = () => {
@@ -55,9 +55,9 @@ export let forWizard = () => {
     let xCoordStart = (left+(width*60.45)/100).toFixed(2);
     let xCoordEnd = (left+(width*62.99)/100).toFixed(2);
     console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
-    let waldosRangeOfX = [xCoordStart, xCoordEnd];
-    let waldosRangeOfY = [yCoordStart, yCoordEnd];
-    return [waldosRangeOfX, waldosRangeOfY];
+    let rangeOfX = [xCoordStart, xCoordEnd];
+    let rangeOfY = [yCoordStart, yCoordEnd];
+    return [rangeOfX, rangeOfY];
 }
 
 export {waldosRangeOfX, waldosRangeOfY, odlawsRangeOfX, odlawsRangeOfY, wizardRangeOfX, wizardRangeOfY}

@@ -62,7 +62,7 @@ let initialToogleTextDisplay = () => {
 
 let toggleTextInDisplay = evt => {
     if(evt.target.classList.contains('show')) {
-        evt.target.parentNode.style.marginLeft = '0%';
+        evt.target.parentNode.style.marginLeft = '-10.91%';
         evt.target.textContent = "Hide Characters";
 
         evt.target.classList.remove('show');
@@ -72,7 +72,7 @@ let toggleTextInDisplay = evt => {
         evt.target.textContent = "Show Characters";
 
         charactersDisplayed.parentNode.firstChild.nextSibling.style.display = 'none';
-        evt.target.parentNode.style.marginLeft = '92%';
+        evt.target.parentNode.style.marginLeft = '150%';
     }
 }
 

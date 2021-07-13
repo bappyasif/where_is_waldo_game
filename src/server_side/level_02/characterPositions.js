@@ -28,4 +28,25 @@ export let calculateCoords = () => {
     }
 }
 
+// export let calculateCoords = () => {
+//     if(levelImage) {
+//         let elemRect = levelImage.getBoundingClientRect();
+//         let left = elemRect.left;
+//         // let top = elemRect.top;
+//         // let top = window.scrollY - elemRect.top;
+//         let top = elemRect.top - window.scrollY;
+//         let height = levelImage.height;
+//         let width = levelImage.width;
+//         console.log('l', left, 't', top, 'w', width, 'h', height)
+//         yCoordStart = (top+(height*35.5)/100).toFixed(2);
+//         yCoordEnd = (top+(height*37.8)/100).toFixed(2);
+//         xCoordStart = (left+(width*48.6)/100).toFixed(2);
+//         xCoordEnd = (left+(width*50.19)/100).toFixed(2);
+//         console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
+//         let waldosRangeOfX = [xCoordStart, xCoordEnd];
+//         let waldosRangeOfY = [yCoordStart, yCoordEnd];
+//         return [waldosRangeOfX, waldosRangeOfY];
+//     }
+// }
+
 export {waldosRangeOfX, waldosRangeOfY}

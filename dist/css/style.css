@@ -1,141 +1,142 @@
 body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
     font-size: 1.3em;
-}
-
-.game-container, .character-container, .characters-display {
-    /* text-align: center; */
+  }
+  
+  .game-container,
+  .character-container,
+  .characters-display {
     display: flex;
     flex-direction: column;
     justify-items: center;
     align-items: center;
-}
-
-.characters-display, .characters-display {
+  }
+  
+  .characters-display,
+  .characters-display {
     flex-direction: row;
-}
-
-.characters-panel{
+  }
+  
+  .characters-panel {
     display: flex;
-}
-
-.game-intel {
+    justify-content: space-between;
+  }
+  
+  .game-intel {
     display: flex;
     justify-content: flex-end;
-    /* margin-right: 0; */
-    /* margin: auto; */
-}
-
-#level {
+  }
+  
+  #level {
     margin-right: 20vw;
-    /* margin-left: 0px; */
-}
-
-.characters-display {
-    width: 65vw;
-    /* width: 74%; */
+  }
+  
+  .characters-display {
+    width: 35vw;
     justify-content: space-evenly;
-}
-
-.characters-display img {
-    width: 11%
-}
-
-#wizard {
+  }
+  
+  .characters-display img {
+    width: 11%;
+  }
+  
+  #wizard {
     width: 13%;
-}
-
-#waldo, #wilma, #wenda {
+  }
+  
+  #waldo,
+  #wilma,
+  #wenda {
     width: 8%;
-}
-
-.toggle-display-for-characters {
-    /* float: right; */
+  }
+  
+  .toggle-display-for-characters {
     display: flex;
     align-items: center;
-    /* justify-content: right; */
-    /* margin-right: 0px; */
-    width: 20%;
-    margin-right: 0px;
-}
-
-#toggle-text {
+    width: 11%;
+    margin-bottom: 2.9vh;
+  }
+  
+  #toggle-text {
     font-size: larger;
-}
-
-.game-panel {
-    max-width: 89vw;
+  }
+  
+  .game-panel {
+    max-width: 71vw;
     text-align: center;
-}
-
-.game-panel img {
+  }
+  
+  .game-panel img {
     width: 100%;
-}
-
-.choose-levels {
+    height: 47vh;
+  }
+  
+  .choose-levels {
     display: flex;
     flex-direction: row;
-    /* justify-content: baseline; */
     align-self: center;
-}
-
-header {
+    border: sandybrown 2px solid;
+  }
+  
+  header {
     align-self: center;
-}
-
-.move-left {
+  }
+  
+  .move-left {
     align-self: flex-start;
-}
-
-.choose-levels img {
-    width: 20vw;
-    border: 2px dotted silver;
+  }
+  
+  .choose-levels img {
+    width: 17vw;
+    border: .4vw dotted silver;
     margin: 8px;
-}
-
-.choose-levels img:hover {
+  }
+  
+  .choose-levels img:hover {
     background-color: blue;
-}
-
-.level-result {
+  }
+  
+  .level-result {
     position: absolute;
     margin-top: 35vh;
     margin-left: 15vw;
     display: none;
-}
-
-.character-found {
+  }
+  
+  .character-found {
     opacity: 31%;
-}
-
-.high-scores, .scores {
+  }
+  
+  .high-scores,
+  .scores {
     margin-left: 58vw;
     top: 2vh;
     position: absolute;
     text-align: center;
-}
-
-.high-scores li {
+  }
+  
+  .high-scores li {
     margin-left: 4vw;
-}
-
-li span {
+  }
+  
+  li span {
     margin-left: 2vw;
-}
-
-.tr-item {
+  }
+  
+  .tr-item {
     border: 2px dashed red;
-}
-
-.scores-hidden {
+  }
+  
+  .scores-hidden {
     display: none;
-}
-
-.unclickable {
+  }
+  
+  .unclickable {
     pointer-events: none;
     opacity: 20%;
-}
-
-.clickable {
+  }
+  
+  .clickable {
     opacity: 100%;
-}
+  }

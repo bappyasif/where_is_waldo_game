@@ -117,3 +117,35 @@ export let showScores = () => {
 export let show_hideOrShowButton = () => {
     toggle_text.style.display = 'block';
 }
+
+export let levelCountdown = timer => {
+    // time in milli seconds
+    let countDownTimerDeadline = timer * 60 * 1000;
+    // console.log(timer, countDownTimerDate);
+    let x = setInterval(() => {
+        
+        let timerDistance = countDownTimerDeadline - 1000;
+        countDownTimerDeadline = timerDistance;
+
+        let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
+        let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
+        let millis = Math.floor((timerDistance/(1000)));
+        // let millis = Math.floor(((timerDistance/1000)%(1000)));
+        // let millis = Math.floor((timerDistance/(1000)));
+        // console.log(mins, secs, millis);
+        displayTimerCountDown(mins, secs, millis);
+
+        if(timerDistance < 0) {
+            clearInterval(x);
+        }
+    }, 1000)
+}
+
+let displayTimerCountDown = (min,sec,mil) => {
+    console.log(min, sec, mil);
+    timer.textContent = min + ':'+ sec +":"+ mil
+    // minSpan.textContent = min;
+    // secSpan.textContent = sec;
+    // milliSpan.textContent = mil;
+    // timer.textContent = minSpan
+}
