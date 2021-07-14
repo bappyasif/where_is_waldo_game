@@ -4,7 +4,8 @@ import { levelCountdown, show_hideOrShowButton } from "../gamePlayLevelWise/requ
 import { necessaryCleanUpTasks } from "./neededByAllLevels";
 
 export let level_one_game_view = () => {
-    necessaryCleanUpTasks();
+    // necessaryCleanUpTasks();
+    necessaryCleanUpTasks('01');
     renderingLevelAndTimer('01', '02-00-00');
     renderCharactersOnDisplay();
     renderingLevelWorldImage();
@@ -21,7 +22,7 @@ let renderingLevelWorldImage = () => {
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
     level.textContent = levelNum;
-    // timer.textContent = levelTimer;
+    timer.textContent = 'levelTimer';
     levelCountdown(2);
 }
 
