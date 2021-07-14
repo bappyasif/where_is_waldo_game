@@ -22,7 +22,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let level_one_game_view = () => {
-    (0,_neededByAllLevels__WEBPACK_IMPORTED_MODULE_3__.necessaryCleanUpTasks)();
+    // necessaryCleanUpTasks();
+    (0,_neededByAllLevels__WEBPACK_IMPORTED_MODULE_3__.necessaryCleanUpTasks)('01');
     renderingLevelAndTimer('01', '02-00-00');
     renderCharactersOnDisplay();
     renderingLevelWorldImage();
@@ -77,7 +78,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let level_two_game_view = () => {
-    (0,_neededByAllLevels__WEBPACK_IMPORTED_MODULE_3__.necessaryCleanUpTasks)();
+    // necessaryCleanUpTasks();
+    (0,_neededByAllLevels__WEBPACK_IMPORTED_MODULE_3__.necessaryCleanUpTasks)('02');
     renderingLevelAndTimer('02', '01-40-00');
     renderCharactersOnDisplay();
     renderingLevelWorldImage();
@@ -95,6 +97,7 @@ let renderingLevelWorldImage = () => {
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.level.textContent = levelNum;
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.timer.textContent = levelTimer;
+    (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.levelCountdown)(1.40);
 }
 
 let renderCharactersOnDisplay = () => {
@@ -148,7 +151,18 @@ let hide_showOrHideButton = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.toggle_text.style.display = 'none';
 }
 
-let necessaryCleanUpTasks = () => {
+let makeOtherLevelsUnclickable = (level) => {
+    if(level == '01') {
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_02.classList.add('unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_01.classList.remove('unclickable');
+    } else {
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_02.classList.remove('unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_01.classList.add('unclickable');
+    }
+}
+
+let necessaryCleanUpTasks = (whichLevel) => {
+    makeOtherLevelsUnclickable(whichLevel);
     removingLevelWorldImage();
     removingLevelAndTimer();
     removeCharactersFromDisplay();
@@ -589,12 +603,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let timeStarted = Date.now();
+let flag;
 
 let calculateTotalTimeElapsed = () => {
+    flag = false;
     let timeElapsed = Date.now() - timeStarted;
     let seconds = Math.floor(timeElapsed/1000);
     let minutes = seconds / 60;
     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
+    flag = true;
     return minutes;
 }
 
@@ -613,11 +630,17 @@ let decideEffeciencyFindingWaldo = (timeTook, level) => {
 }
 
 let movingDivsFromDisplayToShowScores = (level, name) => {
+    emptyLevelAndTimerText();
     showScores();
     moveLevelsAndHeaderDivsToLeft();
 
     (0,_gamePlay__WEBPACK_IMPORTED_MODULE_3__.showLevelHighestScores)(level, name);
     (0,_gamePlay__WEBPACK_IMPORTED_MODULE_3__.removePreviousScoresDetails)();
+}
+
+let emptyLevelAndTimerText = () => {
+    level_01.textContent = '00:00:00';
+    level_02.textContent = '00:00:00';
 }
 
 let makingLevelsImagesUnclickable = () => {
@@ -706,7 +729,6 @@ let show_hideOrShowButton = () => {
 let levelCountdown = timer => {
     // time in milli seconds
     let countDownTimerDeadline = timer * 60 * 1000;
-    // console.log(timer, countDownTimerDate);
     let x = setInterval(() => {
         
         let timerDistance = countDownTimerDeadline - 1000;
@@ -714,25 +736,34 @@ let levelCountdown = timer => {
 
         let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
         let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
-        let millis = Math.floor((timerDistance/(1000)));
-        // let millis = Math.floor(((timerDistance/1000)%(1000)));
-        // let millis = Math.floor((timerDistance/(1000)));
-        // console.log(mins, secs, millis);
-        displayTimerCountDown(mins, secs, millis);
-
-        if(timerDistance < 0) {
+        if(flag) {
+            clearTimeout(x);
+            flag = false;
+            countDownTimerDeadline = timer * 60 * 1000;
+        }
+        displayTimerCountDown(mins, secs);
+        // if(flag) alert('it is');
+               
+        if(timerDistance <= 0) {
             clearInterval(x);
         }
     }, 1000)
 }
 
 let displayTimerCountDown = (min,sec,mil) => {
-    console.log(min, sec, mil);
-    timer.textContent = min + ':'+ sec +":"+ mil
-    // minSpan.textContent = min;
-    // secSpan.textContent = sec;
-    // milliSpan.textContent = mil;
-    // timer.textContent = minSpan
+    let currentMillis = 0;
+        let y = setInterval(() => {
+            currentMillis++;
+            timer.textContent = min + ':'+ sec +":"+checkIfDoubleDigit();
+            if(currentMillis >= 10) {
+                clearInterval(y);
+                timer.textContent = min + ':'+ sec +":"+'00';
+            }
+        }, 100)
+        let checkIfDoubleDigit = () => {
+            return currentMillis<10?'0'+currentMillis:currentMillis
+        }
+
 }
 
 /***/ }),

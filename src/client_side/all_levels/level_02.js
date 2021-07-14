@@ -1,10 +1,11 @@
 import { saving_coords_for_level02 } from "../../server_side/level_02/storingPositions";
 import { gamePanel, level, levelImage, timer } from "../each_game_required_divs/requiredDivs";
-import { show_hideOrShowButton } from "../gamePlayLevelWise/requiredByEachLevel";
+import { levelCountdown, show_hideOrShowButton } from "../gamePlayLevelWise/requiredByEachLevel";
 import { necessaryCleanUpTasks } from "./neededByAllLevels"
 
 export let level_two_game_view = () => {
-    necessaryCleanUpTasks();
+    // necessaryCleanUpTasks();
+    necessaryCleanUpTasks('02');
     renderingLevelAndTimer('02', '01-40-00');
     renderCharactersOnDisplay();
     renderingLevelWorldImage();
@@ -22,6 +23,7 @@ let renderingLevelWorldImage = () => {
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
     level.textContent = levelNum;
     timer.textContent = levelTimer;
+    levelCountdown(1.40);
 }
 
 let renderCharactersOnDisplay = () => {
