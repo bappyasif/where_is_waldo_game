@@ -22,7 +22,7 @@ let renderingLevelWorldImage = () => {
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
     level.textContent = levelNum;
-    // timer.textContent = levelTimer;
+    timer.textContent = 'levelTimer';
     levelCountdown(2);
 }
 

@@ -23,4 +23,7 @@ let chooseLevel = document.querySelector('.choose-levels');
 let headerDiv = document.querySelector('.levels-header');
 let scoresContainer = document.querySelector('.keeping-scores');
 let scoresText = document.querySelector('.scores');
-export {waldo, odlaw, wizard, wilma, wenda, level, timer, levelImage, gamePanel, level_01, level_02, resultDiv, resultText, playAgain, toggle_text, charactersDisplayed, highScores, chooseLevel, headerDiv, scoresContainer, scoresText}
+let minSpan = document.querySelector('#min');
+let secSpan = document.querySelector('#sec');
+let milliSpan = document.querySelector('#mil');
+export {waldo, odlaw, wizard, wilma, wenda, level, timer, levelImage, gamePanel, level_01, level_02, resultDiv, resultText, playAgain, toggle_text, charactersDisplayed, highScores, chooseLevel, headerDiv, scoresContainer, scoresText, minSpan, secSpan, milliSpan}

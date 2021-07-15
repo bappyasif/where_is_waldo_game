@@ -9,6 +9,14 @@ let wizardRangeOfY = [240, 251];
 let odlawsRangeOfX = [99, 103];
 let odlawsRangeOfY = [235, 246];
 
+export let calculateCoords = () => {
+    if(levelImage) {
+        let waPos = forWaldo();
+        // let odPos = forOdlaw();
+        // let wiPos = forWizard();
+    }
+}
+
 export let forWaldo = () => {
     let elemRect = levelImage.getBoundingClientRect();
     let left = elemRect.left;

@@ -40,7 +40,7 @@ let renderingLevelWorldImage = () => {
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.level.textContent = levelNum;
-    // timer.textContent = levelTimer;
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.timer.textContent = 'levelTimer';
     (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.levelCountdown)(2);
 }
 
@@ -96,7 +96,9 @@ let renderingLevelWorldImage = () => {
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.level.textContent = levelNum;
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.timer.textContent = levelTimer;
+    // timer.textContent = 'levelTimer';
+    // timer.remove();
+    // document.querySelectorAll('h4')[1].append(timer);
     (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.levelCountdown)(1.40);
 }
 
@@ -155,19 +157,25 @@ let makeOtherLevelsUnclickable = (level) => {
     if(level == '01') {
         _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_02.classList.add('unclickable');
         _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_01.classList.remove('unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_01.classList.add('just-unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_02.classList.remove('just-unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_02.classList.remove('clickable');
     } else {
         _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_02.classList.remove('unclickable');
         _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_01.classList.add('unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_02.classList.add('just-unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_01.classList.remove('just-unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_01.classList.remove('clickable');
     }
 }
 
 let necessaryCleanUpTasks = (whichLevel) => {
-    makeOtherLevelsUnclickable(whichLevel);
     removingLevelWorldImage();
     removingLevelAndTimer();
     removeCharactersFromDisplay();
     removeOpacityFreomCharcters();
     hide_showOrHideButton();
+    makeOtherLevelsUnclickable(whichLevel);
 }
 
 /***/ }),
@@ -182,24 +190,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "awaitsUserChooseLevel": () => (/* binding */ awaitsUserChooseLevel)
 /* harmony export */ });
-/* harmony import */ var _all_levels_level_01__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../all_levels/level_01 */ "./src/client_side/all_levels/level_01.js");
-/* harmony import */ var _all_levels_level_02__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../all_levels/level_02 */ "./src/client_side/all_levels/level_02.js");
-/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
+/* harmony import */ var _server_side_level_01_storingPositions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/level_01/storingPositions */ "./src/server_side/level_01/storingPositions.js");
+/* harmony import */ var _server_side_level_02_storingPositions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../server_side/level_02/storingPositions */ "./src/server_side/level_02/storingPositions.js");
+/* harmony import */ var _all_levels_level_01__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../all_levels/level_01 */ "./src/client_side/all_levels/level_01.js");
+/* harmony import */ var _all_levels_level_02__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../all_levels/level_02 */ "./src/client_side/all_levels/level_02.js");
+/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
+
+
 
 
 
 
 let awaitsUserChooseLevel = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.level_01.addEventListener('click',userHasSelectedLevel);
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.level_02.addEventListener('click', userHasSelectedLevel);
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_4__.level_01.addEventListener('click',userHasSelectedLevel);
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_4__.level_02.addEventListener('click', userHasSelectedLevel);
 }
 
 let userHasSelectedLevel = evt => {
     let id = evt.target.id;
     if(id == 'level-01') {
-        (0,_all_levels_level_01__WEBPACK_IMPORTED_MODULE_0__.level_one_game_view)();
+        (0,_all_levels_level_01__WEBPACK_IMPORTED_MODULE_2__.level_one_game_view)();
+        // coords_for_level_01();
     } else if(id == 'level-02') {
-        (0,_all_levels_level_02__WEBPACK_IMPORTED_MODULE_1__.level_two_game_view)();
+        (0,_all_levels_level_02__WEBPACK_IMPORTED_MODULE_3__.level_two_game_view)();
+        // saving_coords_for_level02();
     }
 }
 
@@ -233,7 +247,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "chooseLevel": () => (/* binding */ chooseLevel),
 /* harmony export */   "headerDiv": () => (/* binding */ headerDiv),
 /* harmony export */   "scoresContainer": () => (/* binding */ scoresContainer),
-/* harmony export */   "scoresText": () => (/* binding */ scoresText)
+/* harmony export */   "scoresText": () => (/* binding */ scoresText),
+/* harmony export */   "minSpan": () => (/* binding */ minSpan),
+/* harmony export */   "secSpan": () => (/* binding */ secSpan),
+/* harmony export */   "milliSpan": () => (/* binding */ milliSpan)
 /* harmony export */ });
 let waldo = document.querySelector('#waldo');
 let odlaw = document.querySelector('#odlaw');
@@ -260,6 +277,9 @@ let chooseLevel = document.querySelector('.choose-levels');
 let headerDiv = document.querySelector('.levels-header');
 let scoresContainer = document.querySelector('.keeping-scores');
 let scoresText = document.querySelector('.scores');
+let minSpan = document.querySelector('#min');
+let secSpan = document.querySelector('#sec');
+let milliSpan = document.querySelector('#mil');
 
 
 /***/ }),
@@ -388,6 +408,7 @@ let checkWhichLevelIsInPlay = evt => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "charactersDD": () => (/* binding */ charactersDD),
+/* harmony export */   "tryingCoordsWithRectVer02": () => (/* binding */ tryingCoordsWithRectVer02),
 /* harmony export */   "stickDropDownWhereItsClicked": () => (/* binding */ stickDropDownWhereItsClicked),
 /* harmony export */   "adjustDropDownPosition": () => (/* binding */ adjustDropDownPosition),
 /* harmony export */   "whichOptionWasSelected": () => (/* binding */ whichOptionWasSelected)
@@ -414,6 +435,73 @@ let  charactersDD = () => {
     });
     dropDownMarkUp.classList.add('found-who')
     return dropDownMarkUp;
+}
+
+// export let adjustDropDownPosition = coords => {
+//     let elemRect = levelImage.getBoundingClientRect();
+//     let left = elemRect.left;
+//     let top = elemRect.top;
+//     // let height = levelImage.height;
+//     // let width = levelImage.width;
+//     // let yCoord = (top+(height*36)/100).toFixed(2);
+//     // let xCoord = (left+(width*49)/100).toFixed(2);
+//     // console.log(yCoord, '??', (top+(height*37.8)/100).toFixed(2));
+//     // console.log(xCoord, "!!", (left+(width*50.19)/100).toFixed(2) )
+//     // console.log(elemRect.x, elemRect.y, elemRect.height, elemRect.width, levelImage.height, elemRect.height+((levelImage.height*20)/100) );
+//     // console.log(window.scrollX, window.scrollY)
+//     // console.log(((elemRect.height*20)/100)+elemRect.height, elemRect.height)
+
+//     tryingCoords();
+//     tryingCoordsWithRect();
+
+//     return {
+//         left: coords[0]-left,
+//         top: coords[1]-top
+//     }
+// }
+
+let tryingCoordsWithRect = () => {
+    let elemRect = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
+    let left = elemRect.left;
+    let top = elemRect.top;
+    let height = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
+    let width = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
+    let yCoord = (top+(height*36)/100).toFixed(2);
+    let xCoord = (left+(width*49)/100).toFixed(2);
+    console.log('l', left, 't', top, 'w', width, 'h', height)
+    console.log(yCoord, '??', (top+(height*37.8)/100).toFixed(2));
+    console.log(xCoord, "!!", (left+(width*50.19)/100).toFixed(2));
+    
+}
+
+let tryingCoordsWithRectVer02 = () => {
+    let elemRect = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
+    let left = elemRect.left;
+    // let top = elemRect.top;
+    // let top = window.scrollY;
+    let top = elemRect.y;
+    let height = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
+    let width = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
+    let yCoord = (top+(height*36)/100).toFixed(2);
+    let ycEnd = (top+(height*37.8)/100).toFixed(2);
+    let xCoord = (left+(width*49)/100).toFixed(2);
+    let xcEnd = (left+(width*50.19)/100).toFixed(2);
+    console.log('l', left, 't', top, 'w', width, 'h', height)
+    console.log(yCoord, '??', (top+(height*37.8)/100).toFixed(2));
+    console.log(xCoord, "!!", (left+(width*50.19)/100).toFixed(2));
+    return [xCoord, xcEnd, yCoord, ycEnd]
+}
+
+let tryingCoords = () => {
+    let left = window.scrollX;
+    let top = window.scrollY;
+    let height = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
+    let width = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
+    console.log('l', left, 't', top, 'w', width, 'h', height)
+    let yCoord = (top+(height*24.2)/100).toFixed(2);
+    let xCoord = (left+(width*67.2)/100).toFixed(2);
+    console.log(yCoord, '??', (top+(height*25.8)/100).toFixed(2));
+    console.log(xCoord, "!!", (left+(width*68)/100).toFixed(2) )
 }
 
 let stickDropDownWhereItsClicked = (dropDown, coords) => {
@@ -457,8 +545,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "checkPositionWithFirebaseForGameLevel01": () => (/* binding */ checkPositionWithFirebaseForGameLevel01)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
-/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
-/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+/* harmony import */ var _server_side_level_01_storingPositions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../server_side/level_01/storingPositions */ "./src/server_side/level_01/storingPositions.js");
+/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
+/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+
 
 
 
@@ -476,12 +566,12 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
         console.log('found!!'+who, data['X'][0], data['X'][1]);
-        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.disableCharacterFromDisplay)(who)
+        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.disableCharacterFromDisplay)(who)
 
         howManyCharactersExistInLevelOne--;
         if(howManyCharactersExistInLevelOne == 0) {
-            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.calculateTotalTimeElapsed)();
-            (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.decideEffeciencyFindingWaldo)(timeSpent, 'level_01');
+            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.calculateTotalTimeElapsed)();
+            (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.decideEffeciencyFindingWaldo)(timeSpent, 'level_01');
             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
             howManyCharactersExistInLevelOne = 3;
         }
@@ -491,11 +581,13 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 }
 
 let checkPositionWithFirebaseForGameLevel01 = (coords) => {
-    let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.charactersDD)();
-    let pos = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.adjustDropDownPosition)(coords);
-    let newCoords = [pos.left, pos.top];
+    // coords_for_level_01();
+
+    let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__.charactersDD)();
+    let positionAdjusted = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__.adjustDropDownPosition)(coords);
+    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
     // stickDropDownWhereItsClicked(dropDown, coords);
-    (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickDropDownWhereItsClicked)(dropDown, newCoords);
+    ;(0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__.stickDropDownWhereItsClicked)(dropDown, newCoordsForDropdown);
 
     let select = document.querySelector('.found-who');
 
@@ -522,8 +614,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "checkPositionWithFirebaseForGameLevel02": () => (/* binding */ checkPositionWithFirebaseForGameLevel02)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
-/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
-/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+/* harmony import */ var _server_side_level_02_storingPositions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../server_side/level_02/storingPositions */ "./src/server_side/level_02/storingPositions.js");
+/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
+/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+
 
 
 
@@ -533,12 +627,12 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
         console.log('found!!'+who, data['X'][0], data['X'][1]);
-        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.disableCharacterFromDisplay)(who);
+        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.disableCharacterFromDisplay)(who);
 
         howManyCharactersExistInLevelTwo--;
         if(howManyCharactersExistInLevelTwo == 0) {
-            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.calculateTotalTimeElapsed)();
-            (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.decideEffeciencyFindingWaldo)(timeSpent, "level_02");
+            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.calculateTotalTimeElapsed)();
+            (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.decideEffeciencyFindingWaldo)(timeSpent, "level_02");
             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
             howManyCharactersExistInLevelTwo = 1;
         }
@@ -556,11 +650,13 @@ let checkWhoWithFirebase = (collectionName, characterName, coords) => {
 }
 
 let checkPositionWithFirebaseForGameLevel02 = (coords) => {
-    let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.charactersDD)();
-    let pos = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.adjustDropDownPosition)(coords);
-    let newCoords = [pos.left, pos.top];
+    // saving_coords_for_level02(); 
+
+    let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__.charactersDD)();
+    let positionAdjusted = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__.adjustDropDownPosition)(coords);
+    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
     // stickDropDownWhereItsClicked(dropDown, coords);
-    (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_1__.stickDropDownWhereItsClicked)(dropDown, newCoords);
+    ;(0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__.stickDropDownWhereItsClicked)(dropDown, newCoordsForDropdown);
     
     let select = document.querySelector('.found-who');
     if(select) {
@@ -616,6 +712,7 @@ let calculateTotalTimeElapsed = () => {
 }
 
 let decideEffeciencyFindingWaldo = (timeTook, level) => {
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.timer.textContent = '00:00:00';
     let stars;
     if(timeTook < .50) {
         stars = '5 star';
@@ -627,6 +724,7 @@ let decideEffeciencyFindingWaldo = (timeTook, level) => {
         stars = '2 star';
     }
     whatHappensAfterGame(stars, timeTook, level);
+    // flag = false;
 }
 
 let movingDivsFromDisplayToShowScores = (level, name) => {
@@ -639,8 +737,8 @@ let movingDivsFromDisplayToShowScores = (level, name) => {
 }
 
 let emptyLevelAndTimerText = () => {
-    level_01.textContent = '00:00:00';
-    level_02.textContent = '00:00:00';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.level_01.textContent = '00:00:00';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.level_02.textContent = '00:00:00';
 }
 
 let makingLevelsImagesUnclickable = () => {
@@ -654,6 +752,7 @@ let makingLevelsImagesClickable = () => {
     Array.from(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.chooseLevel.children).forEach(node=>{
         node.classList.remove('unclickable');
         node.classList.add('clickable');
+        node.classList.remove('just-unclickable');
     });
 }
 
@@ -668,6 +767,12 @@ let whatHappensAfterGame = (stars, time, level) => {
     storeResultToFirebase(time,name,stars, level);
 
     movingDivsFromDisplayToShowScores(level, name);
+
+    // flag = false;
+    // timer.textContent = '00' + ':'+ '00' +":"+'00';
+    // if(flag) {
+    //     timer.textContent = '00' + ':'+ '00' +":"+'00';
+    // }
 
     setTimeout(() => {
         makingLevelsImagesUnclickable();
@@ -687,6 +792,8 @@ let gettingReadyForGame = evt => {
     document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.resultDiv.style.display = 'none';
     makingLevelsImagesClickable();
+    // timer resets well here, but to be precise need top find a better sweet spot
+    // flag = false;
 }
 
 let announceCompleted = (stars, name) => {
@@ -727,8 +834,10 @@ let show_hideOrShowButton = () => {
 }
 
 let levelCountdown = timer => {
+    console.log(timer, 'here!!');
     // time in milli seconds
     let countDownTimerDeadline = timer * 60 * 1000;
+    // console.log(timer, countDownTimerDate);
     let x = setInterval(() => {
         
         let timerDistance = countDownTimerDeadline - 1000;
@@ -736,10 +845,17 @@ let levelCountdown = timer => {
 
         let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
         let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
+        // let millis = Math.floor((timerDistance/(1000)));
+        // let millis = Math.floor(((timerDistance/1000)%(1000)));
+        // let millis = Math.floor((timerDistance/(1000)));
+        // console.log(mins, secs, millis);
+        // displayTimerCountDown(mins, secs, millis);
+        // if(flag) clearTimeout(x);
+        // displayTimerCountDown(mins, secs);
         if(flag) {
             clearTimeout(x);
             flag = false;
-            countDownTimerDeadline = timer * 60 * 1000;
+            // countDownTimerDeadline = timer * 60 * 1000;
         }
         displayTimerCountDown(mins, secs);
         // if(flag) alert('it is');
@@ -751,19 +867,39 @@ let levelCountdown = timer => {
 }
 
 let displayTimerCountDown = (min,sec,mil) => {
+    // console.log(milliSpan)
+    // timer.textContent = '';
+
+    // console.log(min, sec, mil);
+    // timer.textContent = min + ':'+ sec +":"
+    if(flag) clearInterval(y);
     let currentMillis = 0;
         let y = setInterval(() => {
+            // if(flag) {
+            //     clearTimeout(y);
+            //     flag = false;
+            // }
             currentMillis++;
-            timer.textContent = min + ':'+ sec +":"+checkIfDoubleDigit();
+            // timer.textContent += currentMillis;
+            // milliSpan.textContent = currentMillis;
+            // timer.textContent = min + ':'+ sec +":"+currentMillis;
+            // timer.textContent = min + ':'+ sec +":"+currentMillis.length>1?currentMillis:'0'+currentMillis;
+            _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.timer.textContent = min + ':'+ sec +":"+checkIfDoubleDigit();
+            // timer.textContent += checkIdDoubleDigit();
+            _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.milliSpan.textContent = "??"
             if(currentMillis >= 10) {
                 clearInterval(y);
-                timer.textContent = min + ':'+ sec +":"+'00';
-            }
+                _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.timer.textContent = min + ':'+ sec +":"+'00';
+                console.log('millis .....');            }
         }, 100)
         let checkIfDoubleDigit = () => {
             return currentMillis<10?'0'+currentMillis:currentMillis
         }
-
+    // timer.textContent = min + ':'+ sec +":"+ mil
+    // minSpan.textContent = min;
+    // secSpan.textContent = sec;
+    // milliSpan.textContent = mil;
+    // timer.textContent = minSpan
 }
 
 /***/ }),
@@ -793,6 +929,7 @@ let db = firebase.firestore();
 
 let storeCharacterIntoFirestrore = (characterPos, whichLevel, characterName) => {
     let [x,y] = [...characterPos];
+    console.log(x,y,'?!')
     db.collection(whichLevel).doc(characterName).set({X: x, Y: y}).then(()=>console.log(characterName+' coords details saved!!')).catch(err=>console.log("something's wrong!!", err));
 }
 
@@ -861,6 +998,7 @@ let storeResultsInLocally = (time,name,stars, level) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "calculateCoords": () => (/* binding */ calculateCoords),
 /* harmony export */   "forWaldo": () => (/* binding */ forWaldo),
 /* harmony export */   "forOdlaw": () => (/* binding */ forOdlaw),
 /* harmony export */   "forWizard": () => (/* binding */ forWizard),
@@ -882,6 +1020,14 @@ let wizardRangeOfY = [240, 251];
 
 let odlawsRangeOfX = [99, 103];
 let odlawsRangeOfY = [235, 246];
+
+let calculateCoords = () => {
+    if(_client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage) {
+        let waPos = forWaldo();
+        // let odPos = forOdlaw();
+        // let wiPos = forWizard();
+    }
+}
 
 let forWaldo = () => {
     let elemRect = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
@@ -954,7 +1100,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let waldosPosition = () => {
-    (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_characterPositions__WEBPACK_IMPORTED_MODULE_1__.waldosRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_1__.waldosRangeOfY], 'level_01', 'waldo');
     let pos = (0,_characterPositions__WEBPACK_IMPORTED_MODULE_1__.forWaldo)();
     let [x,y] = [...pos];
     (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([x,y], 'level_01', 'waldo');
@@ -962,7 +1107,6 @@ let waldosPosition = () => {
 }
 
 let odlawsPosition = () => {
-    ;(0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_characterPositions__WEBPACK_IMPORTED_MODULE_1__.odlawsRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_1__.odlawsRangeOfY], 'level_01', 'odlaw');
     let pos = (0,_characterPositions__WEBPACK_IMPORTED_MODULE_1__.forOdlaw)();
     let [x,y] = [...pos];
     (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([x,y], 'level_01', 'odlaw');
@@ -970,7 +1114,6 @@ let odlawsPosition = () => {
 }
 
 let wizardsPosition = () => {
-    ;(0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([_characterPositions__WEBPACK_IMPORTED_MODULE_1__.wizardRangeOfX, _characterPositions__WEBPACK_IMPORTED_MODULE_1__.wizardRangeOfY], 'level_01', 'wizard');
     let pos = (0,_characterPositions__WEBPACK_IMPORTED_MODULE_1__.forWizard)();
     let [x,y] = [...pos];
     (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([x,y], 'level_01', 'wizard');
@@ -994,6 +1137,7 @@ let coords_for_level_01 = () => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "calculateCoords": () => (/* binding */ calculateCoords),
+/* harmony export */   "calculateCoordsVer02": () => (/* binding */ calculateCoordsVer02),
 /* harmony export */   "waldosRangeOfX": () => (/* binding */ waldosRangeOfX),
 /* harmony export */   "waldosRangeOfY": () => (/* binding */ waldosRangeOfY)
 /* harmony export */ });
@@ -1004,22 +1148,19 @@ __webpack_require__.r(__webpack_exports__);
 
 let xCoordStart, xCoordEnd, yCoordStart, yCoordEnd;
 
-let waldosRangeOfX = [186, 189];
-let waldosRangeOfY = [203, 209];
-
 let calculateCoords = () => {
     if(_client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage) {
         let elemRect = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
         let left = elemRect.left;
-        let top = elemRect.top;
+        // let top = elemRect.top;
         // let top = window.scrollY - elemRect.top;
-        // let top = elemRect.top - window.scrollY;
+        let top = elemRect.top - window.scrollY;
         let height = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
         let width = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
         console.log('l', left, 't', top, 'w', width, 'h', height)
-        yCoordStart = (top+(height*36)/100).toFixed(2);
+        yCoordStart = (top+(height*35.5)/100).toFixed(2);
         yCoordEnd = (top+(height*37.8)/100).toFixed(2);
-        xCoordStart = (left+(width*49)/100).toFixed(2);
+        xCoordStart = (left+(width*48.6)/100).toFixed(2);
         xCoordEnd = (left+(width*50.19)/100).toFixed(2);
         console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
         let waldosRangeOfX = [xCoordStart, xCoordEnd];
@@ -1027,6 +1168,49 @@ let calculateCoords = () => {
         return [waldosRangeOfX, waldosRangeOfY];
     }
 }
+
+let calculateCoordsVer02 = () => {
+    let elemRect = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
+    let left = elemRect.left;
+    let top = elemRect.top;
+    let height = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
+    let width = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
+    yCoordStart = (top+(height*36)/100).toFixed(2);
+    yCoordEnd = (top+(height*37.8)/100).toFixed(2);
+    xCoordStart = (left+(width*49)/100).toFixed(2);
+    xCoordEnd = (left+(width*50.19)/100).toFixed(2);  
+}
+// console.log('l', left, 't', top, 'w', width, 'h', height)
+// console.log(yCoord, '??', (top+(height*37.8)/100).toFixed(2));
+// console.log(xCoord, "!!", (left+(width*50.19)/100).toFixed(2) )
+// console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd)
+
+let waldosRangeOfX = [xCoordStart=0, xCoordEnd=0];
+let waldosRangeOfY = [yCoordStart=0, yCoordEnd=0];
+
+// let waldosRangeOfX = [186, 189];
+// let waldosRangeOfY = [203, 209];
+
+// export let calculateCoords = () => {
+//     if(levelImage) {
+//         let elemRect = levelImage.getBoundingClientRect();
+//         let left = elemRect.left;
+//         let top = elemRect.top;
+//         // let top = window.scrollY - elemRect.top;
+//         // let top = elemRect.top - window.scrollY;
+//         let height = levelImage.height;
+//         let width = levelImage.width;
+//         console.log('l', left, 't', top, 'w', width, 'h', height)
+//         yCoordStart = (top+(height*36)/100).toFixed(2);
+//         yCoordEnd = (top+(height*37.8)/100).toFixed(2);
+//         xCoordStart = (left+(width*49)/100).toFixed(2);
+//         xCoordEnd = (left+(width*50.19)/100).toFixed(2);
+//         console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
+//         let waldosRangeOfX = [xCoordStart, xCoordEnd];
+//         let waldosRangeOfY = [yCoordStart, yCoordEnd];
+//         return [waldosRangeOfX, waldosRangeOfY];
+//     }
+// }
 
 // export let calculateCoords = () => {
 //     if(levelImage) {
@@ -1063,20 +1247,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "saving_coords_for_level02": () => (/* binding */ saving_coords_for_level02)
 /* harmony export */ });
-/* harmony import */ var _accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../accessingData */ "./src/server_side/accessingData.js");
-/* harmony import */ var _characterPositions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./characterPositions */ "./src/server_side/level_02/characterPositions.js");
+/* harmony import */ var _client_side_gamePlayLevelWise_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../client_side/gamePlayLevelWise/characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
+/* harmony import */ var _accessingData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../accessingData */ "./src/server_side/accessingData.js");
+/* harmony import */ var _characterPositions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./characterPositions */ "./src/server_side/level_02/characterPositions.js");
 // import { storeCharacterIntoFirestrore } from "../accessingData";
 
 
 
+
 let waldosPosition = (level) => {
-    let posRange = (0,_characterPositions__WEBPACK_IMPORTED_MODULE_1__.calculateCoords)();
+    let posRange = (0,_characterPositions__WEBPACK_IMPORTED_MODULE_2__.calculateCoords)();
     let [x,y] = [...posRange];
-    (0,_accessingData__WEBPACK_IMPORTED_MODULE_0__.storeCharacterIntoFirestrore)([x, y], level, 'waldo');
+    console.log(x,y, "watwat?!")
+    
+    // let allCoords = tryingCoordsWithRectVer02();
+    // let x = [allCoords[0], allCoords[1]];
+    // let y = [allCoords[2], allCoords[3]];
+    // console.log([allCoords[0], allCoords[1]],[allCoords[2], allCoords[3]], "watwat?!")
+    
+    if(x&&y) (0,_accessingData__WEBPACK_IMPORTED_MODULE_1__.storeCharacterIntoFirestrore)([x, y], level, 'waldo');
     // storeCharacterIntoFirestrore([waldosRangeOfX, waldosRangeOfY], level, 'waldo');
+    // storeCharacterIntoFirestrore([waldosRangeOfX=x, waldosRangeOfY=y], level, 'waldo');
 }
 
 let saving_coords_for_level02 = () => {
+    // calculateCoordsVer02();
     waldosPosition('level_02');
 }
 
@@ -1168,8 +1363,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (0,_client_side_gamePlay__WEBPACK_IMPORTED_MODULE_1__.gamePlay)();
-(0,_server_side_level_01_storingPositions__WEBPACK_IMPORTED_MODULE_2__.coords_for_level_01)();
-(0,_server_side_level_02_storingPositions__WEBPACK_IMPORTED_MODULE_3__.saving_coords_for_level02)();
+// coords_for_level_01();
+// saving_coords_for_level02();
 // coords_for_level_02();
 (0,_client_side_choose_level_renderLevels__WEBPACK_IMPORTED_MODULE_0__.awaitsUserChooseLevel)();
 })();

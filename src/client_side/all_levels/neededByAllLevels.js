@@ -32,17 +32,23 @@ let makeOtherLevelsUnclickable = (level) => {
     if(level == '01') {
         level_02.classList.add('unclickable');
         level_01.classList.remove('unclickable');
+        level_01.classList.add('just-unclickable');
+        level_02.classList.remove('just-unclickable');
+        level_02.classList.remove('clickable');
     } else {
         level_02.classList.remove('unclickable');
         level_01.classList.add('unclickable');
+        level_02.classList.add('just-unclickable');
+        level_01.classList.remove('just-unclickable');
+        level_01.classList.remove('clickable');
     }
 }
 
 export let necessaryCleanUpTasks = (whichLevel) => {
-    makeOtherLevelsUnclickable(whichLevel);
     removingLevelWorldImage();
     removingLevelAndTimer();
     removeCharactersFromDisplay();
     removeOpacityFreomCharcters();
     hide_showOrHideButton();
+    makeOtherLevelsUnclickable(whichLevel);
 }
