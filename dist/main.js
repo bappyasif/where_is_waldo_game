@@ -157,9 +157,15 @@ let makeOtherLevelsUnclickable = (level) => {
     if(level == '01') {
         _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_02.classList.add('unclickable');
         _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_01.classList.remove('unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_01.classList.add('just-unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_02.classList.remove('just-unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_02.classList.remove('clickable');
     } else {
         _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_02.classList.remove('unclickable');
         _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_01.classList.add('unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_02.classList.add('just-unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_01.classList.remove('just-unclickable');
+        _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.level_01.classList.remove('clickable');
     }
 }
 
@@ -736,6 +742,7 @@ let makingLevelsImagesClickable = () => {
     Array.from(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.chooseLevel.children).forEach(node=>{
         node.classList.remove('unclickable');
         node.classList.add('clickable');
+        node.classList.remove('just-unclickable');
     });
 }
 
@@ -752,6 +759,7 @@ let whatHappensAfterGame = (stars, time, level) => {
     movingDivsFromDisplayToShowScores(level, name);
 
     // flag = false;
+    // timer.textContent = '00' + ':'+ '00' +":"+'00';
     // if(flag) {
     //     timer.textContent = '00' + ':'+ '00' +":"+'00';
     // }
@@ -833,10 +841,11 @@ let levelCountdown = timer => {
         // console.log(mins, secs, millis);
         // displayTimerCountDown(mins, secs, millis);
         // if(flag) clearTimeout(x);
+        // displayTimerCountDown(mins, secs);
         if(flag) {
             clearTimeout(x);
             flag = false;
-            countDownTimerDeadline = timer * 60 * 1000;
+            // countDownTimerDeadline = timer * 60 * 1000;
         }
         displayTimerCountDown(mins, secs);
         // if(flag) alert('it is');
@@ -853,6 +862,7 @@ let displayTimerCountDown = (min,sec,mil) => {
 
     // console.log(min, sec, mil);
     // timer.textContent = min + ':'+ sec +":"
+    if(flag) clearInterval(y);
     let currentMillis = 0;
         let y = setInterval(() => {
             // if(flag) {

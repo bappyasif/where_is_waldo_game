@@ -154,6 +154,10 @@ li span {
   opacity: 100%;
 }
 
+.just-unclickable {
+  pointer-events: none;
+}
+
 /* #tooltip {
   position: absolute;
   top: 20%;
