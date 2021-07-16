@@ -545,6 +545,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let howManyCharactersExistInLevelOne = 3;
+let level_01_starting_time = Date.now();
+
 
 let checkWhoWithFirebase = (collectionName, characterName, coords) => {
     (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromFirebase)(collectionName, characterName).then(data=>{
@@ -562,10 +564,12 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 
         howManyCharactersExistInLevelOne--;
         if(howManyCharactersExistInLevelOne == 0) {
-            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.calculateTotalTimeElapsed)();
+            // let timeSpent = calculateTotalTimeElapsed();
+            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.calculateTotalTimeElapsed)(level_01_starting_time);
             (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.decideEffeciencyFindingWaldo)(timeSpent, 'level_01');
             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
             howManyCharactersExistInLevelOne = 3;
+            level_01_starting_time = Date.now();
         }
     } else {
         console.log('go fish!!'+who, coords);
@@ -614,6 +618,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let howManyCharactersExistInLevelTwo = 1;
+let level_02_starting_time =  Date.now();
 
 let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
@@ -623,10 +628,12 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 
         howManyCharactersExistInLevelTwo--;
         if(howManyCharactersExistInLevelTwo == 0) {
-            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.calculateTotalTimeElapsed)();
+            // let timeSpent = calculateTotalTimeElapsed();
+            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.calculateTotalTimeElapsed)(level_02_starting_time);
             (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.decideEffeciencyFindingWaldo)(timeSpent, "level_02");
             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
             howManyCharactersExistInLevelTwo = 1;
+            level_02_starting_time = Date.now();
         }
     } else {
         console.log('go fish!!'+who, coords);
@@ -690,33 +697,70 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let timeStarted = Date.now();
+// let timeStarted = Date.now();
 let flag;
 
-let calculateTotalTimeElapsed = () => {
+// export let calculateTotalTimeElapsed = () => {
+//     flag = false;
+//     let timeElapsed = Date.now() - timeStarted;
+//     let seconds = Math.floor(timeElapsed/1000);
+//     let minutes = seconds / 60;
+//     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
+//     flag = true;
+//     return minutes;
+// }
+let calculateTotalTimeElapsed = (timeStarted) => {
     flag = false;
     let timeElapsed = Date.now() - timeStarted;
     let seconds = Math.floor(timeElapsed/1000);
     let minutes = seconds / 60;
     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
     flag = true;
+    timeElapsed = 0;
     return minutes;
 }
 
 let decideEffeciencyFindingWaldo = (timeTook, level) => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.timer.textContent = '00:00:00';
-    let stars;
-    if(timeTook < .50) {
-        stars = '5 star';
-    } else if(timeTook >= .50 && timeTook < 1) {
-        stars = '4 star';
-    } else if(timeTook >= 1 && timeTook < 1.25) {
-        stars = '3 star';
-    } else {
-        stars = '2 star';
-    }
+    // let stars;
+    // if(timeTook < .50) {
+    //     stars = '5 star';
+    // } else if(timeTook >= .50 && timeTook < 1) {
+    //     stars = '4 star';
+    // } else if(timeTook >= 1 && timeTook < 1.25) {
+    //     stars = '3 star';
+    // } else {
+    //     stars = '2 star';
+    // }
+    let stars = levelWiseScoringSystem(level, timeTook);
     whatHappensAfterGame(stars, timeTook, level);
     // flag = false;
+}
+
+let levelWiseScoringSystem = (level, timeTook) => {
+    let stars;
+    if(level == 'level_01') {
+        if(timeTook < .50) {
+            stars = '5 star';
+        } else if(timeTook >= .50 && timeTook < 1) {
+            stars = '4 star';
+        } else if(timeTook >= 1 && timeTook < 1.25) {
+            stars = '3 star';
+        } else {
+            stars = '2 star';
+        }
+    } else if(level == 'level_02') {
+        if(timeTook < .22) {
+            stars = '5 star';
+        } else if(timeTook >= .22 && timeTook < .51) {
+            stars = '4 star';
+        } else if(timeTook >= .51 && timeTook < 1.12) {
+            stars = '3 star';
+        } else {
+            stars = '2 star';
+        }
+    }
+    return stars;
 }
 
 let movingDivsFromDisplayToShowScores = (level, name) => {

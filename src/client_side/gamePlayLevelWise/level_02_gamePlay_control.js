@@ -3,6 +3,7 @@ import { saving_coords_for_level02 } from "../../server_side/level_02/storingPos
 import { adjustDropDownPosition, charactersDD, stickDropDownWhereItsClicked } from "./characterSelectionDropDown";
 import { calculateTotalTimeElapsed, decideEffeciencyFindingWaldo, disableCharacterFromDisplay } from "./requiredByEachLevel";
 export let howManyCharactersExistInLevelTwo = 1;
+let level_02_starting_time =  Date.now();
 
 let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
@@ -12,10 +13,12 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 
         howManyCharactersExistInLevelTwo--;
         if(howManyCharactersExistInLevelTwo == 0) {
-            let timeSpent = calculateTotalTimeElapsed();
+            // let timeSpent = calculateTotalTimeElapsed();
+            let timeSpent = calculateTotalTimeElapsed(level_02_starting_time);
             decideEffeciencyFindingWaldo(timeSpent, "level_02");
             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
             howManyCharactersExistInLevelTwo = 1;
+            level_02_starting_time = Date.now();
         }
     } else {
         console.log('go fish!!'+who, coords);

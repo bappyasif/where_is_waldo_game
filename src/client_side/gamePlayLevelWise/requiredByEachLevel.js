@@ -3,33 +3,70 @@ import { necessaryCleanUpTasks } from "../all_levels/neededByAllLevels";
 import { chooseLevel, headerDiv, level_01, level_02, milliSpan, minSpan, playAgain, resultDiv, resultText, scoresContainer, secSpan, timer, toggle_text } from "../each_game_required_divs/requiredDivs";
 import { removePreviousScoresDetails, showLevelHighestScores } from "../gamePlay";
 
-let timeStarted = Date.now();
+// let timeStarted = Date.now();
 let flag;
 
-export let calculateTotalTimeElapsed = () => {
+// export let calculateTotalTimeElapsed = () => {
+//     flag = false;
+//     let timeElapsed = Date.now() - timeStarted;
+//     let seconds = Math.floor(timeElapsed/1000);
+//     let minutes = seconds / 60;
+//     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
+//     flag = true;
+//     return minutes;
+// }
+export let calculateTotalTimeElapsed = (timeStarted) => {
     flag = false;
     let timeElapsed = Date.now() - timeStarted;
     let seconds = Math.floor(timeElapsed/1000);
     let minutes = seconds / 60;
     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
     flag = true;
+    timeElapsed = 0;
     return minutes;
 }
 
 export let decideEffeciencyFindingWaldo = (timeTook, level) => {
     timer.textContent = '00:00:00';
-    let stars;
-    if(timeTook < .50) {
-        stars = '5 star';
-    } else if(timeTook >= .50 && timeTook < 1) {
-        stars = '4 star';
-    } else if(timeTook >= 1 && timeTook < 1.25) {
-        stars = '3 star';
-    } else {
-        stars = '2 star';
-    }
+    // let stars;
+    // if(timeTook < .50) {
+    //     stars = '5 star';
+    // } else if(timeTook >= .50 && timeTook < 1) {
+    //     stars = '4 star';
+    // } else if(timeTook >= 1 && timeTook < 1.25) {
+    //     stars = '3 star';
+    // } else {
+    //     stars = '2 star';
+    // }
+    let stars = levelWiseScoringSystem(level, timeTook);
     whatHappensAfterGame(stars, timeTook, level);
     // flag = false;
+}
+
+let levelWiseScoringSystem = (level, timeTook) => {
+    let stars;
+    if(level == 'level_01') {
+        if(timeTook < .50) {
+            stars = '5 star';
+        } else if(timeTook >= .50 && timeTook < 1) {
+            stars = '4 star';
+        } else if(timeTook >= 1 && timeTook < 1.25) {
+            stars = '3 star';
+        } else {
+            stars = '2 star';
+        }
+    } else if(level == 'level_02') {
+        if(timeTook < .22) {
+            stars = '5 star';
+        } else if(timeTook >= .22 && timeTook < .51) {
+            stars = '4 star';
+        } else if(timeTook >= .51 && timeTook < 1.12) {
+            stars = '3 star';
+        } else {
+            stars = '2 star';
+        }
+    }
+    return stars;
 }
 
 export let movingDivsFromDisplayToShowScores = (level, name) => {
