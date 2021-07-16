@@ -28,6 +28,7 @@ let level_one_game_view = () => {
     renderCharactersOnDisplay();
     renderingLevelWorldImage();
     (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.show_hideOrShowButton)();
+    window.scrollTo(0, document.body.scrollHeight);
     (0,_server_side_level_01_storingPositions__WEBPACK_IMPORTED_MODULE_0__.coords_for_level_01)();
 }
 
@@ -84,6 +85,7 @@ let level_two_game_view = () => {
     renderCharactersOnDisplay();
     renderingLevelWorldImage();
     (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.show_hideOrShowButton)();
+    window.scrollTo(0, document.body.scrollHeight);
     (0,_server_side_level_02_storingPositions__WEBPACK_IMPORTED_MODULE_0__.saving_coords_for_level02)();
 }
 
@@ -708,6 +710,7 @@ let calculateTotalTimeElapsed = () => {
     let minutes = seconds / 60;
     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
     flag = true;
+    timeStarted = Date.now();
     return minutes;
 }
 
@@ -1152,9 +1155,9 @@ let calculateCoords = () => {
     if(_client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage) {
         let elemRect = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
         let left = elemRect.left;
-        // let top = elemRect.top;
+        let top = elemRect.top;
         // let top = window.scrollY - elemRect.top;
-        let top = elemRect.top - window.scrollY;
+        // let top = elemRect.top - window.scrollY;
         let height = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
         let width = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
         console.log('l', left, 't', top, 'w', width, 'h', height)
