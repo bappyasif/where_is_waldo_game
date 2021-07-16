@@ -10,6 +10,7 @@ export let level_one_game_view = () => {
     renderCharactersOnDisplay();
     renderingLevelWorldImage();
     show_hideOrShowButton();
+    window.scrollTo(0, document.body.scrollHeight);
     coords_for_level_01();
 }
 

@@ -8,9 +8,9 @@ export let calculateCoords = () => {
     if(levelImage) {
         let elemRect = levelImage.getBoundingClientRect();
         let left = elemRect.left;
-        // let top = elemRect.top;
+        let top = elemRect.top;
         // let top = window.scrollY - elemRect.top;
-        let top = elemRect.top - window.scrollY;
+        // let top = elemRect.top - window.scrollY;
         let height = levelImage.height;
         let width = levelImage.width;
         console.log('l', left, 't', top, 'w', width, 'h', height)
