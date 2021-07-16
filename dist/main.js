@@ -700,6 +700,7 @@ let calculateTotalTimeElapsed = () => {
     let minutes = seconds / 60;
     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
     flag = true;
+    timeStarted = Date.now();
     return minutes;
 }
 
