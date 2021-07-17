@@ -100,6 +100,7 @@ let renderingLevelWorldImage = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.alt = 'level 02';
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.gamePanel.appendChild(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage);
     level_02_starting_time = Date.now();
+    // levelCountdown(1.40)
 }
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
@@ -673,7 +674,7 @@ let checkWhoWithFirebase = (collectionName, characterName, coords) => {
     ;(0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromFirebase)(collectionName, characterName).then(data=>{
         console.log(data, 'data read!!');
         let characterData = data;
-        let level_02_starting_time = Date.now();
+        // let level_02_starting_time = Date.now();
         checkIfCoordsWithinPositionRange(characterData, coords, characterName);
         // checkIfCoordsWithinPositionRange(characterData, coords, characterName, level_02_starting_time);
     }).catch(err=>console.log("could not read data!!", err));
@@ -755,6 +756,7 @@ let calculateTotalTimeElapsed = (timeStarted) => {
     let minutes = seconds / 60;
     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes, 'times');
     flag = true;
+    // timer.textContent = '00:00:00';
     return minutes;
 }
 
@@ -835,6 +837,7 @@ let whatHappensAfterGame = (stars, time, level) => {
         makingLevelsImagesUnclickable();
         announceCompleted(stars, name);
         awaitsUsersPlayAgain();
+        // flag = false;
     }, 1001);
 }
 
@@ -906,7 +909,7 @@ let levelCountdown = timer => {
     
     // if(flag) {
     //     clearTimeout(x);
-    //     flag = false;
+    //     // flag = false;
     //     // countDownTimerDeadline = timer * 60 * 1000;
     // }
     let x = setInterval(() => {
@@ -920,20 +923,37 @@ let levelCountdown = timer => {
         if(flag) {
             clearTimeout(x);
             flag = false;
+            // timer.textContent = '00:00:00';
             // countDownTimerDeadline = timer * 60 * 1000;
         }
+        // if(flag) clearInterval(x);
         displayTimerCountDown(mins, secs);
+        // if(flag) clearInterval(x);
+        // if(flag) {
+        //     clearInterval(x);
+        //     flag = false;
+        // }
         // if(flag) alert('it is');
                
         if(timerDistance <= 0) {
             clearInterval(x);
         }
     }, 1000)
+    // if(flag) {
+    //     clearTimeout(x);
+    //     flag = false;
+    //     // countDownTimerDeadline = timer * 60 * 1000;
+    // }
 }
 
 let displayTimerCountDown = (min,sec) => { 
     let currentMillis = 0;
         let y = setInterval(() => {
+            // if(flag) {
+            //     clearInterval(y);
+            //     // flag = false;
+            //     // timer.textContent = '00:00:00';
+            // }
             currentMillis++;
             _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.timer.textContent = min + ':'+ sec +":"+checkIfDoubleDigit();
 
@@ -948,6 +968,10 @@ let displayTimerCountDown = (min,sec) => {
         }
 
         if(flag) clearInterval(y);
+        // if(flag) {
+        //     clearInterval(y);
+        //     // flag =  false;
+        // }
 }
 
 /***/ }),

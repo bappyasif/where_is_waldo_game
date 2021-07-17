@@ -31,7 +31,7 @@ let checkWhoWithFirebase = (collectionName, characterName, coords) => {
     readCharacterCoordsDataFromFirebase(collectionName, characterName).then(data=>{
         console.log(data, 'data read!!');
         let characterData = data;
-        let level_02_starting_time = Date.now();
+        // let level_02_starting_time = Date.now();
         checkIfCoordsWithinPositionRange(characterData, coords, characterName);
         // checkIfCoordsWithinPositionRange(characterData, coords, characterName, level_02_starting_time);
     }).catch(err=>console.log("could not read data!!", err));

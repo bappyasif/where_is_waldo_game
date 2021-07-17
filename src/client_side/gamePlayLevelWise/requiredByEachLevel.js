@@ -14,6 +14,7 @@ export let calculateTotalTimeElapsed = (timeStarted) => {
     let minutes = seconds / 60;
     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes, 'times');
     flag = true;
+    // timer.textContent = '00:00:00';
     return minutes;
 }
 
@@ -94,6 +95,7 @@ let whatHappensAfterGame = (stars, time, level) => {
         makingLevelsImagesUnclickable();
         announceCompleted(stars, name);
         awaitsUsersPlayAgain();
+        // flag = false;
     }, 1001);
 }
 
@@ -165,7 +167,7 @@ export let levelCountdown = timer => {
     
     // if(flag) {
     //     clearTimeout(x);
-    //     flag = false;
+    //     // flag = false;
     //     // countDownTimerDeadline = timer * 60 * 1000;
     // }
     let x = setInterval(() => {
@@ -179,20 +181,37 @@ export let levelCountdown = timer => {
         if(flag) {
             clearTimeout(x);
             flag = false;
+            // timer.textContent = '00:00:00';
             // countDownTimerDeadline = timer * 60 * 1000;
         }
+        // if(flag) clearInterval(x);
         displayTimerCountDown(mins, secs);
+        // if(flag) clearInterval(x);
+        // if(flag) {
+        //     clearInterval(x);
+        //     flag = false;
+        // }
         // if(flag) alert('it is');
                
         if(timerDistance <= 0) {
             clearInterval(x);
         }
     }, 1000)
+    // if(flag) {
+    //     clearTimeout(x);
+    //     flag = false;
+    //     // countDownTimerDeadline = timer * 60 * 1000;
+    // }
 }
 
 let displayTimerCountDown = (min,sec) => { 
     let currentMillis = 0;
         let y = setInterval(() => {
+            // if(flag) {
+            //     clearInterval(y);
+            //     // flag = false;
+            //     // timer.textContent = '00:00:00';
+            // }
             currentMillis++;
             timer.textContent = min + ':'+ sec +":"+checkIfDoubleDigit();
 
@@ -207,4 +226,8 @@ let displayTimerCountDown = (min,sec) => {
         }
 
         if(flag) clearInterval(y);
+        // if(flag) {
+        //     clearInterval(y);
+        //     // flag =  false;
+        // }
 }

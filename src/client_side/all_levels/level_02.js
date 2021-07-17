@@ -21,6 +21,7 @@ let renderingLevelWorldImage = () => {
     levelImage.alt = 'level 02';
     gamePanel.appendChild(levelImage);
     level_02_starting_time = Date.now();
+    // levelCountdown(1.40)
 }
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
