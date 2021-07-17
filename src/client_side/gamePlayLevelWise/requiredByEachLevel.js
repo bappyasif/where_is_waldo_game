@@ -1,4 +1,5 @@
 import { readCharacterCoordsDataFromFirebase, storeEachLevelResult, storeResultsInLocally } from "../../server_side/accessingData";
+import { level_02_starting_time } from "../all_levels/level_02";
 import { necessaryCleanUpTasks } from "../all_levels/neededByAllLevels";
 import { chooseLevel, headerDiv, level_01, level_02, milliSpan, minSpan, playAgain, resultDiv, resultText, scoresContainer, secSpan, timer, toggle_text } from "../each_game_required_divs/requiredDivs";
 import { removePreviousScoresDetails, showLevelHighestScores } from "../gamePlay";
@@ -6,27 +7,28 @@ import { removePreviousScoresDetails, showLevelHighestScores } from "../gamePlay
 // let timeStarted = Date.now();
 let flag;
 
-export let calculateTotalTimeElapsed = () => {
-    let timeStarted = Date.now();
-    flag = false;
-    let timeElapsed = Date.now() - timeStarted;
-    let seconds = Math.floor(timeElapsed/1000);
-    let minutes = seconds / 60;
-    console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
-    flag = true;
-    return minutes;
-}
-// export let calculateTotalTimeElapsed = (timeStarted) => {
+// export let calculateTotalTimeElapsed = () => {
+//     let timeStarted = level_02_starting_time
 //     flag = false;
 //     let timeElapsed = Date.now() - timeStarted;
 //     let seconds = Math.floor(timeElapsed/1000);
 //     let minutes = seconds / 60;
-//     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes, 'times');
+//     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
 //     flag = true;
-//     // timeElapsed = 0;
-//     timeStarted = Date.now();
 //     return minutes;
 // }
+
+export let calculateTotalTimeElapsed = (timeStarted) => {
+    flag = false;
+    let timeElapsed = Date.now() - timeStarted;
+    let seconds = Math.floor(timeElapsed/1000);
+    let minutes = seconds / 60;
+    console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes, 'times');
+    flag = true;
+    // timeElapsed = 0;
+    // timeStarted = Date.now();
+    return minutes;
+}
 
 export let decideEffeciencyFindingWaldo = (timeTook, level) => {
     timer.textContent = '00:00:00';

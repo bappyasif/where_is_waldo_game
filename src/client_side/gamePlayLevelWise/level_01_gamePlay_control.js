@@ -1,5 +1,6 @@
 import { readCharacterCoordsDataFromArray, readCharacterCoordsDataFromFirebase } from "../../server_side/accessingData";
 import { coords_for_level_01 } from "../../server_side/level_01/storingPositions";
+import { level_01_starting_time } from "../all_levels/level_01";
 import { adjustDropDownPosition, charactersDD, stickDropDownWhereItsClicked } from "./characterSelectionDropDown";
 import { calculateTotalTimeElapsed, decideEffeciencyFindingWaldo, disableCharacterFromDisplay } from "./requiredByEachLevel";
 export let howManyCharactersExistInLevelOne = 3;
@@ -22,8 +23,8 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 
         howManyCharactersExistInLevelOne--;
         if(howManyCharactersExistInLevelOne == 0) {
-            let timeSpent = calculateTotalTimeElapsed();
-            // let timeSpent = calculateTotalTimeElapsed(level_01_starting_time);
+            // let timeSpent = calculateTotalTimeElapsed();
+            let timeSpent = calculateTotalTimeElapsed(level_01_starting_time);
             decideEffeciencyFindingWaldo(timeSpent, 'level_01');
             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
             howManyCharactersExistInLevelOne = 3;
