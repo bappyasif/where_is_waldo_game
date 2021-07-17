@@ -26,9 +26,7 @@ let renderingLevelWorldImage = () => {
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
     level.textContent = levelNum;
-    // timer.textContent = 'levelTimer';
-    // timer.remove();
-    // document.querySelectorAll('h4')[1].append(timer);
+    timer.textContent = 'levelTimer';
     levelCountdown(1.40);
 }
 

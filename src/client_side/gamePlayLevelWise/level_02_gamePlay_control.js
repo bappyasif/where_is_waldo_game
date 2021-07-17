@@ -37,27 +37,7 @@ let checkWhoWithFirebase = (collectionName, characterName, coords) => {
     }).catch(err=>console.log("could not read data!!", err));
 }
 
-// export let placingDropdown = (coords) => {
-//     let dropDown = charactersDD();
-//     let positionAdjusted = adjustDropDownPosition(coords);
-//     let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-//     // stickDropDownWhereItsClicked(dropDown, coords);
-//     // dropdownFlag = true;
-//     // if(dropdownFlag) stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
-//     stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
-// }
-
-export let checkPositionWithFirebaseForGameLevel02 = (coords) => {
-    // saving_coords_for_level02();
-    // let dropdownFlag = false;
-    // let dropDown = charactersDD();
-    // let positionAdjusted = adjustDropDownPosition(coords);
-    // let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-    // // stickDropDownWhereItsClicked(dropDown, coords);
-    // // dropdownFlag = true;
-    // // if(dropdownFlag) stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
-    // stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
-    
+export let checkPositionWithFirebaseForGameLevel02 = (coords) => { 
     let select = document.querySelector('.found-who');
     if(select) {
         select.addEventListener('change', ()=>{

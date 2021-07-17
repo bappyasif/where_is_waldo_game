@@ -37,14 +37,6 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 }
 
 export let checkPositionWithFirebaseForGameLevel01 = (coords) => {
-    // coords_for_level_01();
-
-    // let dropDown = charactersDD();
-    // let positionAdjusted = adjustDropDownPosition(coords);
-    // let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-    // // stickDropDownWhereItsClicked(dropDown, coords);
-    // stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
-
     let select = document.querySelector('.found-who');
 
     if(select) {

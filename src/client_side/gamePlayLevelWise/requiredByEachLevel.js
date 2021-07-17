@@ -155,9 +155,6 @@ export let placingDropdown = (coords) => {
     let dropDown = charactersDD();
     let positionAdjusted = adjustDropDownPosition(coords);
     let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-    // stickDropDownWhereItsClicked(dropDown, coords);
-    // dropdownFlag = true;
-    // if(dropdownFlag) stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
     stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
 }
 
@@ -165,12 +162,6 @@ export let levelCountdown = timer => {
     // time in milli seconds
     let countDownTimerDeadline = timer * 60 * 1000;
     
-    // if(flag) {
-    //     // flag = false;
-    //     clearTimeout(x);
-    //     // flag = false;
-    //     // countDownTimerDeadline = timer * 60 * 1000;
-    // }
     let x = setInterval(() => {
         
         let timerDistance = countDownTimerDeadline - 1000;
@@ -179,42 +170,23 @@ export let levelCountdown = timer => {
         let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
         let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
 
-        // if(flag) {
-        //     clearTimeout(x);
-        //     flag = false;
-        //     // timer.textContent = '00:00:00';
-        //     // countDownTimerDeadline = timer * 60 * 1000;
-        // }
-        // if(flag) clearInterval(x);
         displayTimerCountDown(mins, secs);
-        // if(flag) clearInterval(x);
+
         if(flag) {
             clearInterval(x);
             flag = false;
         }
-        // if(flag) alert('it is');
                
         if(timerDistance <= 0) {
             clearInterval(x);
         }
     }, 1000)
-    // if(flag) {
-    //     clearTimeout(x);
-    //     flag = false;
-    //     // countDownTimerDeadline = timer * 60 * 1000;
-    // }
 }
 
 let displayTimerCountDown = (min,sec) => { 
     // if(flag) clearInterval(y);
     let currentMillis = 0;
         let y = setInterval(() => {
-            // if(flag) clearInterval(y);
-            // if(flag) {
-            //     clearInterval(y);
-            //     // flag = false;
-            //     // timer.textContent = '00:00:00';
-            // }
             currentMillis++;
             timer.textContent = min + ':'+ sec +":"+checkIfDoubleDigit();
 
@@ -229,8 +201,4 @@ let displayTimerCountDown = (min,sec) => {
         }
 
         if(flag) clearInterval(y);
-        // if(flag) {
-        //     clearInterval(y);
-        //     // flag =  false;
-        // }
 }

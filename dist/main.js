@@ -105,9 +105,7 @@ let renderingLevelWorldImage = () => {
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.level.textContent = levelNum;
-    // timer.textContent = 'levelTimer';
-    // timer.remove();
-    // document.querySelectorAll('h4')[1].append(timer);
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.timer.textContent = 'levelTimer';
     (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.levelCountdown)(1.40);
 }
 
@@ -464,18 +462,9 @@ let adjustDropDownPosition = coords => {
     let elemRect = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
     let left = elemRect.left;
     let top = elemRect.top;
-    // let height = levelImage.height;
-    // let width = levelImage.width;
-    // let yCoord = (top+(height*36)/100).toFixed(2);
-    // let xCoord = (left+(width*49)/100).toFixed(2);
-    // console.log(yCoord, '??', (top+(height*37.8)/100).toFixed(2));
-    // console.log(xCoord, "!!", (left+(width*50.19)/100).toFixed(2) )
-    // console.log(elemRect.x, elemRect.y, elemRect.height, elemRect.width, levelImage.height, elemRect.height+((levelImage.height*20)/100) );
-    // console.log(window.scrollX, window.scrollY)
-    // console.log(((elemRect.height*20)/100)+elemRect.height, elemRect.height)
 
-    tryingCoords();
-    tryingCoordsWithRect();
+    // tryingCoords();
+    // tryingCoordsWithRect();
 
     return {
         left: coords[0]-left,
@@ -602,14 +591,6 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 }
 
 let checkPositionWithFirebaseForGameLevel01 = (coords) => {
-    // coords_for_level_01();
-
-    // let dropDown = charactersDD();
-    // let positionAdjusted = adjustDropDownPosition(coords);
-    // let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-    // // stickDropDownWhereItsClicked(dropDown, coords);
-    // stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
-
     let select = document.querySelector('.found-who');
 
     if(select) {
@@ -680,27 +661,7 @@ let checkWhoWithFirebase = (collectionName, characterName, coords) => {
     }).catch(err=>console.log("could not read data!!", err));
 }
 
-// export let placingDropdown = (coords) => {
-//     let dropDown = charactersDD();
-//     let positionAdjusted = adjustDropDownPosition(coords);
-//     let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-//     // stickDropDownWhereItsClicked(dropDown, coords);
-//     // dropdownFlag = true;
-//     // if(dropdownFlag) stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
-//     stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
-// }
-
-let checkPositionWithFirebaseForGameLevel02 = (coords) => {
-    // saving_coords_for_level02();
-    // let dropdownFlag = false;
-    // let dropDown = charactersDD();
-    // let positionAdjusted = adjustDropDownPosition(coords);
-    // let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-    // // stickDropDownWhereItsClicked(dropDown, coords);
-    // // dropdownFlag = true;
-    // // if(dropdownFlag) stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
-    // stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
-    
+let checkPositionWithFirebaseForGameLevel02 = (coords) => { 
     let select = document.querySelector('.found-who');
     if(select) {
         select.addEventListener('change', ()=>{
@@ -897,9 +858,6 @@ let placingDropdown = (coords) => {
     let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_5__.charactersDD)();
     let positionAdjusted = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_5__.adjustDropDownPosition)(coords);
     let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-    // stickDropDownWhereItsClicked(dropDown, coords);
-    // dropdownFlag = true;
-    // if(dropdownFlag) stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
     ;(0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_5__.stickDropDownWhereItsClicked)(dropDown, newCoordsForDropdown);
 }
 
@@ -907,12 +865,6 @@ let levelCountdown = timer => {
     // time in milli seconds
     let countDownTimerDeadline = timer * 60 * 1000;
     
-    // if(flag) {
-    //     // flag = false;
-    //     clearTimeout(x);
-    //     // flag = false;
-    //     // countDownTimerDeadline = timer * 60 * 1000;
-    // }
     let x = setInterval(() => {
         
         let timerDistance = countDownTimerDeadline - 1000;
@@ -921,42 +873,23 @@ let levelCountdown = timer => {
         let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
         let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
 
-        // if(flag) {
-        //     clearTimeout(x);
-        //     flag = false;
-        //     // timer.textContent = '00:00:00';
-        //     // countDownTimerDeadline = timer * 60 * 1000;
-        // }
-        // if(flag) clearInterval(x);
         displayTimerCountDown(mins, secs);
-        // if(flag) clearInterval(x);
+
         if(flag) {
             clearInterval(x);
             flag = false;
         }
-        // if(flag) alert('it is');
                
         if(timerDistance <= 0) {
             clearInterval(x);
         }
     }, 1000)
-    // if(flag) {
-    //     clearTimeout(x);
-    //     flag = false;
-    //     // countDownTimerDeadline = timer * 60 * 1000;
-    // }
 }
 
 let displayTimerCountDown = (min,sec) => { 
     // if(flag) clearInterval(y);
     let currentMillis = 0;
         let y = setInterval(() => {
-            // if(flag) clearInterval(y);
-            // if(flag) {
-            //     clearInterval(y);
-            //     // flag = false;
-            //     // timer.textContent = '00:00:00';
-            // }
             currentMillis++;
             _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.timer.textContent = min + ':'+ sec +":"+checkIfDoubleDigit();
 
@@ -971,10 +904,6 @@ let displayTimerCountDown = (min,sec) => {
         }
 
         if(flag) clearInterval(y);
-        // if(flag) {
-        //     clearInterval(y);
-        //     // flag =  false;
-        // }
 }
 
 /***/ }),
