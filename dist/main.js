@@ -10,6 +10,7 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "level_01_starting_time": () => (/* binding */ level_01_starting_time),
 /* harmony export */   "level_one_game_view": () => (/* binding */ level_one_game_view)
 /* harmony export */ });
 /* harmony import */ var _server_side_level_01_storingPositions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/level_01/storingPositions */ "./src/server_side/level_01/storingPositions.js");
@@ -20,6 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+let level_01_starting_time;
 
 let level_one_game_view = () => {
     // necessaryCleanUpTasks();
@@ -37,6 +39,7 @@ let renderingLevelWorldImage = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.src = './images/level-1.jpg';
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.alt = 'level 01';
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.gamePanel.appendChild(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage);
+    level_01_starting_time = Date.now();
 }
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
@@ -67,6 +70,7 @@ let renderCharactersOnDisplay = () => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "level_02_starting_time": () => (/* binding */ level_02_starting_time),
 /* harmony export */   "level_two_game_view": () => (/* binding */ level_two_game_view)
 /* harmony export */ });
 /* harmony import */ var _server_side_level_02_storingPositions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/level_02/storingPositions */ "./src/server_side/level_02/storingPositions.js");
@@ -77,6 +81,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+let level_02_starting_time = Date.now();
 
 let level_two_game_view = () => {
     // necessaryCleanUpTasks();
@@ -94,13 +99,13 @@ let renderingLevelWorldImage = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.src = './images/level-2.png';
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.alt = 'level 02';
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.gamePanel.appendChild(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage);
+    level_02_starting_time = Date.now();
+    // levelCountdown(1.40)
 }
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.level.textContent = levelNum;
-    // timer.textContent = 'levelTimer';
-    // timer.remove();
-    // document.querySelectorAll('h4')[1].append(timer);
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.timer.textContent = 'levelTimer';
     (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_2__.levelCountdown)(1.40);
 }
 
@@ -214,7 +219,9 @@ let userHasSelectedLevel = evt => {
         (0,_all_levels_level_01__WEBPACK_IMPORTED_MODULE_2__.level_one_game_view)();
         // coords_for_level_01();
     } else if(id == 'level-02') {
+        // let level_02_starting_time = Date.now();
         (0,_all_levels_level_02__WEBPACK_IMPORTED_MODULE_3__.level_two_game_view)();
+        // level_two_game_view(level_02_starting_time);
         // saving_coords_for_level02();
     }
 }
@@ -295,10 +302,12 @@ let milliSpan = document.querySelector('#mil');
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "results": () => (/* binding */ results),
+/* harmony export */   "dropdownFlag": () => (/* binding */ dropdownFlag),
 /* harmony export */   "gamePlay": () => (/* binding */ gamePlay),
 /* harmony export */   "removePreviousScoresDetails": () => (/* binding */ removePreviousScoresDetails),
 /* harmony export */   "showLevelHighestScores": () => (/* binding */ showLevelHighestScores),
 /* harmony export */   "showDataOnTable": () => (/* binding */ showDataOnTable),
+/* harmony export */   "toggleDropDownFlag": () => (/* binding */ toggleDropDownFlag),
 /* harmony export */   "checkWhichLevelIsInPlay": () => (/* binding */ checkWhichLevelIsInPlay)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../server_side/accessingData */ "./src/server_side/accessingData.js");
@@ -311,7 +320,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let results = {};
+let results = {}, dropdownFlag = false;
 let gamePlay = () => {
     // let worldImage = document.querySelector('.game-panel');
     // worldImage.addEventListener('click', checkWhichLevelIsInPlay);
@@ -384,6 +393,8 @@ let toggleTextInDisplay = evt => {
     }
 }
 
+let toggleDropDownFlag = () => dropdownFlag = false;
+
 let checkWhichLevelIsInPlay = evt => {
     let x = evt.clientX;
     let y = evt.clientY;
@@ -391,6 +402,12 @@ let checkWhichLevelIsInPlay = evt => {
     let imageAltTagText = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_1__.levelImage.alt;
     let levelID = imageAltTagText.split(' ')[1];
     console.log(levelID);
+
+    // placingDropdown([x,y]);
+    if(!dropdownFlag) {
+        (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__.placingDropdown)([x,y]);
+        dropdownFlag = true;
+    }
 
     if(levelID == '01') {
         (0,_gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_2__.checkPositionWithFirebaseForGameLevel01)([x,y]);
@@ -410,7 +427,6 @@ let checkWhichLevelIsInPlay = evt => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "charactersDD": () => (/* binding */ charactersDD),
-/* harmony export */   "tryingCoordsWithRectVer02": () => (/* binding */ tryingCoordsWithRectVer02),
 /* harmony export */   "stickDropDownWhereItsClicked": () => (/* binding */ stickDropDownWhereItsClicked),
 /* harmony export */   "adjustDropDownPosition": () => (/* binding */ adjustDropDownPosition),
 /* harmony export */   "whichOptionWasSelected": () => (/* binding */ whichOptionWasSelected)
@@ -437,73 +453,6 @@ let  charactersDD = () => {
     });
     dropDownMarkUp.classList.add('found-who')
     return dropDownMarkUp;
-}
-
-// export let adjustDropDownPosition = coords => {
-//     let elemRect = levelImage.getBoundingClientRect();
-//     let left = elemRect.left;
-//     let top = elemRect.top;
-//     // let height = levelImage.height;
-//     // let width = levelImage.width;
-//     // let yCoord = (top+(height*36)/100).toFixed(2);
-//     // let xCoord = (left+(width*49)/100).toFixed(2);
-//     // console.log(yCoord, '??', (top+(height*37.8)/100).toFixed(2));
-//     // console.log(xCoord, "!!", (left+(width*50.19)/100).toFixed(2) )
-//     // console.log(elemRect.x, elemRect.y, elemRect.height, elemRect.width, levelImage.height, elemRect.height+((levelImage.height*20)/100) );
-//     // console.log(window.scrollX, window.scrollY)
-//     // console.log(((elemRect.height*20)/100)+elemRect.height, elemRect.height)
-
-//     tryingCoords();
-//     tryingCoordsWithRect();
-
-//     return {
-//         left: coords[0]-left,
-//         top: coords[1]-top
-//     }
-// }
-
-let tryingCoordsWithRect = () => {
-    let elemRect = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
-    let left = elemRect.left;
-    let top = elemRect.top;
-    let height = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
-    let width = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
-    let yCoord = (top+(height*36)/100).toFixed(2);
-    let xCoord = (left+(width*49)/100).toFixed(2);
-    console.log('l', left, 't', top, 'w', width, 'h', height)
-    console.log(yCoord, '??', (top+(height*37.8)/100).toFixed(2));
-    console.log(xCoord, "!!", (left+(width*50.19)/100).toFixed(2));
-    
-}
-
-let tryingCoordsWithRectVer02 = () => {
-    let elemRect = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
-    let left = elemRect.left;
-    // let top = elemRect.top;
-    // let top = window.scrollY;
-    let top = elemRect.y;
-    let height = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
-    let width = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
-    let yCoord = (top+(height*36)/100).toFixed(2);
-    let ycEnd = (top+(height*37.8)/100).toFixed(2);
-    let xCoord = (left+(width*49)/100).toFixed(2);
-    let xcEnd = (left+(width*50.19)/100).toFixed(2);
-    console.log('l', left, 't', top, 'w', width, 'h', height)
-    console.log(yCoord, '??', (top+(height*37.8)/100).toFixed(2));
-    console.log(xCoord, "!!", (left+(width*50.19)/100).toFixed(2));
-    return [xCoord, xcEnd, yCoord, ycEnd]
-}
-
-let tryingCoords = () => {
-    let left = window.scrollX;
-    let top = window.scrollY;
-    let height = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
-    let width = _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
-    console.log('l', left, 't', top, 'w', width, 'h', height)
-    let yCoord = (top+(height*24.2)/100).toFixed(2);
-    let xCoord = (left+(width*67.2)/100).toFixed(2);
-    console.log(yCoord, '??', (top+(height*25.8)/100).toFixed(2));
-    console.log(xCoord, "!!", (left+(width*68)/100).toFixed(2) )
 }
 
 let stickDropDownWhereItsClicked = (dropDown, coords) => {
@@ -548,13 +497,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
 /* harmony import */ var _server_side_level_01_storingPositions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../server_side/level_01/storingPositions */ "./src/server_side/level_01/storingPositions.js");
-/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
-/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+/* harmony import */ var _all_levels_level_01__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../all_levels/level_01 */ "./src/client_side/all_levels/level_01.js");
+/* harmony import */ var _gamePlay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../gamePlay */ "./src/client_side/gamePlay.js");
+/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
+/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+
+
 
 
 
 
 let howManyCharactersExistInLevelOne = 3;
+// let level_01_starting_time = Date.now();
+
 
 let checkWhoWithFirebase = (collectionName, characterName, coords) => {
     (0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromFirebase)(collectionName, characterName).then(data=>{
@@ -568,14 +523,16 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
         console.log('found!!'+who, data['X'][0], data['X'][1]);
-        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.disableCharacterFromDisplay)(who)
+        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.disableCharacterFromDisplay)(who)
 
         howManyCharactersExistInLevelOne--;
         if(howManyCharactersExistInLevelOne == 0) {
-            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.calculateTotalTimeElapsed)();
-            (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.decideEffeciencyFindingWaldo)(timeSpent, 'level_01');
+            // let timeSpent = calculateTotalTimeElapsed();
+            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.calculateTotalTimeElapsed)(_all_levels_level_01__WEBPACK_IMPORTED_MODULE_2__.level_01_starting_time);
+            (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.decideEffeciencyFindingWaldo)(timeSpent, 'level_01');
             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
             howManyCharactersExistInLevelOne = 3;
+            // level_01_starting_time = Date.now();
         }
     } else {
         console.log('go fish!!'+who, coords);
@@ -583,14 +540,6 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 }
 
 let checkPositionWithFirebaseForGameLevel01 = (coords) => {
-    // coords_for_level_01();
-
-    let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__.charactersDD)();
-    let positionAdjusted = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__.adjustDropDownPosition)(coords);
-    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-    // stickDropDownWhereItsClicked(dropDown, coords);
-    ;(0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__.stickDropDownWhereItsClicked)(dropDown, newCoordsForDropdown);
-
     let select = document.querySelector('.found-who');
 
     if(select) {
@@ -598,6 +547,7 @@ let checkPositionWithFirebaseForGameLevel01 = (coords) => {
             let who = select.value;
             checkWhoWithFirebase('level_01', who, coords);
             document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
+            (0,_gamePlay__WEBPACK_IMPORTED_MODULE_3__.toggleDropDownFlag)();
         });
     }
 }
@@ -617,24 +567,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
 /* harmony import */ var _server_side_level_02_storingPositions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../server_side/level_02/storingPositions */ "./src/server_side/level_02/storingPositions.js");
-/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
-/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+/* harmony import */ var _all_levels_level_02__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../all_levels/level_02 */ "./src/client_side/all_levels/level_02.js");
+/* harmony import */ var _gamePlay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../gamePlay */ "./src/client_side/gamePlay.js");
+/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
+/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+
+
 
 
 
 
 let howManyCharactersExistInLevelTwo = 1;
+// let level_02_starting_time =  Date.now();
 
 let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
         console.log('found!!'+who, data['X'][0], data['X'][1]);
-        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.disableCharacterFromDisplay)(who);
+        // let level_02_starting_time = Date.now();
+        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.disableCharacterFromDisplay)(who);
 
         howManyCharactersExistInLevelTwo--;
         if(howManyCharactersExistInLevelTwo == 0) {
-            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.calculateTotalTimeElapsed)();
-            (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.decideEffeciencyFindingWaldo)(timeSpent, "level_02");
+            // let timeSpent = calculateTotalTimeElapsed();
+            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.calculateTotalTimeElapsed)(_all_levels_level_02__WEBPACK_IMPORTED_MODULE_2__.level_02_starting_time);
+            (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.decideEffeciencyFindingWaldo)(timeSpent, "level_02");
             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
             howManyCharactersExistInLevelTwo = 1;
         }
@@ -647,25 +604,20 @@ let checkWhoWithFirebase = (collectionName, characterName, coords) => {
     ;(0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromFirebase)(collectionName, characterName).then(data=>{
         console.log(data, 'data read!!');
         let characterData = data;
+        // let level_02_starting_time = Date.now();
         checkIfCoordsWithinPositionRange(characterData, coords, characterName);
+        // checkIfCoordsWithinPositionRange(characterData, coords, characterName, level_02_starting_time);
     }).catch(err=>console.log("could not read data!!", err));
 }
 
-let checkPositionWithFirebaseForGameLevel02 = (coords) => {
-    // saving_coords_for_level02(); 
-
-    let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__.charactersDD)();
-    let positionAdjusted = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__.adjustDropDownPosition)(coords);
-    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-    // stickDropDownWhereItsClicked(dropDown, coords);
-    ;(0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_2__.stickDropDownWhereItsClicked)(dropDown, newCoordsForDropdown);
-    
+let checkPositionWithFirebaseForGameLevel02 = (coords) => { 
     let select = document.querySelector('.found-who');
     if(select) {
         select.addEventListener('change', ()=>{
             let who = select.value;
             checkWhoWithFirebase('level_02', who, coords);
             document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
+            (0,_gamePlay__WEBPACK_IMPORTED_MODULE_3__.toggleDropDownFlag)();
         });
     }
 }
@@ -689,70 +641,90 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "hideScores": () => (/* binding */ hideScores),
 /* harmony export */   "showScores": () => (/* binding */ showScores),
 /* harmony export */   "show_hideOrShowButton": () => (/* binding */ show_hideOrShowButton),
+/* harmony export */   "placingDropdown": () => (/* binding */ placingDropdown),
 /* harmony export */   "levelCountdown": () => (/* binding */ levelCountdown)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
-/* harmony import */ var _all_levels_neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../all_levels/neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
-/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
-/* harmony import */ var _gamePlay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../gamePlay */ "./src/client_side/gamePlay.js");
+/* harmony import */ var _all_levels_level_02__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../all_levels/level_02 */ "./src/client_side/all_levels/level_02.js");
+/* harmony import */ var _all_levels_neededByAllLevels__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../all_levels/neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
+/* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
+/* harmony import */ var _gamePlay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../gamePlay */ "./src/client_side/gamePlay.js");
+/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
 
 
 
 
 
-let timeStarted = Date.now();
+
+
 let flag;
 
-let calculateTotalTimeElapsed = () => {
+let calculateTotalTimeElapsed = (timeStarted) => {
     flag = false;
     let timeElapsed = Date.now() - timeStarted;
     let seconds = Math.floor(timeElapsed/1000);
     let minutes = seconds / 60;
-    console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
+    console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes, 'times');
     flag = true;
-    timeStarted = Date.now();
+    // timer.textContent = '00:00:00';
     return minutes;
 }
 
 let decideEffeciencyFindingWaldo = (timeTook, level) => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.timer.textContent = '00:00:00';
-    let stars;
-    if(timeTook < .50) {
-        stars = '5 star';
-    } else if(timeTook >= .50 && timeTook < 1) {
-        stars = '4 star';
-    } else if(timeTook >= 1 && timeTook < 1.25) {
-        stars = '3 star';
-    } else {
-        stars = '2 star';
-    }
+    // timer.textContent = '00:00:00';
+    let stars = levelWiseScoringSystem(level, timeTook);
     whatHappensAfterGame(stars, timeTook, level);
-    // flag = false;
+}
+
+let levelWiseScoringSystem = (level, timeTook) => {
+    let stars;
+    if(level == 'level_01') {
+        if(timeTook < .50) {
+            stars = '5 star';
+        } else if(timeTook >= .50 && timeTook < 1) {
+            stars = '4 star';
+        } else if(timeTook >= 1 && timeTook < 1.25) {
+            stars = '3 star';
+        } else {
+            stars = '2 star';
+        }
+    } else if(level == 'level_02') {
+        if(timeTook < .22) {
+            stars = '5 star';
+        } else if(timeTook >= .22 && timeTook < .51) {
+            stars = '4 star';
+        } else if(timeTook >= .51 && timeTook < 1.12) {
+            stars = '3 star';
+        } else {
+            stars = '2 star';
+        }
+    }
+    return stars;
 }
 
 let movingDivsFromDisplayToShowScores = (level, name) => {
-    emptyLevelAndTimerText();
+    // emptyLevelAndTimerText();
     showScores();
     moveLevelsAndHeaderDivsToLeft();
 
-    (0,_gamePlay__WEBPACK_IMPORTED_MODULE_3__.showLevelHighestScores)(level, name);
-    (0,_gamePlay__WEBPACK_IMPORTED_MODULE_3__.removePreviousScoresDetails)();
+    (0,_gamePlay__WEBPACK_IMPORTED_MODULE_4__.showLevelHighestScores)(level, name);
+    (0,_gamePlay__WEBPACK_IMPORTED_MODULE_4__.removePreviousScoresDetails)();
 }
 
 let emptyLevelAndTimerText = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.level_01.textContent = '00:00:00';
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.level_02.textContent = '00:00:00';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.level_01.textContent = '00:00:00';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.level_02.textContent = '00:00:00';
 }
 
 let makingLevelsImagesUnclickable = () => {
-    Array.from(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.chooseLevel.children).forEach(node=>{
+    Array.from(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.chooseLevel.children).forEach(node=>{
         node.classList.add('unclickable');
         node.classList.remove('clickable');
     });
 }
 
 let makingLevelsImagesClickable = () => {
-    Array.from(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.chooseLevel.children).forEach(node=>{
+    Array.from(_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.chooseLevel.children).forEach(node=>{
         node.classList.remove('unclickable');
         node.classList.add('clickable');
         node.classList.remove('just-unclickable');
@@ -771,37 +743,32 @@ let whatHappensAfterGame = (stars, time, level) => {
 
     movingDivsFromDisplayToShowScores(level, name);
 
-    // flag = false;
-    // timer.textContent = '00' + ':'+ '00' +":"+'00';
-    // if(flag) {
-    //     timer.textContent = '00' + ':'+ '00' +":"+'00';
-    // }
-
     setTimeout(() => {
         makingLevelsImagesUnclickable();
         announceCompleted(stars, name);
         awaitsUsersPlayAgain();
+        // flag = false;
     }, 1001);
 }
 
 let awaitsUsersPlayAgain = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.playAgain.addEventListener('click', gettingReadyForGame);
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.playAgain.addEventListener('click', gettingReadyForGame);
 }
 
 let gettingReadyForGame = evt => {
-    ;(0,_all_levels_neededByAllLevels__WEBPACK_IMPORTED_MODULE_1__.necessaryCleanUpTasks)();
+    ;(0,_all_levels_neededByAllLevels__WEBPACK_IMPORTED_MODULE_2__.necessaryCleanUpTasks)();
     movingDivsFromDisplayToHideScores();
 
     document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.resultDiv.style.display = 'none';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.resultDiv.style.display = 'none';
     makingLevelsImagesClickable();
     // timer resets well here, but to be precise need top find a better sweet spot
     // flag = false;
 }
 
 let announceCompleted = (stars, name) => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.resultDiv.style.display = 'block';
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.resultText.textContent = 'congratulations!! '+name+' you got '+stars+' :)';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.resultDiv.style.display = 'block';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.resultText.textContent = 'congratulations!! '+name+' you got '+stars+' :)';
 }
 
 let storeResultToFirebase = (completionTime, name, stars, level) => {
@@ -815,32 +782,38 @@ let disableCharacterFromDisplay = who => {
 }
 
 let moveLevelsAndHeaderDivsToLeft = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.headerDiv.classList.add('move-left');
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.chooseLevel.classList.add('move-left');
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.headerDiv.classList.add('move-left');
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.chooseLevel.classList.add('move-left');
 }
 
 let moveLevelsAndHeaderDivsToCenter = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.headerDiv.classList.remove('move-left');
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.chooseLevel.classList.remove('move-left');
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.headerDiv.classList.remove('move-left');
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.chooseLevel.classList.remove('move-left');
 }
 
 let hideScores = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.scoresContainer.classList.add('scores-hidden');
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.scoresContainer.classList.add('scores-hidden');
 }
 
 let showScores = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.scoresContainer.classList.remove('scores-hidden');
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.scoresContainer.classList.remove('scores-hidden');
 }
 
 let show_hideOrShowButton = () => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.toggle_text.style.display = 'block';
+    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.toggle_text.style.display = 'block';
+}
+
+let placingDropdown = (coords) => {
+    let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_5__.charactersDD)();
+    let positionAdjusted = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_5__.adjustDropDownPosition)(coords);
+    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
+    ;(0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_5__.stickDropDownWhereItsClicked)(dropDown, newCoordsForDropdown);
 }
 
 let levelCountdown = timer => {
-    console.log(timer, 'here!!');
     // time in milli seconds
     let countDownTimerDeadline = timer * 60 * 1000;
-    // console.log(timer, countDownTimerDate);
+    
     let x = setInterval(() => {
         
         let timerDistance = countDownTimerDeadline - 1000;
@@ -848,20 +821,13 @@ let levelCountdown = timer => {
 
         let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
         let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
-        // let millis = Math.floor((timerDistance/(1000)));
-        // let millis = Math.floor(((timerDistance/1000)%(1000)));
-        // let millis = Math.floor((timerDistance/(1000)));
-        // console.log(mins, secs, millis);
-        // displayTimerCountDown(mins, secs, millis);
-        // if(flag) clearTimeout(x);
-        // displayTimerCountDown(mins, secs);
-        if(flag) {
-            clearTimeout(x);
-            flag = false;
-            // countDownTimerDeadline = timer * 60 * 1000;
-        }
+
         displayTimerCountDown(mins, secs);
-        // if(flag) alert('it is');
+
+        if(flag) {
+            clearInterval(x);
+            flag = false;
+        }
                
         if(timerDistance <= 0) {
             clearInterval(x);
@@ -869,40 +835,24 @@ let levelCountdown = timer => {
     }, 1000)
 }
 
-let displayTimerCountDown = (min,sec,mil) => {
-    // console.log(milliSpan)
-    // timer.textContent = '';
-
-    // console.log(min, sec, mil);
-    // timer.textContent = min + ':'+ sec +":"
-    if(flag) clearInterval(y);
+let displayTimerCountDown = (min,sec) => { 
+    // if(flag) clearInterval(y);
     let currentMillis = 0;
         let y = setInterval(() => {
-            // if(flag) {
-            //     clearTimeout(y);
-            //     flag = false;
-            // }
             currentMillis++;
-            // timer.textContent += currentMillis;
-            // milliSpan.textContent = currentMillis;
-            // timer.textContent = min + ':'+ sec +":"+currentMillis;
-            // timer.textContent = min + ':'+ sec +":"+currentMillis.length>1?currentMillis:'0'+currentMillis;
-            _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.timer.textContent = min + ':'+ sec +":"+checkIfDoubleDigit();
-            // timer.textContent += checkIdDoubleDigit();
-            _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.milliSpan.textContent = "??"
+            _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.timer.textContent = min + ':'+ sec +":"+checkIfDoubleDigit();
+
             if(currentMillis >= 10) {
                 clearInterval(y);
-                _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.timer.textContent = min + ':'+ sec +":"+'00';
+                _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.timer.textContent = min + ':'+ sec +":"+'00';
                 console.log('millis .....');            }
         }, 100)
+
         let checkIfDoubleDigit = () => {
             return currentMillis<10?'0'+currentMillis:currentMillis
         }
-    // timer.textContent = min + ':'+ sec +":"+ mil
-    // minSpan.textContent = min;
-    // secSpan.textContent = sec;
-    // milliSpan.textContent = mil;
-    // timer.textContent = minSpan
+
+        if(flag) clearInterval(y);
 }
 
 /***/ }),
@@ -1140,7 +1090,6 @@ let coords_for_level_01 = () => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "calculateCoords": () => (/* binding */ calculateCoords),
-/* harmony export */   "calculateCoordsVer02": () => (/* binding */ calculateCoordsVer02),
 /* harmony export */   "waldosRangeOfX": () => (/* binding */ waldosRangeOfX),
 /* harmony export */   "waldosRangeOfY": () => (/* binding */ waldosRangeOfY)
 /* harmony export */ });
@@ -1172,69 +1121,20 @@ let calculateCoords = () => {
     }
 }
 
-let calculateCoordsVer02 = () => {
-    let elemRect = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.getBoundingClientRect();
-    let left = elemRect.left;
-    let top = elemRect.top;
-    let height = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.height;
-    let width = _client_side_each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_0__.levelImage.width;
-    yCoordStart = (top+(height*36)/100).toFixed(2);
-    yCoordEnd = (top+(height*37.8)/100).toFixed(2);
-    xCoordStart = (left+(width*49)/100).toFixed(2);
-    xCoordEnd = (left+(width*50.19)/100).toFixed(2);  
-}
-// console.log('l', left, 't', top, 'w', width, 'h', height)
-// console.log(yCoord, '??', (top+(height*37.8)/100).toFixed(2));
-// console.log(xCoord, "!!", (left+(width*50.19)/100).toFixed(2) )
-// console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd)
+// export let calculateCoordsVer02 = () => {
+//     let elemRect = levelImage.getBoundingClientRect();
+//     let left = elemRect.left;
+//     let top = elemRect.top;
+//     let height = levelImage.height;
+//     let width = levelImage.width;
+//     yCoordStart = (top+(height*36)/100).toFixed(2);
+//     yCoordEnd = (top+(height*37.8)/100).toFixed(2);
+//     xCoordStart = (left+(width*49)/100).toFixed(2);
+//     xCoordEnd = (left+(width*50.19)/100).toFixed(2);  
+// }
 
 let waldosRangeOfX = [xCoordStart=0, xCoordEnd=0];
 let waldosRangeOfY = [yCoordStart=0, yCoordEnd=0];
-
-// let waldosRangeOfX = [186, 189];
-// let waldosRangeOfY = [203, 209];
-
-// export let calculateCoords = () => {
-//     if(levelImage) {
-//         let elemRect = levelImage.getBoundingClientRect();
-//         let left = elemRect.left;
-//         let top = elemRect.top;
-//         // let top = window.scrollY - elemRect.top;
-//         // let top = elemRect.top - window.scrollY;
-//         let height = levelImage.height;
-//         let width = levelImage.width;
-//         console.log('l', left, 't', top, 'w', width, 'h', height)
-//         yCoordStart = (top+(height*36)/100).toFixed(2);
-//         yCoordEnd = (top+(height*37.8)/100).toFixed(2);
-//         xCoordStart = (left+(width*49)/100).toFixed(2);
-//         xCoordEnd = (left+(width*50.19)/100).toFixed(2);
-//         console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
-//         let waldosRangeOfX = [xCoordStart, xCoordEnd];
-//         let waldosRangeOfY = [yCoordStart, yCoordEnd];
-//         return [waldosRangeOfX, waldosRangeOfY];
-//     }
-// }
-
-// export let calculateCoords = () => {
-//     if(levelImage) {
-//         let elemRect = levelImage.getBoundingClientRect();
-//         let left = elemRect.left;
-//         // let top = elemRect.top;
-//         // let top = window.scrollY - elemRect.top;
-//         let top = elemRect.top - window.scrollY;
-//         let height = levelImage.height;
-//         let width = levelImage.width;
-//         console.log('l', left, 't', top, 'w', width, 'h', height)
-//         yCoordStart = (top+(height*35.5)/100).toFixed(2);
-//         yCoordEnd = (top+(height*37.8)/100).toFixed(2);
-//         xCoordStart = (left+(width*48.6)/100).toFixed(2);
-//         xCoordEnd = (left+(width*50.19)/100).toFixed(2);
-//         console.log(xCoordStart, xCoordEnd, yCoordStart, yCoordEnd, "<>")
-//         let waldosRangeOfX = [xCoordStart, xCoordEnd];
-//         let waldosRangeOfY = [yCoordStart, yCoordEnd];
-//         return [waldosRangeOfX, waldosRangeOfY];
-//     }
-// }
 
 
 

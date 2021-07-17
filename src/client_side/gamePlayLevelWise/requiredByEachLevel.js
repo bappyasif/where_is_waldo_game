@@ -1,40 +1,57 @@
 import { readCharacterCoordsDataFromFirebase, storeEachLevelResult, storeResultsInLocally } from "../../server_side/accessingData";
+import { level_02_starting_time } from "../all_levels/level_02";
 import { necessaryCleanUpTasks } from "../all_levels/neededByAllLevels";
 import { chooseLevel, headerDiv, level_01, level_02, milliSpan, minSpan, playAgain, resultDiv, resultText, scoresContainer, secSpan, timer, toggle_text } from "../each_game_required_divs/requiredDivs";
 import { removePreviousScoresDetails, showLevelHighestScores } from "../gamePlay";
+import { adjustDropDownPosition, charactersDD, stickDropDownWhereItsClicked } from "./characterSelectionDropDown";
 
-let timeStarted = Date.now();
 let flag;
 
-export let calculateTotalTimeElapsed = () => {
+export let calculateTotalTimeElapsed = (timeStarted) => {
     flag = false;
     let timeElapsed = Date.now() - timeStarted;
     let seconds = Math.floor(timeElapsed/1000);
     let minutes = seconds / 60;
-    console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
+    console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes, 'times');
     flag = true;
-    timeStarted = Date.now();
+    // timer.textContent = '00:00:00';
     return minutes;
 }
 
 export let decideEffeciencyFindingWaldo = (timeTook, level) => {
-    timer.textContent = '00:00:00';
-    let stars;
-    if(timeTook < .50) {
-        stars = '5 star';
-    } else if(timeTook >= .50 && timeTook < 1) {
-        stars = '4 star';
-    } else if(timeTook >= 1 && timeTook < 1.25) {
-        stars = '3 star';
-    } else {
-        stars = '2 star';
-    }
+    // timer.textContent = '00:00:00';
+    let stars = levelWiseScoringSystem(level, timeTook);
     whatHappensAfterGame(stars, timeTook, level);
-    // flag = false;
+}
+
+let levelWiseScoringSystem = (level, timeTook) => {
+    let stars;
+    if(level == 'level_01') {
+        if(timeTook < .50) {
+            stars = '5 star';
+        } else if(timeTook >= .50 && timeTook < 1) {
+            stars = '4 star';
+        } else if(timeTook >= 1 && timeTook < 1.25) {
+            stars = '3 star';
+        } else {
+            stars = '2 star';
+        }
+    } else if(level == 'level_02') {
+        if(timeTook < .22) {
+            stars = '5 star';
+        } else if(timeTook >= .22 && timeTook < .51) {
+            stars = '4 star';
+        } else if(timeTook >= .51 && timeTook < 1.12) {
+            stars = '3 star';
+        } else {
+            stars = '2 star';
+        }
+    }
+    return stars;
 }
 
 export let movingDivsFromDisplayToShowScores = (level, name) => {
-    emptyLevelAndTimerText();
+    // emptyLevelAndTimerText();
     showScores();
     moveLevelsAndHeaderDivsToLeft();
 
@@ -74,16 +91,11 @@ let whatHappensAfterGame = (stars, time, level) => {
 
     movingDivsFromDisplayToShowScores(level, name);
 
-    // flag = false;
-    // timer.textContent = '00' + ':'+ '00' +":"+'00';
-    // if(flag) {
-    //     timer.textContent = '00' + ':'+ '00' +":"+'00';
-    // }
-
     setTimeout(() => {
         makingLevelsImagesUnclickable();
         announceCompleted(stars, name);
         awaitsUsersPlayAgain();
+        // flag = false;
     }, 1001);
 }
 
@@ -139,11 +151,17 @@ export let show_hideOrShowButton = () => {
     toggle_text.style.display = 'block';
 }
 
+export let placingDropdown = (coords) => {
+    let dropDown = charactersDD();
+    let positionAdjusted = adjustDropDownPosition(coords);
+    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
+    stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
+}
+
 export let levelCountdown = timer => {
-    console.log(timer, 'here!!');
     // time in milli seconds
     let countDownTimerDeadline = timer * 60 * 1000;
-    // console.log(timer, countDownTimerDate);
+    
     let x = setInterval(() => {
         
         let timerDistance = countDownTimerDeadline - 1000;
@@ -151,20 +169,13 @@ export let levelCountdown = timer => {
 
         let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
         let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
-        // let millis = Math.floor((timerDistance/(1000)));
-        // let millis = Math.floor(((timerDistance/1000)%(1000)));
-        // let millis = Math.floor((timerDistance/(1000)));
-        // console.log(mins, secs, millis);
-        // displayTimerCountDown(mins, secs, millis);
-        // if(flag) clearTimeout(x);
-        // displayTimerCountDown(mins, secs);
-        if(flag) {
-            clearTimeout(x);
-            flag = false;
-            // countDownTimerDeadline = timer * 60 * 1000;
-        }
+
         displayTimerCountDown(mins, secs);
-        // if(flag) alert('it is');
+
+        if(flag) {
+            clearInterval(x);
+            flag = false;
+        }
                
         if(timerDistance <= 0) {
             clearInterval(x);
@@ -172,38 +183,22 @@ export let levelCountdown = timer => {
     }, 1000)
 }
 
-let displayTimerCountDown = (min,sec,mil) => {
-    // console.log(milliSpan)
-    // timer.textContent = '';
-
-    // console.log(min, sec, mil);
-    // timer.textContent = min + ':'+ sec +":"
-    if(flag) clearInterval(y);
+let displayTimerCountDown = (min,sec) => { 
+    // if(flag) clearInterval(y);
     let currentMillis = 0;
         let y = setInterval(() => {
-            // if(flag) {
-            //     clearTimeout(y);
-            //     flag = false;
-            // }
             currentMillis++;
-            // timer.textContent += currentMillis;
-            // milliSpan.textContent = currentMillis;
-            // timer.textContent = min + ':'+ sec +":"+currentMillis;
-            // timer.textContent = min + ':'+ sec +":"+currentMillis.length>1?currentMillis:'0'+currentMillis;
             timer.textContent = min + ':'+ sec +":"+checkIfDoubleDigit();
-            // timer.textContent += checkIdDoubleDigit();
-            milliSpan.textContent = "??"
+
             if(currentMillis >= 10) {
                 clearInterval(y);
                 timer.textContent = min + ':'+ sec +":"+'00';
                 console.log('millis .....');            }
         }, 100)
+
         let checkIfDoubleDigit = () => {
             return currentMillis<10?'0'+currentMillis:currentMillis
         }
-    // timer.textContent = min + ':'+ sec +":"+ mil
-    // minSpan.textContent = min;
-    // secSpan.textContent = sec;
-    // milliSpan.textContent = mil;
-    // timer.textContent = minSpan
+
+        if(flag) clearInterval(y);
 }

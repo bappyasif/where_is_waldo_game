@@ -1,8 +1,12 @@
 import { readCharacterCoordsDataFromArray, readCharacterCoordsDataFromFirebase } from "../../server_side/accessingData";
 import { coords_for_level_01 } from "../../server_side/level_01/storingPositions";
+import { level_01_starting_time } from "../all_levels/level_01";
+import { toggleDropDownFlag } from "../gamePlay";
 import { adjustDropDownPosition, charactersDD, stickDropDownWhereItsClicked } from "./characterSelectionDropDown";
 import { calculateTotalTimeElapsed, decideEffeciencyFindingWaldo, disableCharacterFromDisplay } from "./requiredByEachLevel";
 export let howManyCharactersExistInLevelOne = 3;
+// let level_01_starting_time = Date.now();
+
 
 let checkWhoWithFirebase = (collectionName, characterName, coords) => {
     readCharacterCoordsDataFromFirebase(collectionName, characterName).then(data=>{
@@ -20,10 +24,12 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 
         howManyCharactersExistInLevelOne--;
         if(howManyCharactersExistInLevelOne == 0) {
-            let timeSpent = calculateTotalTimeElapsed();
+            // let timeSpent = calculateTotalTimeElapsed();
+            let timeSpent = calculateTotalTimeElapsed(level_01_starting_time);
             decideEffeciencyFindingWaldo(timeSpent, 'level_01');
             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
             howManyCharactersExistInLevelOne = 3;
+            // level_01_starting_time = Date.now();
         }
     } else {
         console.log('go fish!!'+who, coords);
@@ -31,14 +37,6 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 }
 
 export let checkPositionWithFirebaseForGameLevel01 = (coords) => {
-    // coords_for_level_01();
-
-    let dropDown = charactersDD();
-    let positionAdjusted = adjustDropDownPosition(coords);
-    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-    // stickDropDownWhereItsClicked(dropDown, coords);
-    stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
-
     let select = document.querySelector('.found-who');
 
     if(select) {
@@ -46,6 +44,7 @@ export let checkPositionWithFirebaseForGameLevel01 = (coords) => {
             let who = select.value;
             checkWhoWithFirebase('level_01', who, coords);
             document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
+            toggleDropDownFlag();
         });
     }
 }

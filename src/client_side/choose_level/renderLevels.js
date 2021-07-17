@@ -15,7 +15,9 @@ let userHasSelectedLevel = evt => {
         level_one_game_view();
         // coords_for_level_01();
     } else if(id == 'level-02') {
+        // let level_02_starting_time = Date.now();
         level_two_game_view();
+        // level_two_game_view(level_02_starting_time);
         // saving_coords_for_level02();
     }
 }

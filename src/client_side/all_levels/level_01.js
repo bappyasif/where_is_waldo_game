@@ -2,6 +2,7 @@ import { coords_for_level_01 } from "../../server_side/level_01/storingPositions
 import { gamePanel, level, levelImage, timer } from "../each_game_required_divs/requiredDivs";
 import { levelCountdown, show_hideOrShowButton } from "../gamePlayLevelWise/requiredByEachLevel";
 import { necessaryCleanUpTasks } from "./neededByAllLevels";
+export let level_01_starting_time;
 
 export let level_one_game_view = () => {
     // necessaryCleanUpTasks();
@@ -19,6 +20,7 @@ let renderingLevelWorldImage = () => {
     levelImage.src = './images/level-1.jpg';
     levelImage.alt = 'level 01';
     gamePanel.appendChild(levelImage);
+    level_01_starting_time = Date.now();
 }
 
 let renderingLevelAndTimer = (levelNum, levelTimer) => {
