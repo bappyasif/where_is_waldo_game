@@ -908,6 +908,7 @@ let levelCountdown = timer => {
     let countDownTimerDeadline = timer * 60 * 1000;
     
     // if(flag) {
+    //     // flag = false;
     //     clearTimeout(x);
     //     // flag = false;
     //     // countDownTimerDeadline = timer * 60 * 1000;
@@ -920,19 +921,19 @@ let levelCountdown = timer => {
         let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
         let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
 
-        if(flag) {
-            clearTimeout(x);
-            flag = false;
-            // timer.textContent = '00:00:00';
-            // countDownTimerDeadline = timer * 60 * 1000;
-        }
+        // if(flag) {
+        //     clearTimeout(x);
+        //     flag = false;
+        //     // timer.textContent = '00:00:00';
+        //     // countDownTimerDeadline = timer * 60 * 1000;
+        // }
         // if(flag) clearInterval(x);
         displayTimerCountDown(mins, secs);
         // if(flag) clearInterval(x);
-        // if(flag) {
-        //     clearInterval(x);
-        //     flag = false;
-        // }
+        if(flag) {
+            clearInterval(x);
+            flag = false;
+        }
         // if(flag) alert('it is');
                
         if(timerDistance <= 0) {
@@ -947,8 +948,10 @@ let levelCountdown = timer => {
 }
 
 let displayTimerCountDown = (min,sec) => { 
+    // if(flag) clearInterval(y);
     let currentMillis = 0;
         let y = setInterval(() => {
+            // if(flag) clearInterval(y);
             // if(flag) {
             //     clearInterval(y);
             //     // flag = false;
