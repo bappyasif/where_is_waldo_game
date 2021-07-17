@@ -545,7 +545,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let howManyCharactersExistInLevelOne = 3;
-let level_01_starting_time = Date.now();
+// let level_01_starting_time = Date.now();
 
 
 let checkWhoWithFirebase = (collectionName, characterName, coords) => {
@@ -564,12 +564,12 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 
         howManyCharactersExistInLevelOne--;
         if(howManyCharactersExistInLevelOne == 0) {
-            // let timeSpent = calculateTotalTimeElapsed();
-            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.calculateTotalTimeElapsed)(level_01_starting_time);
+            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.calculateTotalTimeElapsed)();
+            // let timeSpent = calculateTotalTimeElapsed(level_01_starting_time);
             (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.decideEffeciencyFindingWaldo)(timeSpent, 'level_01');
             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
             howManyCharactersExistInLevelOne = 3;
-            level_01_starting_time = Date.now();
+            // level_01_starting_time = Date.now();
         }
     } else {
         console.log('go fish!!'+who, coords);
@@ -618,7 +618,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let howManyCharactersExistInLevelTwo = 1;
-let level_02_starting_time =  Date.now();
+// let level_02_starting_time =  Date.now();
 
 let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
@@ -628,12 +628,12 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 
         howManyCharactersExistInLevelTwo--;
         if(howManyCharactersExistInLevelTwo == 0) {
-            // let timeSpent = calculateTotalTimeElapsed();
-            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.calculateTotalTimeElapsed)(level_02_starting_time);
+            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.calculateTotalTimeElapsed)();
+            // let timeSpent = calculateTotalTimeElapsed(level_02_starting_time);
             (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_3__.decideEffeciencyFindingWaldo)(timeSpent, "level_02");
             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
             howManyCharactersExistInLevelTwo = 1;
-            level_02_starting_time = Date.now();
+            // level_02_starting_time = Date.now();
         }
     } else {
         console.log('go fish!!'+who, coords);
@@ -700,25 +700,27 @@ __webpack_require__.r(__webpack_exports__);
 // let timeStarted = Date.now();
 let flag;
 
-// export let calculateTotalTimeElapsed = () => {
-//     flag = false;
-//     let timeElapsed = Date.now() - timeStarted;
-//     let seconds = Math.floor(timeElapsed/1000);
-//     let minutes = seconds / 60;
-//     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
-//     flag = true;
-//     return minutes;
-// }
-let calculateTotalTimeElapsed = (timeStarted) => {
+let calculateTotalTimeElapsed = () => {
+    let timeStarted = Date.now();
     flag = false;
     let timeElapsed = Date.now() - timeStarted;
     let seconds = Math.floor(timeElapsed/1000);
     let minutes = seconds / 60;
     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
     flag = true;
-    timeElapsed = 0;
     return minutes;
 }
+// export let calculateTotalTimeElapsed = (timeStarted) => {
+//     flag = false;
+//     let timeElapsed = Date.now() - timeStarted;
+//     let seconds = Math.floor(timeElapsed/1000);
+//     let minutes = seconds / 60;
+//     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes, 'times');
+//     flag = true;
+//     // timeElapsed = 0;
+//     timeStarted = Date.now();
+//     return minutes;
+// }
 
 let decideEffeciencyFindingWaldo = (timeTook, level) => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_2__.timer.textContent = '00:00:00';
