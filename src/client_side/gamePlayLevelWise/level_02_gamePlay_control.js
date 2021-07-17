@@ -26,27 +26,6 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     }
 }
 
-// let checkIfCoordsWithinPositionRange = (data, coords, who, level_02_starting_time) => {
-//     console.log(data['X'][0], data.X[1], who, level_02_starting_time);
-//     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
-//         console.log('found!!'+who, data['X'][0], data['X'][1]);
-//         // let level_02_starting_time = Date.now();
-//         disableCharacterFromDisplay(who);
-
-//         howManyCharactersExistInLevelTwo--;
-//         if(howManyCharactersExistInLevelTwo == 0) {
-//             let timeSpent = calculateTotalTimeElapsed();
-//             // let timeSpent = calculateTotalTimeElapsed(level_02_starting_time);
-//             decideEffeciencyFindingWaldo(timeSpent, "level_02");
-//             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
-//             howManyCharactersExistInLevelTwo = 1;
-//             console.log(level_02_starting_time, 'ending');
-//         }
-//     } else {
-//         console.log('go fish!!'+who, coords);
-//     }
-// }
-
 let checkWhoWithFirebase = (collectionName, characterName, coords) => {
     readCharacterCoordsDataFromFirebase(collectionName, characterName).then(data=>{
         console.log(data, 'data read!!');

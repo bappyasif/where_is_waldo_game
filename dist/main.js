@@ -652,27 +652,6 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     }
 }
 
-// let checkIfCoordsWithinPositionRange = (data, coords, who, level_02_starting_time) => {
-//     console.log(data['X'][0], data.X[1], who, level_02_starting_time);
-//     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
-//         console.log('found!!'+who, data['X'][0], data['X'][1]);
-//         // let level_02_starting_time = Date.now();
-//         disableCharacterFromDisplay(who);
-
-//         howManyCharactersExistInLevelTwo--;
-//         if(howManyCharactersExistInLevelTwo == 0) {
-//             let timeSpent = calculateTotalTimeElapsed();
-//             // let timeSpent = calculateTotalTimeElapsed(level_02_starting_time);
-//             decideEffeciencyFindingWaldo(timeSpent, "level_02");
-//             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
-//             howManyCharactersExistInLevelTwo = 1;
-//             console.log(level_02_starting_time, 'ending');
-//         }
-//     } else {
-//         console.log('go fish!!'+who, coords);
-//     }
-// }
-
 let checkWhoWithFirebase = (collectionName, characterName, coords) => {
     ;(0,_server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__.readCharacterCoordsDataFromFirebase)(collectionName, characterName).then(data=>{
         console.log(data, 'data read!!');
@@ -734,19 +713,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// let timeStarted = Date.now();
 let flag;
-
-// export let calculateTotalTimeElapsed = () => {
-//     let timeStarted = level_02_starting_time
-//     flag = false;
-//     let timeElapsed = Date.now() - timeStarted;
-//     let seconds = Math.floor(timeElapsed/1000);
-//     let minutes = seconds / 60;
-//     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes)
-//     flag = true;
-//     return minutes;
-// }
 
 let calculateTotalTimeElapsed = (timeStarted) => {
     flag = false;
@@ -755,26 +722,13 @@ let calculateTotalTimeElapsed = (timeStarted) => {
     let minutes = seconds / 60;
     console.log(timeElapsed, Math.floor(timeElapsed/1000), minutes, 'times');
     flag = true;
-    // timeElapsed = 0;
-    // timeStarted = Date.now();
     return minutes;
 }
 
 let decideEffeciencyFindingWaldo = (timeTook, level) => {
-    _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.timer.textContent = '00:00:00';
-    // let stars;
-    // if(timeTook < .50) {
-    //     stars = '5 star';
-    // } else if(timeTook >= .50 && timeTook < 1) {
-    //     stars = '4 star';
-    // } else if(timeTook >= 1 && timeTook < 1.25) {
-    //     stars = '3 star';
-    // } else {
-    //     stars = '2 star';
-    // }
+    // timer.textContent = '00:00:00';
     let stars = levelWiseScoringSystem(level, timeTook);
     whatHappensAfterGame(stars, timeTook, level);
-    // flag = false;
 }
 
 let levelWiseScoringSystem = (level, timeTook) => {
@@ -804,7 +758,7 @@ let levelWiseScoringSystem = (level, timeTook) => {
 }
 
 let movingDivsFromDisplayToShowScores = (level, name) => {
-    emptyLevelAndTimerText();
+    // emptyLevelAndTimerText();
     showScores();
     moveLevelsAndHeaderDivsToLeft();
 
@@ -843,12 +797,6 @@ let whatHappensAfterGame = (stars, time, level) => {
     storeResultToFirebase(time,name,stars, level);
 
     movingDivsFromDisplayToShowScores(level, name);
-
-    // flag = false;
-    // timer.textContent = '00' + ':'+ '00' +":"+'00';
-    // if(flag) {
-    //     timer.textContent = '00' + ':'+ '00' +":"+'00';
-    // }
 
     setTimeout(() => {
         makingLevelsImagesUnclickable();
@@ -910,10 +858,14 @@ let show_hideOrShowButton = () => {
 }
 
 let levelCountdown = timer => {
-    console.log(timer, 'here!!');
     // time in milli seconds
     let countDownTimerDeadline = timer * 60 * 1000;
-    // console.log(timer, countDownTimerDate);
+    
+    // if(flag) {
+    //     clearTimeout(x);
+    //     flag = false;
+    //     // countDownTimerDeadline = timer * 60 * 1000;
+    // }
     let x = setInterval(() => {
         
         let timerDistance = countDownTimerDeadline - 1000;
@@ -921,13 +873,7 @@ let levelCountdown = timer => {
 
         let mins = Math.floor((timerDistance%(1000 * 60 * 60)) / (1000*60));
         let secs = Math.floor((timerDistance%(1000 * 60)) / (1000));
-        // let millis = Math.floor((timerDistance/(1000)));
-        // let millis = Math.floor(((timerDistance/1000)%(1000)));
-        // let millis = Math.floor((timerDistance/(1000)));
-        // console.log(mins, secs, millis);
-        // displayTimerCountDown(mins, secs, millis);
-        // if(flag) clearTimeout(x);
-        // displayTimerCountDown(mins, secs);
+
         if(flag) {
             clearTimeout(x);
             flag = false;
@@ -942,40 +888,23 @@ let levelCountdown = timer => {
     }, 1000)
 }
 
-let displayTimerCountDown = (min,sec,mil) => {
-    // console.log(milliSpan)
-    // timer.textContent = '';
-
-    // console.log(min, sec, mil);
-    // timer.textContent = min + ':'+ sec +":"
-    if(flag) clearInterval(y);
+let displayTimerCountDown = (min,sec) => { 
     let currentMillis = 0;
         let y = setInterval(() => {
-            // if(flag) {
-            //     clearTimeout(y);
-            //     flag = false;
-            // }
             currentMillis++;
-            // timer.textContent += currentMillis;
-            // milliSpan.textContent = currentMillis;
-            // timer.textContent = min + ':'+ sec +":"+currentMillis;
-            // timer.textContent = min + ':'+ sec +":"+currentMillis.length>1?currentMillis:'0'+currentMillis;
             _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.timer.textContent = min + ':'+ sec +":"+checkIfDoubleDigit();
-            // timer.textContent += checkIdDoubleDigit();
-            _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.milliSpan.textContent = "??"
+
             if(currentMillis >= 10) {
                 clearInterval(y);
                 _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.timer.textContent = min + ':'+ sec +":"+'00';
                 console.log('millis .....');            }
         }, 100)
+
         let checkIfDoubleDigit = () => {
             return currentMillis<10?'0'+currentMillis:currentMillis
         }
-    // timer.textContent = min + ':'+ sec +":"+ mil
-    // minSpan.textContent = min;
-    // secSpan.textContent = sec;
-    // milliSpan.textContent = mil;
-    // timer.textContent = minSpan
+
+        if(flag) clearInterval(y);
 }
 
 /***/ }),
