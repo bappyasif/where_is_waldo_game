@@ -303,10 +303,12 @@ let milliSpan = document.querySelector('#mil');
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "results": () => (/* binding */ results),
+/* harmony export */   "dropdownFlag": () => (/* binding */ dropdownFlag),
 /* harmony export */   "gamePlay": () => (/* binding */ gamePlay),
 /* harmony export */   "removePreviousScoresDetails": () => (/* binding */ removePreviousScoresDetails),
 /* harmony export */   "showLevelHighestScores": () => (/* binding */ showLevelHighestScores),
 /* harmony export */   "showDataOnTable": () => (/* binding */ showDataOnTable),
+/* harmony export */   "toggleDropDownFlag": () => (/* binding */ toggleDropDownFlag),
 /* harmony export */   "checkWhichLevelIsInPlay": () => (/* binding */ checkWhichLevelIsInPlay)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../server_side/accessingData */ "./src/server_side/accessingData.js");
@@ -319,7 +321,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let results = {};
+let results = {}, dropdownFlag = false;
 let gamePlay = () => {
     // let worldImage = document.querySelector('.game-panel');
     // worldImage.addEventListener('click', checkWhichLevelIsInPlay);
@@ -392,6 +394,8 @@ let toggleTextInDisplay = evt => {
     }
 }
 
+let toggleDropDownFlag = () => dropdownFlag = false;
+
 let checkWhichLevelIsInPlay = evt => {
     let x = evt.clientX;
     let y = evt.clientY;
@@ -400,10 +404,18 @@ let checkWhichLevelIsInPlay = evt => {
     let levelID = imageAltTagText.split(' ')[1];
     console.log(levelID);
 
+    // placingDropdown([x,y]);
+    if(!dropdownFlag) {
+        (0,_gamePlayLevelWise_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__.placingDropdown)([x,y]);
+        dropdownFlag = true;
+    }
+
     if(levelID == '01') {
         (0,_gamePlayLevelWise_level_01_gamePlay_control__WEBPACK_IMPORTED_MODULE_2__.checkPositionWithFirebaseForGameLevel01)([x,y]);
+        // dropdownFlag = false;
     } else if(levelID == '02') {
         (0,_gamePlayLevelWise_level_02_gamePlay_control__WEBPACK_IMPORTED_MODULE_3__.checkPositionWithFirebaseForGameLevel02)([x,y]);
+        // dropdownFlag = false;
     }
 }
 
@@ -547,8 +559,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
 /* harmony import */ var _server_side_level_01_storingPositions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../server_side/level_01/storingPositions */ "./src/server_side/level_01/storingPositions.js");
 /* harmony import */ var _all_levels_level_01__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../all_levels/level_01 */ "./src/client_side/all_levels/level_01.js");
-/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
-/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+/* harmony import */ var _gamePlay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../gamePlay */ "./src/client_side/gamePlay.js");
+/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
+/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+
 
 
 
@@ -570,13 +584,13 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     console.log(data['X'][0], data.X[1], who);
     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
         console.log('found!!'+who, data['X'][0], data['X'][1]);
-        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__.disableCharacterFromDisplay)(who)
+        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.disableCharacterFromDisplay)(who)
 
         howManyCharactersExistInLevelOne--;
         if(howManyCharactersExistInLevelOne == 0) {
             // let timeSpent = calculateTotalTimeElapsed();
-            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__.calculateTotalTimeElapsed)(_all_levels_level_01__WEBPACK_IMPORTED_MODULE_2__.level_01_starting_time);
-            (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__.decideEffeciencyFindingWaldo)(timeSpent, 'level_01');
+            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.calculateTotalTimeElapsed)(_all_levels_level_01__WEBPACK_IMPORTED_MODULE_2__.level_01_starting_time);
+            (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.decideEffeciencyFindingWaldo)(timeSpent, 'level_01');
             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
             howManyCharactersExistInLevelOne = 3;
             // level_01_starting_time = Date.now();
@@ -589,11 +603,11 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
 let checkPositionWithFirebaseForGameLevel01 = (coords) => {
     // coords_for_level_01();
 
-    let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_3__.charactersDD)();
-    let positionAdjusted = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_3__.adjustDropDownPosition)(coords);
-    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-    // stickDropDownWhereItsClicked(dropDown, coords);
-    ;(0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_3__.stickDropDownWhereItsClicked)(dropDown, newCoordsForDropdown);
+    // let dropDown = charactersDD();
+    // let positionAdjusted = adjustDropDownPosition(coords);
+    // let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
+    // // stickDropDownWhereItsClicked(dropDown, coords);
+    // stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
 
     let select = document.querySelector('.found-who');
 
@@ -602,6 +616,7 @@ let checkPositionWithFirebaseForGameLevel01 = (coords) => {
             let who = select.value;
             checkWhoWithFirebase('level_01', who, coords);
             document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
+            (0,_gamePlay__WEBPACK_IMPORTED_MODULE_3__.toggleDropDownFlag)();
         });
     }
 }
@@ -622,8 +637,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
 /* harmony import */ var _server_side_level_02_storingPositions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../server_side/level_02/storingPositions */ "./src/server_side/level_02/storingPositions.js");
 /* harmony import */ var _all_levels_level_02__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../all_levels/level_02 */ "./src/client_side/all_levels/level_02.js");
-/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
-/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+/* harmony import */ var _gamePlay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../gamePlay */ "./src/client_side/gamePlay.js");
+/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
+/* harmony import */ var _requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./requiredByEachLevel */ "./src/client_side/gamePlayLevelWise/requiredByEachLevel.js");
+
 
 
 
@@ -637,13 +654,13 @@ let checkIfCoordsWithinPositionRange = (data, coords, who) => {
     if((coords[0] >= data['X'][0] && coords[0] <= data['X'][1]) && (coords[1] >= data['Y'][0] && coords[1] <= data['Y'][1])) {
         console.log('found!!'+who, data['X'][0], data['X'][1]);
         // let level_02_starting_time = Date.now();
-        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__.disableCharacterFromDisplay)(who);
+        (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.disableCharacterFromDisplay)(who);
 
         howManyCharactersExistInLevelTwo--;
         if(howManyCharactersExistInLevelTwo == 0) {
             // let timeSpent = calculateTotalTimeElapsed();
-            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__.calculateTotalTimeElapsed)(_all_levels_level_02__WEBPACK_IMPORTED_MODULE_2__.level_02_starting_time);
-            (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_4__.decideEffeciencyFindingWaldo)(timeSpent, "level_02");
+            let timeSpent = (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.calculateTotalTimeElapsed)(_all_levels_level_02__WEBPACK_IMPORTED_MODULE_2__.level_02_starting_time);
+            (0,_requiredByEachLevel__WEBPACK_IMPORTED_MODULE_5__.decideEffeciencyFindingWaldo)(timeSpent, "level_02");
             // moving it back to it's initial value, so that when play again is in motion it starts from initial count
             howManyCharactersExistInLevelTwo = 1;
         }
@@ -662,14 +679,26 @@ let checkWhoWithFirebase = (collectionName, characterName, coords) => {
     }).catch(err=>console.log("could not read data!!", err));
 }
 
-let checkPositionWithFirebaseForGameLevel02 = (coords) => {
-    // saving_coords_for_level02(); 
+// export let placingDropdown = (coords) => {
+//     let dropDown = charactersDD();
+//     let positionAdjusted = adjustDropDownPosition(coords);
+//     let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
+//     // stickDropDownWhereItsClicked(dropDown, coords);
+//     // dropdownFlag = true;
+//     // if(dropdownFlag) stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
+//     stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
+// }
 
-    let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_3__.charactersDD)();
-    let positionAdjusted = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_3__.adjustDropDownPosition)(coords);
-    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-    // stickDropDownWhereItsClicked(dropDown, coords);
-    ;(0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_3__.stickDropDownWhereItsClicked)(dropDown, newCoordsForDropdown);
+let checkPositionWithFirebaseForGameLevel02 = (coords) => {
+    // saving_coords_for_level02();
+    // let dropdownFlag = false;
+    // let dropDown = charactersDD();
+    // let positionAdjusted = adjustDropDownPosition(coords);
+    // let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
+    // // stickDropDownWhereItsClicked(dropDown, coords);
+    // // dropdownFlag = true;
+    // // if(dropdownFlag) stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
+    // stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
     
     let select = document.querySelector('.found-who');
     if(select) {
@@ -677,6 +706,7 @@ let checkPositionWithFirebaseForGameLevel02 = (coords) => {
             let who = select.value;
             checkWhoWithFirebase('level_02', who, coords);
             document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
+            (0,_gamePlay__WEBPACK_IMPORTED_MODULE_3__.toggleDropDownFlag)();
         });
     }
 }
@@ -700,6 +730,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "hideScores": () => (/* binding */ hideScores),
 /* harmony export */   "showScores": () => (/* binding */ showScores),
 /* harmony export */   "show_hideOrShowButton": () => (/* binding */ show_hideOrShowButton),
+/* harmony export */   "placingDropdown": () => (/* binding */ placingDropdown),
 /* harmony export */   "levelCountdown": () => (/* binding */ levelCountdown)
 /* harmony export */ });
 /* harmony import */ var _server_side_accessingData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server_side/accessingData */ "./src/server_side/accessingData.js");
@@ -707,6 +738,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _all_levels_neededByAllLevels__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../all_levels/neededByAllLevels */ "./src/client_side/all_levels/neededByAllLevels.js");
 /* harmony import */ var _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../each_game_required_divs/requiredDivs */ "./src/client_side/each_game_required_divs/requiredDivs.js");
 /* harmony import */ var _gamePlay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../gamePlay */ "./src/client_side/gamePlay.js");
+/* harmony import */ var _characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./characterSelectionDropDown */ "./src/client_side/gamePlayLevelWise/characterSelectionDropDown.js");
+
 
 
 
@@ -855,6 +888,16 @@ let showScores = () => {
 
 let show_hideOrShowButton = () => {
     _each_game_required_divs_requiredDivs__WEBPACK_IMPORTED_MODULE_3__.toggle_text.style.display = 'block';
+}
+
+let placingDropdown = (coords) => {
+    let dropDown = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_5__.charactersDD)();
+    let positionAdjusted = (0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_5__.adjustDropDownPosition)(coords);
+    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
+    // stickDropDownWhereItsClicked(dropDown, coords);
+    // dropdownFlag = true;
+    // if(dropdownFlag) stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
+    ;(0,_characterSelectionDropDown__WEBPACK_IMPORTED_MODULE_5__.stickDropDownWhereItsClicked)(dropDown, newCoordsForDropdown);
 }
 
 let levelCountdown = timer => {

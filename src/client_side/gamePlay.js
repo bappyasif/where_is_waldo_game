@@ -2,8 +2,8 @@ import { readEachLevelResult, test2, testData } from "../server_side/accessingDa
 import { charactersDisplayed, highScores, level, levelImage, toggle_text } from "./each_game_required_divs/requiredDivs";
 import { checkPositionWithFirebaseForGameLevel01 } from "./gamePlayLevelWise/level_01_gamePlay_control";
 import { checkPositionWithFirebaseForGameLevel02 } from "./gamePlayLevelWise/level_02_gamePlay_control";
-import { hideScores, movingDivsFromDisplayToShowScores } from "./gamePlayLevelWise/requiredByEachLevel";
-export let results = {};
+import { hideScores, movingDivsFromDisplayToShowScores, placingDropdown } from "./gamePlayLevelWise/requiredByEachLevel";
+export let results = {}, dropdownFlag = false;
 export let gamePlay = () => {
     // let worldImage = document.querySelector('.game-panel');
     // worldImage.addEventListener('click', checkWhichLevelIsInPlay);
@@ -76,6 +76,8 @@ let toggleTextInDisplay = evt => {
     }
 }
 
+export let toggleDropDownFlag = () => dropdownFlag = false;
+
 export let checkWhichLevelIsInPlay = evt => {
     let x = evt.clientX;
     let y = evt.clientY;
@@ -84,9 +86,17 @@ export let checkWhichLevelIsInPlay = evt => {
     let levelID = imageAltTagText.split(' ')[1];
     console.log(levelID);
 
+    // placingDropdown([x,y]);
+    if(!dropdownFlag) {
+        placingDropdown([x,y]);
+        dropdownFlag = true;
+    }
+
     if(levelID == '01') {
         checkPositionWithFirebaseForGameLevel01([x,y]);
+        // dropdownFlag = false;
     } else if(levelID == '02') {
         checkPositionWithFirebaseForGameLevel02([x,y]);
+        // dropdownFlag = false;
     }
 }

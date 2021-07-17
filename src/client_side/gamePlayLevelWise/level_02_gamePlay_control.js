@@ -1,6 +1,7 @@
 import { readCharacterCoordsDataFromArray, readCharacterCoordsDataFromFirebase } from "../../server_side/accessingData";
 import { saving_coords_for_level02 } from "../../server_side/level_02/storingPositions";
 import { level_02_starting_time } from "../all_levels/level_02";
+import { dropdownFlag, toggleDropDownFlag } from "../gamePlay";
 import { adjustDropDownPosition, charactersDD, stickDropDownWhereItsClicked } from "./characterSelectionDropDown";
 import { calculateTotalTimeElapsed, decideEffeciencyFindingWaldo, disableCharacterFromDisplay } from "./requiredByEachLevel";
 export let howManyCharactersExistInLevelTwo = 1;
@@ -36,14 +37,26 @@ let checkWhoWithFirebase = (collectionName, characterName, coords) => {
     }).catch(err=>console.log("could not read data!!", err));
 }
 
-export let checkPositionWithFirebaseForGameLevel02 = (coords) => {
-    // saving_coords_for_level02(); 
+// export let placingDropdown = (coords) => {
+//     let dropDown = charactersDD();
+//     let positionAdjusted = adjustDropDownPosition(coords);
+//     let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
+//     // stickDropDownWhereItsClicked(dropDown, coords);
+//     // dropdownFlag = true;
+//     // if(dropdownFlag) stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
+//     stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
+// }
 
-    let dropDown = charactersDD();
-    let positionAdjusted = adjustDropDownPosition(coords);
-    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
-    // stickDropDownWhereItsClicked(dropDown, coords);
-    stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
+export let checkPositionWithFirebaseForGameLevel02 = (coords) => {
+    // saving_coords_for_level02();
+    // let dropdownFlag = false;
+    // let dropDown = charactersDD();
+    // let positionAdjusted = adjustDropDownPosition(coords);
+    // let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
+    // // stickDropDownWhereItsClicked(dropDown, coords);
+    // // dropdownFlag = true;
+    // // if(dropdownFlag) stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
+    // stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
     
     let select = document.querySelector('.found-who');
     if(select) {
@@ -51,6 +64,7 @@ export let checkPositionWithFirebaseForGameLevel02 = (coords) => {
             let who = select.value;
             checkWhoWithFirebase('level_02', who, coords);
             document.querySelectorAll('select').forEach(node=>node.parentNode.removeChild(node));
+            toggleDropDownFlag();
         });
     }
 }

@@ -3,6 +3,7 @@ import { level_02_starting_time } from "../all_levels/level_02";
 import { necessaryCleanUpTasks } from "../all_levels/neededByAllLevels";
 import { chooseLevel, headerDiv, level_01, level_02, milliSpan, minSpan, playAgain, resultDiv, resultText, scoresContainer, secSpan, timer, toggle_text } from "../each_game_required_divs/requiredDivs";
 import { removePreviousScoresDetails, showLevelHighestScores } from "../gamePlay";
+import { adjustDropDownPosition, charactersDD, stickDropDownWhereItsClicked } from "./characterSelectionDropDown";
 
 let flag;
 
@@ -146,6 +147,16 @@ export let showScores = () => {
 
 export let show_hideOrShowButton = () => {
     toggle_text.style.display = 'block';
+}
+
+export let placingDropdown = (coords) => {
+    let dropDown = charactersDD();
+    let positionAdjusted = adjustDropDownPosition(coords);
+    let newCoordsForDropdown = [positionAdjusted.left, positionAdjusted.top]
+    // stickDropDownWhereItsClicked(dropDown, coords);
+    // dropdownFlag = true;
+    // if(dropdownFlag) stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
+    stickDropDownWhereItsClicked(dropDown, newCoordsForDropdown);
 }
 
 export let levelCountdown = timer => {
